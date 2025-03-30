@@ -11,34 +11,34 @@ type Logo = {
 
 const logos: Logo[] = [
     {
-        src: "https://html.tailus.io/blocks/customers/nvidia.svg",
-        alt: "Nvidia Logo",
-        height: 5,
-    },
-    {
-        src: "https://html.tailus.io/blocks/customers/github.svg",
-        alt: "GitHub Logo",
-        height: 4,
-    },
-    {
-        src: "https://html.tailus.io/blocks/customers/lilly.svg",
-        alt: "Lilly Logo",
-        height: 5,
-    },
-    {
-        src: "https://html.tailus.io/blocks/customers/openai.svg",
+        src: "/Logos/openai.svg",
         alt: "OpenAI Logo",
-        height: 4,
+        height: 12,
     },
     {
-        src: "https://html.tailus.io/blocks/customers/nike.svg",
-        alt: "Nike Logo",
-        height: 4,
+        src: "/Logos/anthropic.svg",
+        alt: "Anthropic Logo",
+        height: 12,
     },
     {
-        src: "https://html.tailus.io/blocks/customers/laravel.svg",
-        alt: "Laravel Logo",
-        height: 4,
+        src: "/Logos/vercel-black.svg",
+        alt: "Vercel Logo",
+        height: 12,
+    },
+    {
+        src: "/Logos/next.js.svg",
+        alt: "Next.js Logo",
+        height: 12,
+    },
+    {
+        src: "/Logos/typescript.svg",
+        alt: "TypeScript Logo",
+        height: 12,
+    },
+    {
+        src: "/Logos/react.svg",
+        alt: "React Logo",
+        height: 12,
     },
 ]
 
@@ -48,7 +48,7 @@ interface LogoMarqueeProps {
     delay?: number
 }
 
-export function LogoMarquee({ title = "TRUSTED BY INDUSTRY LEADERS", className = "", delay = 0.5 }: LogoMarqueeProps) {
+export function LogoMarquee({ title = "BUILT WITH ENTERPRISE-GRADE AI TECHNOLOGY", className = "", delay = 0.5 }: LogoMarqueeProps) {
     // Entry animation state
     const [isVisible, setIsVisible] = useState(false);
 
@@ -63,12 +63,12 @@ export function LogoMarquee({ title = "TRUSTED BY INDUSTRY LEADERS", className =
 
     return (
         <motion.div
-            className={` backdrop-blur-sm py-4 px-4 rounded-xl relative overflow-hidden ${className}`}
-            initial={{ opacity: 0, y: 15, filter: "blur(8px)" }}
+            className={` backdrop-blur-md py-4 px-4 rounded-xl relative overflow-hidden ${className}`}
+            initial={{ opacity: 0, y: 15, filter: "blur(16px)" }}
             animate={{
                 opacity: isVisible ? 1 : 0,
                 y: isVisible ? 0 : 15,
-                filter: isVisible ? "blur(0px)" : "blur(8px)"
+                filter: isVisible ? "blur(0px)" : "blur(16px)"
             }}
             transition={{
                 duration: 0.8,
@@ -81,14 +81,13 @@ export function LogoMarquee({ title = "TRUSTED BY INDUSTRY LEADERS", className =
                 </div>
             )}
 
-            {/* Left fade gradient */}
-            <div className="pointer-events-none absolute left-0 top-0 z-10 h-full w-[15%] bg-gradient-to-r from-background/90 to-transparent dark:from-black/90"></div>
+            <div className="relative overflow-hidden w-screen -mx-[50vw] left-1/2 right-1/2">
+                {/* Left fade gradient */}
+                <div className="pointer-events-none absolute left-0 top-0 z-10 h-full w-[25%] bg-gradient-to-r from-white to-transparent dark:from-background"></div>
 
-            {/* Right fade gradient */}
-            <div className="pointer-events-none absolute right-0 top-0 z-10 h-full w-[15%] bg-gradient-to-l from-background/90 to-transparent dark:from-black/90"></div>
+                {/* Right fade gradient */}
+                <div className="pointer-events-none absolute right-0 top-0 z-10 h-full w-[25%] bg-gradient-to-l from-white to-transparent dark:from-background"></div>
 
-            {/* Simple and reliable marquee implementation */}
-            <div className="relative overflow-hidden">
                 <div className="flex whitespace-nowrap">
                     {/* First set for animation */}
                     <motion.div
@@ -100,7 +99,7 @@ export function LogoMarquee({ title = "TRUSTED BY INDUSTRY LEADERS", className =
                             x: {
                                 repeat: Infinity,
                                 repeatType: "loop",
-                                duration: 40,
+                                duration: 30,
                                 ease: "linear",
                             }
                         }}
@@ -112,10 +111,10 @@ export function LogoMarquee({ title = "TRUSTED BY INDUSTRY LEADERS", className =
                                 <Image
                                     src={logo.src}
                                     alt={logo.alt}
-                                    className="w-auto dark:invert"
-                                    width={logo.height * 12}
-                                    height={logo.height * 4}
-                                    style={{ height: `${logo.height * 4}px` }}
+                                    className="w-auto dark:invert transition-all duration-300 hover:scale-110"
+                                    width={logo.height * 20}
+                                    height={logo.height * 10}
+                                    style={{ height: `${logo.height * 10}px`, width: 'auto', objectFit: 'contain' }}
                                 />
                             </div>
                         ))}
@@ -132,7 +131,7 @@ export function LogoMarquee({ title = "TRUSTED BY INDUSTRY LEADERS", className =
                             x: {
                                 repeat: Infinity,
                                 repeatType: "loop",
-                                duration: 40,
+                                duration: 30,
                                 ease: "linear",
                             }
                         }}
@@ -143,10 +142,10 @@ export function LogoMarquee({ title = "TRUSTED BY INDUSTRY LEADERS", className =
                                 <Image
                                     src={logo.src}
                                     alt={logo.alt}
-                                    className="w-auto dark:invert"
-                                    width={logo.height * 12}
-                                    height={logo.height * 4}
-                                    style={{ height: `${logo.height * 4}px` }}
+                                    className="w-auto dark:invert transition-all duration-300 hover:scale-110"
+                                    width={logo.height * 20}
+                                    height={logo.height * 10}
+                                    style={{ height: `${logo.height * 10}px`, width: 'auto', objectFit: 'contain' }}
                                 />
                             </div>
                         ))}

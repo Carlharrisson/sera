@@ -66,25 +66,25 @@ export default function Projects() {
     const carouselRef = useRef<HTMLDivElement>(null);
 
     return (
-        <section className="relative max-w-[80%] mx-auto overflow-hidden py-16 md:py-32 dark:bg-transparent w-full" id="projects">
+        <section className="relative w-full overflow-hidden py-16 md:py-32 dark:bg-transparent" id="projects">
             <div className="text-center mb-16">
                 <span className="text-primary-600 dark:text-primary-500 font-meltmino text-xs font-medium uppercase tracking-wider">Our Work</span>
-                <h2 className="text-balance text-3xl font-semibold md:text-4xl lg:text-5xl mt-3">AI Automation Success Stories</h2>
-                <p className="text-muted-foreground mt-6 mx-auto max-w-3xl">
+                <h2 className="text-balance text-2xl font-semibold md:text-3xl lg:text-4xl mt-3">AI Automation Success Stories</h2>
+                <p className="text-muted-foreground mt-4 mx-auto max-w-2xl text-sm">
                     Explore how we&apos;ve helped businesses transform their operations with intelligent automation and user-centric design.
                 </p>
             </div>
 
             {/* Left fade gradient */}
-            <div className="pointer-events-none absolute left-0 top-0 z-10 h-full w-[15%] bg-gradient-to-r from-white to-transparent dark:from-background"></div>
+            <div className="pointer-events-none absolute left-0 top-0 z-10 h-full w-[25%] bg-gradient-to-r from-white to-transparent dark:from-background"></div>
 
             {/* Right fade gradient */}
-            <div className="pointer-events-none absolute right-0 top-0 z-10 h-full w-[15%] bg-gradient-to-l from-white to-transparent dark:from-background"></div>
+            <div className="pointer-events-none absolute right-0 top-0 z-10 h-full w-[25%] bg-gradient-to-l from-white to-transparent dark:from-background"></div>
 
             <div className="w-full" ref={containerRef}>
                 <motion.div
                     ref={carouselRef}
-                    className="flex gap-8 py-8"
+                    className="flex gap-12 py-8"
                     animate={{
                         x: ["0%", "-50%"]
                     }}
@@ -92,7 +92,7 @@ export default function Projects() {
                         x: {
                             repeat: Infinity,
                             repeatType: "loop",
-                            duration: 60,
+                            duration: 40,
                             ease: "linear"
                         }
                     }}
@@ -104,12 +104,12 @@ export default function Projects() {
                     {projects.map((project) => (
                         <div
                             key={`${project.id}-1`}
-                            className="relative h-[400px] w-[600px] overflow-hidden rounded-xl shadow-lg"
+                            className="relative h-[600px] w-[800px] overflow-hidden rounded-xl"
                         >
                             <Image
                                 src={project.imageSrc}
                                 alt={project.title}
-                                className="object-cover"
+                                className="object-cover transition-transform duration-300 hover:scale-105"
                                 fill
                                 priority={project.id <= 3}
                             />
@@ -120,12 +120,12 @@ export default function Projects() {
                     {projects.map((project) => (
                         <div
                             key={`${project.id}-2`}
-                            className="relative h-[400px] w-[600px] overflow-hidden rounded-xl shadow-lg"
+                            className="relative h-[600px] w-[800px] overflow-hidden rounded-xl"
                         >
                             <Image
                                 src={project.imageSrc}
                                 alt={project.title}
-                                className="object-cover"
+                                className="object-cover transition-transform duration-300 hover:scale-105"
                                 fill
                                 priority={false}
                             />

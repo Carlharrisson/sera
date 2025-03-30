@@ -12,83 +12,214 @@ interface FAQItem {
 
 const faqItems: FAQItem[] = [
     {
-        question: "What is Sera's AI-First Execution approach?",
+        question: "What exactly do I get with each project or membership?",
         answer: (
-            <p>
-                Sera is an AI-first execution powerhouse that combines automation with precision design to build seamless, scalable systems. We engineer solutions that eliminate inefficiencies, optimize business processes, and enhance digital interactions through AI-driven automation, allowing your business to move faster and scale without friction.
-            </p>
+            <div className="space-y-4">
+                <p>
+                    Every project includes specific, measurable deliverables:
+                </p>
+                <ul className="list-disc pl-6 space-y-2">
+                    <li>2-3 custom AI workflow automations</li>
+                    <li>Complete UI/UX design system</li>
+                    <li>Integration with your existing tools</li>
+                    <li>Analytics dashboard for tracking ROI</li>
+                    <li>30-day optimization period</li>
+                </ul>
+                <p>
+                    Membership clients get additional benefits like weekly optimization, priority support, and continuous development of new automations.
+                </p>
+            </div>
         ),
     },
     {
-        question: "How does Sera's Membership Model work?",
+        question: "How do you ensure the AI automation will actually work for my business?",
         answer: (
-            <p>
-                Our Membership Model provides seamless, ongoing AI execution, automation, and design support for $4,800/month. This includes unlimited AI workflow automation & system optimization, AI-powered dashboards & product execution, UX/UI design for AI-first experiences, and a private Slack channel for direct collaboration with our team.
-            </p>
+            <div className="space-y-4">
+                <p>
+                    We follow a proven process to guarantee results:
+                </p>
+                <ul className="list-disc pl-6 space-y-2">
+                    <li>Week 1: Deep analysis of your processes and ROI calculation</li>
+                    <li>Week 2: Development and testing with your team</li>
+                    <li>Week 3+: Launch, training, and optimization</li>
+                </ul>
+                <p>
+                    Plus, we offer a money-back guarantee if you&apos;re not satisfied with the results. Our clients typically see ROI within 2-3 months through time savings and increased efficiency.
+                </p>
+            </div>
         ),
     },
     {
-        question: "What types of projects can Sera handle?",
+        question: "What happens if I'm not happy with the results?",
         answer: (
-            <p>
-                Sera specializes in three core areas: AI Automation & Workflow Execution, AI-First UX/UI & Digital Product Design, and AI-Optimized E-Commerce Automation & Growth. We can handle everything from end-to-end business automation and AI-powered dashboards to intelligent interfaces, seamless digital products, and AI-optimized e-commerce solutions.
-            </p>
+            <div className="space-y-4">
+                <p>
+                    Your satisfaction is our priority. We provide multiple guarantees:
+                </p>
+                <ul className="list-disc pl-6 space-y-2">
+                    <li>2-week delivery guarantee or your money back</li>
+                    <li>30-day optimization period included with every project</li>
+                    <li>Unlimited revisions during development</li>
+                    <li>Monthly membership can be cancelled anytime</li>
+                </ul>
+                <p>
+                    If at any point you&apos;re not satisfied, we&apos;ll work with you to make it right or refund your investment.
+                </p>
+            </div>
         ),
     },
     {
-        question: "How is the Project-Based pricing structured?",
+        question: "Who is Sera best suited for?",
         answer: (
-            <p>
-                Our Project-Based pricing starts at $5,000 per project and includes AI workflow automation or dashboard design, custom-built interfaces or product execution, and 48-hour updates & iteration support. The exact price depends on the scope and complexity of your specific project requirements.
-            </p>
+            <div className="space-y-4">
+                <p>
+                    We work best with:
+                </p>
+                <ul className="list-disc pl-6 space-y-2">
+                    <li><strong>Tech Startups:</strong> Needing to automate operations and scale efficiently</li>
+                    <li><strong>E-commerce Brands:</strong> Looking to automate customer service and operations</li>
+                    <li><strong>SaaS Companies:</strong> Wanting to enhance product UX with AI</li>
+                    <li><strong>Agencies:</strong> Seeking to automate client workflows</li>
+                </ul>
+                <p>
+                    Ideal clients typically have established processes they want to automate and are ready to invest in scaling their operations.
+                </p>
+            </div>
         ),
     },
     {
-        question: "What is your typical timeline for implementing AI automation?",
+        question: "How do you ensure consistent quality as you scale?",
         answer: (
-            <p>
-                Our Strategic AI Implementation Framework follows a proven process: Discovery & Strategy to analyze your needs and create a roadmap, Design & Development to build and integrate AI solutions, and Launch & Optimize for deployment and continuous improvement. We focus on delivering value quickly while ensuring sustainable long-term success through our Continuous Partnership approach.
-            </p>
+            <div className="space-y-4">
+                <p>
+                    We maintain high quality through systematic processes:
+                </p>
+                <ul className="list-disc pl-6 space-y-2">
+                    <li>Standardized implementation methodology</li>
+                    <li>Rigorous quality assurance protocols</li>
+                    <li>Automated testing and monitoring</li>
+                    <li>Continuous team training and development</li>
+                </ul>
+                <p>
+                    Our focus is on building scalable systems that maintain consistency while adapting to each client&apos;s unique needs.
+                </p>
+            </div>
         ),
     },
     {
-        question: "How does Sera differ from traditional design or AI consulting agencies?",
+        question: "How much involvement do you need from our team?",
         answer: (
-            <p>
-                Sera is not just a design agency or an AI consultant—we&apos;re an execution partner that builds intelligent systems, AI-powered experiences, and automated workflows that scale. We focus on execution, not just strategy, combining AI-first automation with high-performance design to deliver tangible business results.
-            </p>
+            <div className="space-y-4">
+                <p>
+                    Our implementation process is designed to be efficient and systematic:
+                </p>
+                <ul className="list-disc pl-6 space-y-2">
+                    <li>Initial discovery and planning session</li>
+                    <li>Structured implementation checkpoints</li>
+                    <li>Comprehensive team training</li>
+                    <li>Regular progress reviews and updates</li>
+                </ul>
+                <p>
+                    We handle the technical implementation while keeping you informed and involved in key decisions.
+                </p>
+            </div>
         ),
     },
     {
-        question: "Can I cancel my Membership subscription at any time?",
+        question: "How do you protect our sensitive data and information?",
         answer: (
-            <p>
-                Yes, you can cancel your Membership subscription at any time. There are no long-term contracts or cancellation fees. Your subscription will remain active until the end of your current billing period, giving you full access to our services during that time.
-            </p>
+            <div className="space-y-4">
+                <p>
+                    Security is our top priority. We maintain strict data protection standards:
+                </p>
+                <ul className="list-disc pl-6 space-y-2">
+                    <li>Enterprise-grade encryption for all data</li>
+                    <li>Secure API integrations and authentication</li>
+                    <li>Regular security audits and updates</li>
+                    <li>Compliance with GDPR and industry standards</li>
+                    <li>Signed NDAs for all projects</li>
+                </ul>
+                <p>
+                    We only access the data necessary for automation and follow best practices for data handling and storage.
+                </p>
+            </div>
         ),
     },
     {
-        question: "What kind of businesses benefit most from Sera's services?",
+        question: "What technologies do you use and why?",
         answer: (
-            <p>
-                Businesses that benefit most from our services include those looking to scale operations efficiently, eliminate manual workflows, enhance digital experiences, or optimize e-commerce performance. This includes SaaS companies, e-commerce brands, B2B enterprises, and startups seeking to leverage AI for competitive advantage.
-            </p>
+            <div className="space-y-4">
+                <p>
+                    We use industry-leading technologies chosen for reliability and performance:
+                </p>
+                <ul className="list-disc pl-6 space-y-2">
+                    <li><strong>AI/ML:</strong> OpenAI, Anthropic, AWS AI services</li>
+                    <li><strong>Automation:</strong> n8n, custom Python scripts</li>
+                    <li><strong>Frontend:</strong> React, Next.js, TypeScript</li>
+                    <li><strong>Backend:</strong> Python, Node.js, Supabase</li>
+                </ul>
+                <p>
+                    Our stack is enterprise-ready and scales with your needs, while remaining flexible enough to integrate with your existing tools.
+                </p>
+            </div>
         ),
     },
     {
-        question: "What technologies and tools does Sera use?",
+        question: "How do you measure and report success?",
         answer: (
-            <p>
-                Our team is proficient in cutting-edge AI and automation technologies, as well as industry-standard design tools. We work with various AI frameworks, workflow automation platforms, and design systems to create custom solutions tailored to your specific business needs and technology stack.
-            </p>
+            <div className="space-y-4">
+                <p>
+                    We track specific metrics aligned with your business goals:
+                </p>
+                <ul className="list-disc pl-6 space-y-2">
+                    <li>Time saved per workflow automated</li>
+                    <li>Error reduction rates</li>
+                    <li>Cost savings and ROI</li>
+                    <li>User adoption rates</li>
+                    <li>System performance metrics</li>
+                </ul>
+                <p>
+                    You get access to a real-time dashboard tracking these metrics, plus weekly/monthly reports with insights and optimization recommendations.
+                </p>
+            </div>
         ),
     },
     {
-        question: "How do you measure the success of AI automation implementations?",
+        question: "Can you integrate with our existing tools and systems?",
         answer: (
-            <p>
-                We measure success through tangible business outcomes: increased operational efficiency, reduced manual workload, improved conversion rates, enhanced user experiences, and ultimately, business growth. We establish clear KPIs at the beginning of each engagement and provide regular reporting on performance metrics.
-            </p>
+            <div className="space-y-4">
+                <p>
+                    Yes, we specialize in seamless integrations with popular business tools:
+                </p>
+                <ul className="list-disc pl-6 space-y-2">
+                    <li>CRM systems (Salesforce, HubSpot)</li>
+                    <li>Project management (Asana, Jira, Trello)</li>
+                    <li>Communication tools (Slack, Teams)</li>
+                    <li>Custom internal systems via API</li>
+                </ul>
+                <p>
+                    During Week 1, we&apos;ll audit your tech stack and create an integration plan that ensures smooth data flow between systems.
+                </p>
+            </div>
+        ),
+    },
+    {
+        question: "What ongoing support do you provide?",
+        answer: (
+            <div className="space-y-4">
+                <p>
+                    Every project includes comprehensive support:
+                </p>
+                <ul className="list-disc pl-6 space-y-2">
+                    <li>30-day optimization period</li>
+                    <li>Documentation and training materials</li>
+                    <li>Email and chat support</li>
+                    <li>Bug fixes and maintenance</li>
+                </ul>
+                <p>
+                    Membership clients get additional benefits like 2-hour response times, proactive monitoring, and continuous optimization of their systems.
+                </p>
+            </div>
         ),
     },
 ];
@@ -105,7 +236,7 @@ export default function FAQs() {
             // Set initial state - blurred and transparent for the entire section content
             gsap.set(contentRef.current, {
                 opacity: 0,
-                filter: 'blur(80px)',
+                filter: 'blur(24px)',
             })
 
             // Create the animation for the entire content to fade in and unblur simultaneously
@@ -134,10 +265,10 @@ export default function FAQs() {
             <div className="mx-auto max-w-5xl px-6">
                 <div ref={contentRef}>
                     <div className="text-center mb-16">
-                        <span className="text-primary-600 dark:text-primary-500 font-meltmino text-xs font-medium uppercase tracking-wider">Frequently Asked Questions</span>
-                        <h2 className="text-balance text-3xl font-semibold md:text-4xl lg:text-5xl mt-3">AI Automation & Execution Insights</h2>
+                        <span className="text-primary-600 dark:text-primary-500 font-meltmino text-xs font-medium uppercase tracking-wider">Common Questions</span>
+                        <h2 className="text-balance text-3xl font-semibold md:text-4xl lg:text-5xl mt-3">Everything You Need to Know</h2>
                         <p className="text-muted-foreground mt-6 mx-auto max-w-3xl">
-                            Get answers to common questions about our AI-driven automation and design services. If you don&apos;t find what you&apos;re looking for, feel free to contact us directly.
+                            From deliverables and timelines to guarantees and support, we&apos;ve answered the most common questions to help you make an informed decision. Still have questions? Contact us for a quick response.
                         </p>
                     </div>
 
@@ -146,9 +277,9 @@ export default function FAQs() {
                             <AccordionItem
                                 key={index}
                                 value={`item-${index}`}
-                                className="border-b border-gray-100 dark:border-zinc-800 last:border-0"
+                                className="border-b border-dashed border-gray-100 dark:border-zinc-800 last:border-0"
                             >
-                                <AccordionTrigger className="text-left py-6 text-lg font-medium transition-colors duration-200 hover:text-gray-500 dark:hover:text-gray-400">
+                                <AccordionTrigger className="text-left py-6 text-lg font-medium transition-all duration-300 hover:text-[oklch(0.564_0.133_173.7)] dark:hover:text-[oklch(0.693_0.133_173.7)]">
                                     {item.question}
                                 </AccordionTrigger>
                                 <AccordionContent className="text-muted-foreground text-body pb-6">

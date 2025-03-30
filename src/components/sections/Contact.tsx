@@ -1,237 +1,370 @@
 "use client"
 
 import { Button } from '@/components/ui/form/button'
-import { Textarea } from '@/components/ui/textarea'
-import { Input } from '@/components/ui/input'
-import { Checkbox } from '@/components/ui/checkbox'
-import { useEffect, useRef } from 'react'
-import gsap from 'gsap'
-import { ScrollTrigger } from 'gsap/ScrollTrigger'
-import { create } from 'zustand'
-import Cal, { getCalApi } from "@calcom/embed-react";
+import { Input } from '@/components/ui/form/input'
+import { Textarea } from '@/components/ui/form/textarea'
+import { useEffect, useRef, useState } from 'react'
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/form/select"
+import { Toaster } from "@/components/ui/overlay/sonner"
+import { toast } from "sonner"
+import { zodResolver } from "@hookform/resolvers/zod"
+import { useForm } from "react-hook-form"
+import * as z from "zod"
+import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form/form"
+import { RadioGroup, RadioGroupItem } from "@/components/ui/form/radio-group"
 
-// Define the Zustand store for contact form state
-interface ContactStore {
-    activeTab: 'quote' | 'call';
-    setActiveTab: (tab: 'quote' | 'call') => void;
-}
-
-const useContactStore = create<ContactStore>((set) => ({
-    activeTab: 'quote',
-
-    setActiveTab: (tab: 'quote' | 'call') => {
-        set({ activeTab: tab });
-    },
-}));
+const formSchema = z.object({
+    fullName: z.string().min(2, "Full name must be at least 2 characters"),
+    email: z.string().email("Please enter a valid email address"),
+    company: z.string().min(2, "Company name must be at least 2 characters"),
+    role: z.string().min(2, "Please specify your role"),
+    automationGoal: z.string().min(10, "Please provide more details about your automation goals"),
+    startTimeframe: z.enum(["ASAP", "1-2_weeks", "1_month_plus"], {
+        required_error: "Please select your preferred start timeframe",
+    }),
+    executionModel: z.enum(["one_time", "membership", "not_sure"], {
+        required_error: "Please select an execution model",
+    }),
+    briefLink: z.string().url("Please enter a valid URL").optional().or(z.literal("")),
+})
 
 export default function Contact() {
     const sectionRef = useRef<HTMLElement>(null)
     const contentRef = useRef<HTMLDivElement>(null)
-    const { activeTab, setActiveTab } = useContactStore()
+    const [isSubmitting, setIsSubmitting] = useState(false)
+    const [formError, setFormError] = useState<string | null>(null)
 
+    const form = useForm<z.infer<typeof formSchema>>({
+        resolver: zodResolver(formSchema),
+        defaultValues: {
+            fullName: "",
+            email: "",
+            company: "",
+            role: "",
+            automationGoal: "",
+            startTimeframe: undefined,
+            executionModel: undefined,
+            briefLink: "",
+        },
+        mode: "onTouched",
+    })
+
+    // Clear form error when form changes
     useEffect(() => {
-        // Register ScrollTrigger plugin
-        gsap.registerPlugin(ScrollTrigger)
+        const subscription = form.watch(() => {
+            if (formError) setFormError(null)
+        })
+        return () => subscription.unsubscribe()
+    }, [form, formError])
 
-        if (contentRef.current) {
-            // Set initial state - blurred and transparent for the entire section content
-            gsap.set(contentRef.current, {
-                opacity: 0,
-                filter: 'blur(80px)',
+    async function onSubmit(values: z.infer<typeof formSchema>) {
+        setIsSubmitting(true)
+        setFormError(null)
+
+        try {
+            const response = await fetch('https://formspree.io/f/manywlrl', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json'
+                },
+                body: JSON.stringify(values),
             })
 
-            // Create the animation for the entire content to fade in and unblur simultaneously
-            gsap.to(contentRef.current, {
-                opacity: 1,
-                filter: 'blur(0px)',
-                duration: 0.8,
-                ease: "power2.out",
-                scrollTrigger: {
-                    trigger: sectionRef.current,
-                    start: "top 70%",
-                    end: "bottom 20%",
-                    toggleActions: "play none none none",
-                }
+            if (response.ok) {
+                form.reset()
+                toast.success("Thanks! We'll review your request and get back to you shortly.", {
+                    id: 'contact-success'
+                })
+            } else {
+                const errorData = await response.json().catch(() => null)
+                throw new Error(errorData?.message || 'Failed to submit')
+            }
+        } catch (error) {
+            const errorMessage = error instanceof Error ? error.message : 'Something went wrong. Please try again.'
+            setFormError(errorMessage)
+            toast.error(errorMessage, {
+                id: 'contact-error'
             })
+        } finally {
+            setIsSubmitting(false)
         }
+    }
 
-        // Clean up component when unmounting
-        return () => {
-            // Clean up ScrollTrigger
-            ScrollTrigger.getAll().forEach(trigger => trigger.kill())
-        }
-    }, [])
-
-    // Initialize Cal.com API
-    useEffect(() => {
-        (async function () {
-            const cal = await getCalApi();
-            // Set Cal.com UI preferences
-            cal?.('ui', {
-                styles: { branding: { brandColor: "#18181B" } },
-                hideEventTypeDetails: true,
-            });
-        })();
-    }, []);
+    // Function to determine if a field has an error
+    const hasFieldError = (fieldName: keyof z.infer<typeof formSchema>) => {
+        return !!form.formState.errors[fieldName]
+    }
 
     return (
-        <section ref={sectionRef} className="py-16 md:py-32" id="contact">
-            <div className="mx-auto max-w-5xl px-6">
-                <div ref={contentRef}>
-                    <div className="text-center mb-8">
-                        <span className="text-primary-600 dark:text-primary-500 font-meltmino text-xs font-medium uppercase tracking-wider">Get in Touch</span>
-                        <h2 className="text-balance text-4xl font-semibold lg:text-5xl mt-3">Ready for AI-Powered Automation?</h2>
-                        <p className="text-muted-foreground mt-6 mx-auto max-w-3xl">
-                            Do you have a completely different idea in mind? Feel free to contact us.
+        <section ref={sectionRef} className="relative py-24 md:py-32 border-b border-border bg-gradient-to-b from-background to-background/80" id="contact">
+            <div className="absolute inset-0 bg-grid-white/[0.02] bg-[size:16px] pointer-events-none" />
+            <div className="relative mx-auto max-w-2xl px-6">
+                <div ref={contentRef} className="space-y-12">
+                    <div className="text-center space-y-4">
+                        <h2 className="text-[length:var(--font-size-h2)] leading-[var(--line-height-heading)] tracking-[-0.01em] text-balance bg-clip-text text-transparent bg-gradient-to-b from-foreground to-foreground/80">
+                            Tell Us What You Want to Automate
+                        </h2>
+                        <p className="text-[length:var(--font-size-body)] leading-[var(--line-height-body)] text-muted-foreground max-w-2xl mx-auto">
+                            No complex proposals needed. Just describe your workflow, and we&apos;ll show you how to automate it within 24 hours.
                         </p>
                     </div>
 
-                    <div className="mt-8 max-w-3xl mx-auto">
-                        {/* Tabs */}
-                        <div className="flex justify-center gap-4 mb-8">
-                            <Button
-                                variant={activeTab === 'quote' ? 'default' : 'outline'}
-                                onClick={() => setActiveTab('quote')}
-                                className="px-6"
+                    <div className="rounded-2xl border p-6 md:p-8 shadow-sm">
+                        <Form {...form}>
+                            <form
+                                onSubmit={form.handleSubmit(onSubmit)}
+                                className="space-y-8"
+                                noValidate
                             >
-                                Request a quote
-                            </Button>
-                            <Button
-                                variant={activeTab === 'call' ? 'default' : 'outline'}
-                                onClick={() => setActiveTab('call')}
-                                className="px-6"
-                            >
-                                Book a call
-                            </Button>
-                        </div>
+                                {formError && (
+                                    <div className="rounded-lg bg-destructive/10 p-4 border border-destructive text-destructive text-[length:var(--font-size-caption)] leading-[var(--line-height-body)] font-medium" role="alert">
+                                        <p>{formError}</p>
+                                    </div>
+                                )}
 
-                        {/* Content container */}
-                        <div className="w-full">
-                            {activeTab === 'quote' && (
-                                <div className="rounded-xl border bg-card text-card-foreground shadow-sm overflow-hidden">
-                                    <div className="px-6 py-8 md:p-8">
-                                        <form className="space-y-8">
-                                            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                                                <div className="space-y-2">
-                                                    <label htmlFor="email" className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
-                                                        Email <span className="text-red-500">*</span>
-                                                    </label>
+                                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                    <FormField
+                                        control={form.control}
+                                        name="fullName"
+                                        render={({ field }) => (
+                                            <FormItem>
+                                                <FormLabel className="text-[length:var(--font-size-caption)] leading-[var(--line-height-body)] font-medium" required>Full Name</FormLabel>
+                                                <FormControl>
                                                     <Input
-                                                        id="email"
-                                                        type="email"
+                                                        placeholder="Your full name"
+                                                        {...field}
+                                                        className={`h-11 ${hasFieldError('fullName') ? 'border-destructive focus-visible:ring-destructive/20' : ''}`}
+                                                        aria-invalid={hasFieldError('fullName')}
+                                                        aria-describedby={hasFieldError('fullName') ? `fullName-error` : undefined}
+                                                    />
+                                                </FormControl>
+                                                <FormMessage className="text-xs" id="fullName-error" />
+                                            </FormItem>
+                                        )}
+                                    />
+                                    <FormField
+                                        control={form.control}
+                                        name="email"
+                                        render={({ field }) => (
+                                            <FormItem>
+                                                <FormLabel className="text-[length:var(--font-size-caption)] leading-[var(--line-height-body)] font-medium" required>Email</FormLabel>
+                                                <FormControl>
+                                                    <Input
                                                         placeholder="your@email.com"
-                                                        required
-                                                        className="border-dashed"
+                                                        type="email"
+                                                        {...field}
+                                                        className={`h-11 ${hasFieldError('email') ? 'border-destructive focus-visible:ring-destructive/20' : ''}`}
+                                                        aria-invalid={hasFieldError('email')}
+                                                        aria-describedby={hasFieldError('email') ? `email-error` : undefined}
                                                     />
-                                                </div>
+                                                </FormControl>
+                                                <FormMessage className="text-xs" id="email-error" />
+                                            </FormItem>
+                                        )}
+                                    />
+                                </div>
 
-                                                <div className="space-y-2 md:col-span-2">
-                                                    <label htmlFor="details" className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
-                                                        Project details <span className="text-red-500">*</span>
-                                                    </label>
-                                                    <Textarea
-                                                        id="details"
-                                                        placeholder="Tell us about your project"
-                                                        required
-                                                        className="min-h-[120px] border-dashed"
+                                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                    <FormField
+                                        control={form.control}
+                                        name="company"
+                                        render={({ field }) => (
+                                            <FormItem>
+                                                <FormLabel className="text-[length:var(--font-size-caption)] leading-[var(--line-height-body)] font-medium" required>Company Name</FormLabel>
+                                                <FormControl>
+                                                    <Input
+                                                        placeholder="Your company"
+                                                        {...field}
+                                                        className={`h-11 ${hasFieldError('company') ? 'border-destructive focus-visible:ring-destructive/20' : ''}`}
+                                                        aria-invalid={hasFieldError('company')}
+                                                        aria-describedby={hasFieldError('company') ? `company-error` : undefined}
                                                     />
-                                                </div>
+                                                </FormControl>
+                                                <FormMessage className="text-xs" id="company-error" />
+                                            </FormItem>
+                                        )}
+                                    />
+                                    <FormField
+                                        control={form.control}
+                                        name="role"
+                                        render={({ field }) => (
+                                            <FormItem>
+                                                <FormLabel className="text-[length:var(--font-size-caption)] leading-[var(--line-height-body)] font-medium" required>Your Role</FormLabel>
+                                                <FormControl>
+                                                    <Input
+                                                        placeholder="e.g. CTO, Product Manager"
+                                                        {...field}
+                                                        className={`h-11 ${hasFieldError('role') ? 'border-destructive focus-visible:ring-destructive/20' : ''}`}
+                                                        aria-invalid={hasFieldError('role')}
+                                                        aria-describedby={hasFieldError('role') ? `role-error` : undefined}
+                                                    />
+                                                </FormControl>
+                                                <FormMessage className="text-xs" id="role-error" />
+                                            </FormItem>
+                                        )}
+                                    />
+                                </div>
 
-                                                <div className="space-y-2">
-                                                    <label htmlFor="budget" className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
-                                                        What is your budget? <span className="text-red-500">*</span>
-                                                    </label>
-                                                    <select
-                                                        id="budget"
-                                                        required
-                                                        defaultValue=""
-                                                        className="flex h-10 w-full rounded-md border border-dashed bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+                                <FormField
+                                    control={form.control}
+                                    name="automationGoal"
+                                    render={({ field }) => (
+                                        <FormItem>
+                                            <FormLabel className="text-[length:var(--font-size-caption)] leading-[var(--line-height-body)] font-medium" required>What do you want to automate or build?</FormLabel>
+                                            <FormControl>
+                                                <Textarea
+                                                    placeholder="Describe your automation needs and goals in detail..."
+                                                    {...field}
+                                                    className={`min-h-[160px] resize-none ${hasFieldError('automationGoal') ? 'border-destructive focus-visible:ring-destructive/20' : ''}`}
+                                                    aria-invalid={hasFieldError('automationGoal')}
+                                                    aria-describedby={hasFieldError('automationGoal') ? `automationGoal-error` : undefined}
+                                                />
+                                            </FormControl>
+                                            <FormMessage className="text-xs" id="automationGoal-error" />
+                                        </FormItem>
+                                    )}
+                                />
+
+                                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                    <FormField
+                                        control={form.control}
+                                        name="startTimeframe"
+                                        render={({ field }) => (
+                                            <FormItem>
+                                                <FormLabel className="text-[length:var(--font-size-caption)] leading-[var(--line-height-body)] font-medium" required>Preferred Start Timeframe</FormLabel>
+                                                <Select
+                                                    onValueChange={field.onChange}
+                                                    defaultValue={field.value}
+                                                >
+                                                    <FormControl>
+                                                        <SelectTrigger
+                                                            className={`h-11 ${hasFieldError('startTimeframe') ? 'border-destructive focus-visible:ring-destructive/20' : ''}`}
+                                                            aria-invalid={hasFieldError('startTimeframe')}
+                                                            aria-describedby={hasFieldError('startTimeframe') ? `startTimeframe-error` : undefined}
+                                                        >
+                                                            <SelectValue placeholder="When would you like to start?" />
+                                                        </SelectTrigger>
+                                                    </FormControl>
+                                                    <SelectContent>
+                                                        <SelectItem value="ASAP">As Soon As Possible</SelectItem>
+                                                        <SelectItem value="1-2_weeks">In 1-2 Weeks</SelectItem>
+                                                        <SelectItem value="1_month_plus">1 Month or Later</SelectItem>
+                                                    </SelectContent>
+                                                </Select>
+                                                <FormMessage className="text-xs" id="startTimeframe-error" />
+                                            </FormItem>
+                                        )}
+                                    />
+
+                                    <FormField
+                                        control={form.control}
+                                        name="briefLink"
+                                        render={({ field }) => (
+                                            <FormItem>
+                                                <FormLabel className="text-[length:var(--font-size-caption)] leading-[var(--line-height-body)] font-medium">Brief or Notes Link (Optional)</FormLabel>
+                                                <FormControl>
+                                                    <Input
+                                                        placeholder="Google Drive or Notion link"
+                                                        {...field}
+                                                        className={`h-11 ${hasFieldError('briefLink') ? 'border-destructive focus-visible:ring-destructive/20' : ''}`}
+                                                        aria-invalid={hasFieldError('briefLink')}
+                                                        aria-describedby={hasFieldError('briefLink') ? `briefLink-error` : undefined}
+                                                    />
+                                                </FormControl>
+                                                <FormMessage className="text-xs" id="briefLink-error" />
+                                            </FormItem>
+                                        )}
+                                    />
+                                </div>
+
+                                <FormField
+                                    control={form.control}
+                                    name="executionModel"
+                                    render={({ field }) => (
+                                        <FormItem className="space-y-3">
+                                            <FormLabel className="text-[length:var(--font-size-caption)] leading-[var(--line-height-body)] font-medium" required>Preferred Execution Model</FormLabel>
+                                            <div className={hasFieldError('executionModel') ? 'border border-destructive p-3 rounded-lg' : ''}>
+                                                <FormControl>
+                                                    <RadioGroup
+                                                        onValueChange={field.onChange}
+                                                        defaultValue={field.value}
+                                                        className="grid grid-cols-1 md:grid-cols-3 gap-4"
+                                                        aria-invalid={hasFieldError('executionModel')}
+                                                        aria-describedby={hasFieldError('executionModel') ? `executionModel-error` : undefined}
                                                     >
-                                                        <option value="" disabled>Select...</option>
-                                                        <option value="5k-10k">$5,000 - $10,000</option>
-                                                        <option value="10k-25k">$10,000 - $25,000</option>
-                                                        <option value="25k-50k">$25,000 - $50,000</option>
-                                                        <option value="50k+">$50,000+</option>
-                                                        <option value="membership">Membership ($4,800/mo)</option>
-                                                    </select>
-                                                </div>
-
-                                                <div className="space-y-2">
-                                                    <label htmlFor="timeline" className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
-                                                        When do you want to go live with your project? <span className="text-red-500">*</span>
-                                                    </label>
-                                                    <select
-                                                        id="timeline"
-                                                        required
-                                                        defaultValue=""
-                                                        className="flex h-10 w-full rounded-md border border-dashed bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
-                                                    >
-                                                        <option value="" disabled>Select...</option>
-                                                        <option value="1month">Within 1 month</option>
-                                                        <option value="3months">Within 3 months</option>
-                                                        <option value="6months">Within 6 months</option>
-                                                        <option value="unsure">Not sure yet</option>
-                                                    </select>
-                                                </div>
+                                                        <label htmlFor="one_time" className="cursor-pointer">
+                                                            <FormItem className="flex items-center space-x-3 space-y-0 rounded-lg border p-4 transition-colors hover:bg-muted/50 [&:has([data-state=checked])]:border-primary [&:has([data-state=checked])]:bg-primary/5">
+                                                                <FormControl>
+                                                                    <RadioGroupItem value="one_time" id="one_time" />
+                                                                </FormControl>
+                                                                <FormLabel className="font-normal cursor-pointer select-none">
+                                                                    One-time Project
+                                                                </FormLabel>
+                                                            </FormItem>
+                                                        </label>
+                                                        <label htmlFor="membership" className="cursor-pointer">
+                                                            <FormItem className="flex items-center space-x-3 space-y-0 rounded-lg border p-4 transition-colors hover:bg-muted/50 [&:has([data-state=checked])]:border-primary [&:has([data-state=checked])]:bg-primary/5">
+                                                                <FormControl>
+                                                                    <RadioGroupItem value="membership" id="membership" />
+                                                                </FormControl>
+                                                                <FormLabel className="font-normal cursor-pointer select-none">
+                                                                    Membership
+                                                                </FormLabel>
+                                                            </FormItem>
+                                                        </label>
+                                                        <label htmlFor="not_sure" className="cursor-pointer">
+                                                            <FormItem className="flex items-center space-x-3 space-y-0 rounded-lg border p-4 transition-colors hover:bg-muted/50 [&:has([data-state=checked])]:border-primary [&:has([data-state=checked])]:bg-primary/5">
+                                                                <FormControl>
+                                                                    <RadioGroupItem value="not_sure" id="not_sure" />
+                                                                </FormControl>
+                                                                <FormLabel className="font-normal cursor-pointer select-none">
+                                                                    Not Sure Yet
+                                                                </FormLabel>
+                                                            </FormItem>
+                                                        </label>
+                                                    </RadioGroup>
+                                                </FormControl>
                                             </div>
+                                            <FormMessage className="text-xs" id="executionModel-error" />
+                                        </FormItem>
+                                    )}
+                                />
 
-                                            <div className="space-y-3 mb-8">
-                                                <label className="text-sm font-medium leading-none mb-4 block">
-                                                    What type of project do you need?
-                                                </label>
+                                <div className="flex flex-col items-center gap-6 pt-4">
+                                    {form.formState.submitCount > 0 && !form.formState.isValid && (
+                                        <div className="w-full rounded-lg bg-destructive/10 p-4 border border-destructive text-destructive text-[length:var(--font-size-caption)] leading-[var(--line-height-body)] font-medium" role="alert">
+                                            <p>Please fix the errors above before submitting.</p>
+                                        </div>
+                                    )}
 
-                                                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                                                    <div className="flex items-center space-x-3">
-                                                        <Checkbox id="ai-workflow" className="h-5 w-5 rounded-sm border border-zinc-300 focus:ring-0 focus:ring-offset-0 data-[state=checked]:bg-zinc-900 data-[state=checked]:text-white" />
-                                                        <label htmlFor="ai-workflow" className="text-sm font-medium">Custom AI Workflow Development</label>
-                                                    </div>
-
-                                                    <div className="flex items-center space-x-3">
-                                                        <Checkbox id="ai-design" className="h-5 w-5 rounded-sm border border-zinc-300 focus:ring-0 focus:ring-offset-0 data-[state=checked]:bg-zinc-900 data-[state=checked]:text-white" />
-                                                        <label htmlFor="ai-design" className="text-sm font-medium">AI-First Design & UX</label>
-                                                    </div>
-
-                                                    <div className="flex items-center space-x-3">
-                                                        <Checkbox id="process-automation" className="h-5 w-5 rounded-sm border border-zinc-300 focus:ring-0 focus:ring-offset-0 data-[state=checked]:bg-zinc-900 data-[state=checked]:text-white" />
-                                                        <label htmlFor="process-automation" className="text-sm font-medium">Intelligent Process Automation</label>
-                                                    </div>
-
-                                                    <div className="flex items-center space-x-3">
-                                                        <Checkbox id="ai-analytics" className="h-5 w-5 rounded-sm border border-zinc-300 focus:ring-0 focus:ring-offset-0 data-[state=checked]:bg-zinc-900 data-[state=checked]:text-white" />
-                                                        <label htmlFor="ai-analytics" className="text-sm font-medium">AI Analytics & Insights</label>
-                                                    </div>
-
-                                                    <div className="flex items-center space-x-3">
-                                                        <Checkbox id="ai-integration" className="h-5 w-5 rounded-sm border border-zinc-300 focus:ring-0 focus:ring-offset-0 data-[state=checked]:bg-zinc-900 data-[state=checked]:text-white" />
-                                                        <label htmlFor="ai-integration" className="text-sm font-medium">Seamless AI Integration</label>
-                                                    </div>
+                                    <div className="flex flex-col items-center gap-4">
+                                        <Button
+                                            type="submit"
+                                            size="lg"
+                                            className="w-full md:w-auto min-w-[240px] text-[length:var(--font-size-body)] leading-[var(--line-height-body)]"
+                                            disabled={isSubmitting}
+                                        >
+                                            {isSubmitting ? (
+                                                <div className="flex items-center gap-2">
+                                                    <div className="h-4 w-4 animate-spin rounded-full border-2 border-current border-t-transparent" />
+                                                    <span>Sending...</span>
                                                 </div>
-                                            </div>
-
-                                            <Button type="submit" className="w-full bg-zinc-900 hover:bg-zinc-800">Submit</Button>
-                                        </form>
+                                            ) : (
+                                                'Show Me How to Automate This'
+                                            )}
+                                        </Button>
+                                        <p className="text-[length:var(--font-size-caption)] leading-[var(--line-height-body)] text-muted-foreground">
+                                            Want to chat first? <a href="mailto:carl@sera.so" className="text-primary hover:underline">Drop us a quick email</a>
+                                        </p>
                                     </div>
                                 </div>
-                            )}
-                            {activeTab === 'call' && (
-                                <div className="rounded-xl border bg-card text-card-foreground shadow-sm overflow-hidden">
-                                    <div className="w-full" style={{ minHeight: "100vh" }}>
-                                        <Cal
-                                            calLink="carl-harrisson-9w1ec9/30min"
-                                            style={{ width: "100%", height: "100%", minHeight: "100vh" }}
-                                            config={{
-                                                layout: "week_view",
-                                                hideEventTypeDetails: "true",
-                                                theme: "light",
-                                            }}
-                                        />
-                                    </div>
-                                </div>
-                            )}
-                        </div>
+                            </form>
+                        </Form>
                     </div>
                 </div>
             </div>
+            <Toaster position="bottom-center" />
         </section>
     )
 }

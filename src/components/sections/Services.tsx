@@ -1,148 +1,85 @@
 "use client"
 
+import React from 'react'
 import { Card, CardContent } from '@/components/ui/data-display/card'
-import { useEffect, useRef } from 'react'
-import gsap from 'gsap'
-import { ScrollTrigger } from 'gsap/ScrollTrigger'
-import Image from 'next/image'
+import { Workflow, Layers, LayoutDashboard, Bot } from 'lucide-react'
 
 export default function Services() {
-    const sectionRef = useRef<HTMLElement>(null)
-    const contentRef = useRef<HTMLDivElement>(null)
-
-    useEffect(() => {
-        // Register ScrollTrigger plugin
-        gsap.registerPlugin(ScrollTrigger)
-
-        if (contentRef.current) {
-            // Set initial state - blurred and transparent for the entire section content
-            gsap.set(contentRef.current, {
-                opacity: 0,
-                filter: 'blur(80px)',
-            })
-
-            // Create the animation for the entire content to fade in and unblur simultaneously
-            gsap.to(contentRef.current, {
-                opacity: 1,
-                filter: 'blur(0px)',
-                duration: 0.8,
-                ease: "power2.out",
-                scrollTrigger: {
-                    trigger: sectionRef.current,
-                    start: "top 70%",
-                    end: "bottom 20%",
-                    toggleActions: "play none none none",
-                }
-            })
-        }
-
-        return () => {
-            // Clean up ScrollTrigger when component unmounts
-            ScrollTrigger.getAll().forEach(trigger => trigger.kill())
-        }
-    }, [])
-
     return (
-        <section ref={sectionRef} className="py-16 md:py-32 dark:bg-transparent" id="services">
-            <div className="mx-auto max-w-5xl px-6">
-                <div ref={contentRef} className="services-content">
-                    <div className="text-center mb-16">
-                        <span className="text-primary-600 dark:text-primary-500 font-meltmino text-xs font-medium uppercase tracking-wider">Our Services</span>
-                        <h2 className="text-balance text-3xl font-semibold md:text-4xl lg:text-5xl mt-3">AI Automation + Design Excellence</h2>
-                        <p className="text-muted-foreground mt-6 mx-auto max-w-3xl">
-                            Sera combines powerful AI automation with exceptional design to create seamless, intelligent solutions.
-                            We transform manual processes into efficient workflows while ensuring intuitive user experiences that drive adoption.
+        <section id="services" className="py-16 md:py-24 border-b border-border overflow-hidden">
+            <div className="mx-auto max-w-7xl px-4 sm:px-6">
+                <div className="grid grid-cols-1 gap-6 md:gap-8 mb-12 md:mb-16">
+                    <div className="text-center mb-4">
+                        <h2 className="text-[length:var(--font-size-h2)] leading-[var(--line-height-heading)] tracking-[-0.01em] text-balance">
+                            Your Execution Stack
+                        </h2>
+                    </div>
+                    <div>
+                        <p className="text-[length:var(--font-size-body)] leading-[var(--line-height-body)] text-muted-foreground text-center max-w-2xl mx-auto">
+                            We combine AI automation with premium design to create systems that transform how you work.
+                            Each solution is crafted for immediate impact and long-term scalability.
                         </p>
                     </div>
-                    <div className="relative">
-                        <div className="relative z-10 grid grid-cols-6 gap-6">
-                            <Card className="card relative col-span-6 lg:col-span-2">
-                                <CardContent className="flex flex-col h-full p-5 space-y-3">
-                                    <div className="flex items-center justify-center">
-                                        <Image
-                                            src="/images/Keyboard.svg"
-                                            alt="AI Workflow"
-                                            width={80}
-                                            height={80}
-                                            className="mb-2"
-                                        />
-                                    </div>
-                                    <div className="space-y-2 text-center">
-                                        <h2 className="text-lg font-medium transition">Custom AI Workflow Development</h2>
-                                        <p className="text-muted-foreground text-sm">Transform manual processes with tailored AI solutions that integrate seamlessly with your existing tools. From data processing to decision automation, we build intelligent systems that work for you.</p>
-                                    </div>
-                                </CardContent>
-                            </Card>
-                            <Card className="card relative col-span-6 lg:col-span-2">
-                                <CardContent className="flex flex-col h-full p-5 space-y-3">
-                                    <div className="flex items-center justify-center">
-                                        <Image
-                                            src="/images/Interface.svg"
-                                            alt="UX/UI Design"
-                                            width={80}
-                                            height={80}
-                                            className="mb-2"
-                                        />
-                                    </div>
-                                    <div className="space-y-2 text-center">
-                                        <h2 className="text-lg font-medium transition">AI-First Design & UX</h2>
-                                        <p className="text-muted-foreground text-sm">Create intuitive interfaces for AI tools that users love. We combine automation power with thoughtful design to ensure high adoption and seamless user experiences.</p>
-                                    </div>
-                                </CardContent>
-                            </Card>
-                            <Card className="card relative col-span-6 lg:col-span-2">
-                                <CardContent className="flex flex-col h-full p-5 space-y-3">
-                                    <div className="flex items-center justify-center">
-                                        <Image
-                                            src="/images/Client Aquisition.svg"
-                                            alt="Client Automation"
-                                            width={80}
-                                            height={80}
-                                            className="mb-2"
-                                        />
-                                    </div>
-                                    <div className="space-y-2 text-center">
-                                        <h2 className="text-lg font-medium transition">Intelligent Process Automation</h2>
-                                        <p className="text-muted-foreground text-sm">Automate repetitive tasks, streamline workflows, and enhance efficiency with AI-powered solutions that adapt to your business needs.</p>
-                                    </div>
-                                </CardContent>
-                            </Card>
-                            <Card className="card relative col-span-6 lg:col-span-3">
-                                <CardContent className="grid h-full grid-cols-2 items-center gap-8 p-8">
-                                    <div className="space-y-3">
-                                        <h2 className="text-xl font-medium transition">AI Analytics & Insights</h2>
-                                        <p className="text-muted-foreground">Turn data into actionable insights with AI-powered analytics, predictive modeling, and intelligent dashboards for data-driven decisions.</p>
-                                    </div>
-                                    <div className="flex items-center justify-center">
-                                        <Image
-                                            src="/images/Data.svg"
-                                            alt="AI Analytics"
-                                            width={160}
-                                            height={160}
-                                        />
-                                    </div>
-                                </CardContent>
-                            </Card>
-                            <Card className="card relative col-span-6 lg:col-span-3">
-                                <CardContent className="grid h-full grid-cols-2 items-center gap-8 p-8">
-                                    <div className="space-y-3">
-                                        <h2 className="text-xl font-medium transition">Seamless AI Integration</h2>
-                                        <p className="text-muted-foreground">Connect AI solutions with your existing tools and systems for unified workflows that enhance productivity and reduce manual work.</p>
-                                    </div>
-                                    <div className="flex items-center justify-center">
-                                        <Image
-                                            src="/images/Shopping Cart.svg"
-                                            alt="Integration"
-                                            width={160}
-                                            height={160}
-                                        />
-                                    </div>
-                                </CardContent>
-                            </Card>
-                        </div>
-                    </div>
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6 lg:gap-8">
+                    <Card className="flex flex-col h-[280px] relative group hover:border-primary/20 transition-colors">
+                        <CardContent className="p-4 md:p-6 flex flex-col h-full">
+                            <div className="mb-auto">
+                                <div className="size-12 rounded-lg bg-primary/5 flex items-center justify-center mb-4 group-hover:bg-primary/10 transition-colors">
+                                    <Workflow className="size-6 text-primary/80" />
+                                </div>
+                                <h3 className="text-[length:var(--font-size-h3)] leading-[var(--line-height-heading)] font-medium mb-2">Workflow Automation</h3>
+                                <p className="text-[length:var(--font-size-caption)] leading-[var(--line-height-body)] text-muted-foreground">
+                                    Let AI handle your repetitive tasks automatically, running smoothly 24/7.
+                                </p>
+                            </div>
+                        </CardContent>
+                    </Card>
+
+                    <Card className="flex flex-col h-[280px] relative group hover:border-primary/20 transition-colors">
+                        <CardContent className="p-4 md:p-6 flex flex-col h-full">
+                            <div className="mb-auto">
+                                <div className="size-12 rounded-lg bg-primary/5 flex items-center justify-center mb-4 group-hover:bg-primary/10 transition-colors">
+                                    <Layers className="size-6 text-primary/80" />
+                                </div>
+                                <h3 className="text-[length:var(--font-size-h3)] leading-[var(--line-height-heading)] font-medium mb-2">Adaptive UX</h3>
+                                <p className="text-[length:var(--font-size-caption)] leading-[var(--line-height-body)] text-muted-foreground">
+                                    Smart interfaces that learn and adapt to how your team actually works.
+                                </p>
+                            </div>
+                        </CardContent>
+                    </Card>
+
+                    <Card className="flex flex-col h-[280px] relative group hover:border-primary/20 transition-colors">
+                        <CardContent className="p-4 md:p-6 flex flex-col h-full">
+                            <div className="mb-auto">
+                                <div className="size-12 rounded-lg bg-primary/5 flex items-center justify-center mb-4 group-hover:bg-primary/10 transition-colors">
+                                    <LayoutDashboard className="size-6 text-primary/80" />
+                                </div>
+                                <h3 className="text-[length:var(--font-size-h3)] leading-[var(--line-height-heading)] font-medium mb-2">Dashboards & Ops Tools</h3>
+                                <p className="text-[length:var(--font-size-caption)] leading-[var(--line-height-body)] text-muted-foreground">
+                                    Get full visibility and control over your automated workflows.
+                                </p>
+                            </div>
+                        </CardContent>
+                    </Card>
+
+                    <Card className="flex flex-col h-[280px] relative group hover:border-primary/20 transition-colors">
+                        <CardContent className="p-4 md:p-6 flex flex-col h-full">
+                            <div className="mb-auto">
+                                <div className="size-12 rounded-lg bg-primary/5 flex items-center justify-center mb-4 group-hover:bg-primary/10 transition-colors">
+                                    <Bot className="size-6 text-primary/80" />
+                                </div>
+                                <h3 className="text-[length:var(--font-size-h3)] leading-[var(--line-height-heading)] font-medium mb-2">AI Integration</h3>
+                                <p className="text-[length:var(--font-size-caption)] leading-[var(--line-height-body)] text-muted-foreground">
+                                    Connect AI directly into your existing tools without disrupting your team.
+                                </p>
+                            </div>
+                        </CardContent>
+                    </Card>
                 </div>
             </div>
-        </section >
+        </section>
     )
 }

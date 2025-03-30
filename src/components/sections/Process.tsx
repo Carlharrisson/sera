@@ -1,139 +1,93 @@
 "use client"
 
+import React from 'react'
 import { Card, CardContent } from '@/components/ui/data-display/card'
-import { Workflow, Sparkles, Zap, Link } from 'lucide-react'
-import { ReactNode, useEffect, useRef } from 'react'
-import gsap from 'gsap'
-import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import { Lightbulb, Blocks, Rocket } from 'lucide-react'
 
 export default function Process() {
-    const sectionRef = useRef<HTMLElement>(null)
-    const contentRef = useRef<HTMLDivElement>(null)
-
-    useEffect(() => {
-        // Register ScrollTrigger plugin
-        gsap.registerPlugin(ScrollTrigger)
-
-        if (contentRef.current) {
-            // Set initial state - blurred and transparent for the entire section content
-            gsap.set(contentRef.current, {
-                opacity: 0,
-                filter: 'blur(80px)',
-            })
-
-            // Create the animation for the entire content to fade in and unblur simultaneously
-            gsap.to(contentRef.current, {
-                opacity: 1,
-                filter: 'blur(0px)',
-                duration: 0.8,
-                ease: "power2.out",
-                scrollTrigger: {
-                    trigger: sectionRef.current,
-                    start: "top 70%",
-                    end: "bottom 20%",
-                    toggleActions: "play none none none",
-                }
-            })
-        }
-
-        return () => {
-            // Clean up ScrollTrigger when component unmounts
-            ScrollTrigger.getAll().forEach(trigger => trigger.kill())
-        }
-    }, [])
-
     return (
-        <section ref={sectionRef} id="process" className="py-16 md:py-32 dark:bg-transparent">
-            <div className="@container mx-auto max-w-5xl px-6">
-                <div ref={contentRef} className="process-content">
-                    <div className="text-center mb-8 md:mb-16">
-                        <span className="text-primary-600 dark:text-primary-500 font-meltmino text-xs font-medium uppercase tracking-wider">Our Execution Framework</span>
-                        <h2 className="text-balance text-4xl font-semibold lg:text-5xl mt-3">Strategic AI Implementation</h2>
-                        <p className="mt-4">Our proven execution framework ensures successful AI automation implementation through careful planning, iterative development, and continuous optimization.</p>
+        <section id="process" className="py-16 md:py-24 border-b border-border overflow-hidden">
+            <div className="mx-auto max-w-7xl px-4 sm:px-6">
+                <div className="grid grid-cols-1 gap-6 md:gap-8 mb-12 md:mb-16">
+                    <div className="text-center mb-4">
+                        <h2 className="text-[length:var(--font-size-h2)] leading-[var(--line-height-heading)] tracking-[-0.01em] text-balance">
+                            From Chaos to Clarity.
+                        </h2>
                     </div>
-
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                        <Card className="group shadow-zinc-950/5 relative">
-                            <CardContent className="flex flex-col h-full p-8 space-y-6">
-                                <span className="absolute top-4 left-4 text-muted-foreground text-sm font-medium">01</span>
-                                <div className="flex items-center justify-center">
-                                    <CardDecorator>
-                                        <Zap className="size-6" aria-hidden />
-                                    </CardDecorator>
-                                </div>
-                                <div className="space-y-3 text-center">
-                                    <h3 className="text-xl font-medium">Discovery & Strategy</h3>
-                                    <p className="text-muted-foreground text-sm">Deep analysis of your processes, identification of automation opportunities, and development of a tailored AI implementation roadmap.</p>
-                                </div>
-                            </CardContent>
-                        </Card>
-
-                        <Card className="group shadow-zinc-950/5 relative">
-                            <CardContent className="flex flex-col h-full p-8 space-y-6">
-                                <span className="absolute top-4 left-4 text-muted-foreground text-sm font-medium">02</span>
-                                <div className="flex items-center justify-center">
-                                    <CardDecorator>
-                                        <Workflow className="size-6" aria-hidden />
-                                    </CardDecorator>
-                                </div>
-                                <div className="space-y-3 text-center">
-                                    <h3 className="text-xl font-medium">Design & Development</h3>
-                                    <p className="text-muted-foreground text-sm">Iterative development of AI solutions with user-centric design, ensuring seamless integration with your existing tools and workflows.</p>
-                                </div>
-                            </CardContent>
-                        </Card>
-
-                        <Card className="group shadow-zinc-950/5 relative">
-                            <CardContent className="flex flex-col h-full p-8 space-y-6">
-                                <span className="absolute top-4 left-4 text-muted-foreground text-sm font-medium">03</span>
-                                <div className="flex items-center justify-center">
-                                    <CardDecorator>
-                                        <Sparkles className="size-6" aria-hidden />
-                                    </CardDecorator>
-                                </div>
-                                <div className="space-y-3 text-center">
-                                    <h3 className="text-xl font-medium">Launch & Optimize</h3>
-                                    <p className="text-muted-foreground text-sm">Smooth deployment, team training, and continuous optimization of AI systems to ensure maximum efficiency and ROI.</p>
-                                </div>
-                            </CardContent>
-                        </Card>
+                    <div>
+                        <p className="text-[length:var(--font-size-body)] leading-[var(--line-height-body)] text-muted-foreground text-center max-w-2xl mx-auto">
+                            A streamlined process that delivers results in weeks, not months.
+                            Start with a single system, then scale as you see the impact.
+                        </p>
                     </div>
+                </div>
 
-                    {/* Big block for Continuous Partnership */}
-                    <Card className="group shadow-zinc-950/5 relative mt-6">
-                        <CardContent className="flex flex-col p-8 space-y-6">
-                            <span className="absolute top-4 left-4 text-muted-foreground text-sm font-medium">04</span>
-                            <div className="flex items-center justify-center">
-                                <CardDecorator>
-                                    <Link className="size-6" aria-hidden />
-                                </CardDecorator>
-                            </div>
-                            <div className="space-y-3 text-center">
-                                <h3 className="text-xl font-medium">Continuous Partnership</h3>
-                                <p className="text-muted-foreground text-sm mx-auto max-w-2xl">
-                                    Success with AI automation requires ongoing refinement and support. Through our membership model,
-                                    we provide continuous optimization, monitoring, and enhancement of your AI systems. As your business
-                                    grows, we scale and adapt your automation solutions to meet evolving needs.
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 lg:gap-8">
+                    <Card className="flex flex-col h-[320px] md:h-[400px] relative group hover:border-primary/20 transition-colors">
+                        <CardContent className="p-6 md:p-8 flex flex-col h-full relative">
+                            <span className="text-[length:var(--font-size-caption)] leading-[var(--line-height-body)] absolute top-6 md:top-8 right-6 md:right-8 font-medium text-muted-foreground">01</span>
+                            <div className="mb-auto">
+                                <div className="flex items-center mb-6 md:mb-8">
+                                    <div className="size-12 md:size-16 rounded-lg bg-primary/5 flex items-center justify-center group-hover:bg-primary/10 transition-colors">
+                                        <Lightbulb className="size-6 md:size-8 text-primary/80" />
+                                    </div>
+                                </div>
+                                <h3 className="text-[length:var(--font-size-h3)] leading-[var(--line-height-heading)] font-medium mb-4">AI Execution Strategy</h3>
+                                <p className="text-[length:var(--font-size-body)] leading-[var(--line-height-body)] text-muted-foreground">
+                                    We map out your workflow and identify every opportunity to remove friction with AI.
                                 </p>
                             </div>
                         </CardContent>
                     </Card>
 
-                    {/* Bottom row with 3 features */}
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-12">
-                        <div className="flex flex-col items-center text-center p-4">
-                            <span className="font-medium text-sm mb-2">Rapid Implementation</span>
-                            <p className="text-xs text-muted-foreground">From strategy to execution in weeks, not months</p>
-                        </div>
+                    <Card className="flex flex-col h-[320px] md:h-[400px] relative group hover:border-primary/20 transition-colors">
+                        <CardContent className="p-6 md:p-8 flex flex-col h-full relative">
+                            <span className="text-[length:var(--font-size-caption)] leading-[var(--line-height-body)] absolute top-6 md:top-8 right-6 md:right-8 font-medium text-muted-foreground">02</span>
+                            <div className="mb-auto">
+                                <div className="flex items-center mb-6 md:mb-8">
+                                    <div className="size-12 md:size-16 rounded-lg bg-primary/5 flex items-center justify-center group-hover:bg-primary/10 transition-colors">
+                                        <Blocks className="size-6 md:size-8 text-primary/80" />
+                                    </div>
+                                </div>
+                                <h3 className="text-[length:var(--font-size-h3)] leading-[var(--line-height-heading)] font-medium mb-4">AI-Driven UX & Automation</h3>
+                                <p className="text-[length:var(--font-size-body)] leading-[var(--line-height-body)] text-muted-foreground">
+                                    Build and test your new automated workflow in real-time. No waiting around.
+                                </p>
+                            </div>
+                        </CardContent>
+                    </Card>
 
-                        <div className="flex flex-col items-center text-center p-4">
-                            <span className="font-medium text-sm mb-2">Flexible Engagement</span>
-                            <p className="text-xs text-muted-foreground">Project-based or ongoing membership options</p>
-                        </div>
+                    <Card className="flex flex-col h-[320px] md:h-[400px] relative group hover:border-primary/20 transition-colors md:col-span-2">
+                        <CardContent className="p-6 md:p-8 flex flex-col h-full relative">
+                            <span className="text-[length:var(--font-size-caption)] leading-[var(--line-height-body)] absolute top-6 md:top-8 right-6 md:right-8 font-medium text-muted-foreground">03</span>
+                            <div className="mb-auto">
+                                <div className="flex items-center mb-6 md:mb-8">
+                                    <div className="size-12 md:size-16 rounded-lg bg-primary/5 flex items-center justify-center group-hover:bg-primary/10 transition-colors">
+                                        <Rocket className="size-6 md:size-8 text-primary/80" />
+                                    </div>
+                                </div>
+                                <h3 className="text-[length:var(--font-size-h3)] leading-[var(--line-height-heading)] font-medium mb-4">Full AI Execution Deployment</h3>
+                                <p className="text-[length:var(--font-size-body)] leading-[var(--line-height-body)] text-muted-foreground">
+                                    Your system goes live with continuous learning and scaling built right in.
+                                </p>
+                            </div>
+                        </CardContent>
+                    </Card>
+                </div>
 
-                        <div className="flex flex-col items-center text-center p-4">
-                            <span className="font-medium text-sm mb-2">Dedicated Support</span>
-                            <p className="text-xs text-muted-foreground">Direct access to your AI automation team</p>
+                <div className="max-w-3xl mx-auto mt-8 md:mt-12">
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-2">
+                        <div className="text-center md:border-r border-border">
+                            <p className="text-[length:var(--font-size-body)] leading-[var(--line-height-body)] font-medium">100% Async</p>
+                            <p className="text-[length:var(--font-size-caption)] leading-[var(--line-height-body)] text-muted-foreground">No meetings required</p>
+                        </div>
+                        <div className="text-center md:border-r border-border">
+                            <p className="text-[length:var(--font-size-body)] leading-[var(--line-height-body)] font-medium">Pause any time</p>
+                            <p className="text-[length:var(--font-size-caption)] leading-[var(--line-height-body)] text-muted-foreground">Adjust to your design needs</p>
+                        </div>
+                        <div className="text-center">
+                            <p className="text-[length:var(--font-size-body)] leading-[var(--line-height-body)] font-medium">Manage via Slack</p>
+                            <p className="text-[length:var(--font-size-caption)] leading-[var(--line-height-body)] text-muted-foreground">Effortless coordination</p>
                         </div>
                     </div>
                 </div>
@@ -141,11 +95,3 @@ export default function Process() {
         </section>
     )
 }
-
-const CardDecorator = ({ children }: { children: ReactNode }) => (
-    <div className="relative mx-auto size-36 duration-200 [--color-border:color-mix(in_oklab,var(--color-zinc-950)10%,transparent)] group-hover:[--color-border:color-mix(in_oklab,var(--color-zinc-950)20%,transparent)] dark:[--color-border:color-mix(in_oklab,var(--color-white)15%,transparent)] dark:group-hover:bg-white/5 dark:group-hover:[--color-border:color-mix(in_oklab,var(--color-white)20%,transparent)]">
-        <div aria-hidden className="absolute inset-0 bg-[linear-gradient(to_right,var(--color-border)_1px,transparent_1px),linear-gradient(to_bottom,var(--color-border)_1px,transparent_1px)] bg-[size:24px_24px]" />
-        <div aria-hidden className="bg-radial to-background absolute inset-0 from-transparent to-75%" />
-        <div className="bg-background absolute inset-0 m-auto flex size-12 items-center justify-center border-l border-t">{children}</div>
-    </div>
-)

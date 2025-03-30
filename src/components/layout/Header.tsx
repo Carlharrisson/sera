@@ -5,89 +5,134 @@ import { Button } from '@/components/ui/form/button'
 import React from 'react'
 import { cn } from '@/lib/utils'
 import { ThemeToggle } from '@/components/ui/common/theme-toggle'
+import Image from 'next/image'
 
 const menuItems = [
-    { name: 'Services', href: '#services' },
-    { name: 'Projects', href: '#projects' },
-    { name: 'Process', href: '#process' },
-    { name: 'Testimonials', href: '#testimonials' },
-    { name: 'Pricing', href: '#pricing' },
-    { name: 'FAQs', href: '#faqs' },
+    { name: 'SERVICES', href: '#services' },
+    { name: 'PROCESS', href: '#process' },
+    { name: 'PRICING', href: '#pricing' },
+    { name: 'CONTACT', href: '#contact' },
 ]
 
 export const HeroHeader = () => {
     const [menuState, setMenuState] = React.useState(false)
-    const [isScrolled, setIsScrolled] = React.useState(false)
+    const [activeSection, setActiveSection] = React.useState('')
 
     React.useEffect(() => {
         const handleScroll = () => {
-            setIsScrolled(window.scrollY > 50)
+            const sections = menuItems.map(item => item.href.substring(1))
+            const current = sections.find(section => {
+                const element = document.getElementById(section)
+                if (element) {
+                    const rect = element.getBoundingClientRect()
+                    return rect.top <= 100 && rect.bottom >= 100
+                }
+                return false
+            })
+            setActiveSection(current || '')
         }
+
         window.addEventListener('scroll', handleScroll)
         return () => window.removeEventListener('scroll', handleScroll)
     }, [])
+
     return (
-        <header>
-            <nav
-                data-state={menuState && 'active'}
-                className="fixed z-20 w-full px-2">
-                <div className={cn('mx-auto mt-2 max-w-6xl px-6 transition-all duration-300 lg:px-12', isScrolled && 'bg-background/50 max-w-4xl rounded-2xl border backdrop-blur-lg lg:px-5')}>
-                    <div className="relative flex flex-wrap items-center justify-between gap-6 py-3 lg:gap-0 lg:py-4">
-                        <div className="flex w-full justify-between lg:w-auto">
+        <header className="fixed z-20 w-full bg-background border-b border-gray-200 dark:border-gray-800">
+            <nav className="h-16">
+                <div className="mx-auto max-w-[120rem] px-4 sm:px-6 h-full">
+                    <div className="flex justify-between items-center h-full relative">
+                        {/* Logo */}
+                        <div className="flex-1 flex justify-start  items-center">
                             <Link
                                 href="/"
                                 aria-label="home"
-                                className="flex items-center space-x-2">
-                                <span className=" text-xl">Sera</span>
+                                className="flex items-center">
+                                <Image
+                                    src="/SeraLogo.svg"
+                                    alt="Sera Logo"
+                                    width={32}
+                                    height={32}
+                                    className="dark:invert"
+                                />
                             </Link>
-
-                            <button
-                                onClick={() => setMenuState(!menuState)}
-                                aria-label={menuState == true ? 'Close Menu' : 'Open Menu'}
-                                className="relative z-20 -m-2.5 -mr-4 block cursor-pointer p-2.5 lg:hidden">
-                                <Menu className="in-data-[state=active]:rotate-180 in-data-[state=active]:scale-0 in-data-[state=active]:opacity-0 m-auto size-6 duration-200" />
-                                <X className="in-data-[state=active]:rotate-0 in-data-[state=active]:scale-100 in-data-[state=active]:opacity-100 absolute inset-0 m-auto size-6 -rotate-180 scale-0 opacity-0 duration-200" />
-                            </button>
                         </div>
 
-                        <div className="absolute inset-0 m-auto hidden size-fit lg:block">
-                            <ul className="flex gap-8 text-sm">
+                        {/* Desktop Navigation */}
+                        <div className="hidden lg:flex items-center justify-center flex-1">
+                            <ul className="flex gap-8">
                                 {menuItems.map((item, index) => (
                                     <li key={index}>
                                         <Link
                                             href={item.href}
-                                            className="text-muted-foreground hover:text-accent-foreground block duration-150">
-                                            <span>{item.name}</span>
+                                            className={cn(
+                                                "text-[length:var(--font-size-caption)] uppercase tracking-[0.05em] text-gray-600 hover:text-gray-900 transition-colors dark:text-gray-400 dark:hover:text-gray-100",
+                                                activeSection === item.href.substring(1) && "text-gray-900 underline underline-offset-8 decoration-gray-300 dark:text-gray-100 dark:decoration-gray-700"
+                                            )}>
+                                            {item.name}
                                         </Link>
                                     </li>
                                 ))}
                             </ul>
                         </div>
 
-                        <div className="bg-background in-data-[state=active]:block lg:in-data-[state=active]:flex mb-6 hidden w-full flex-wrap items-center justify-end space-y-8 rounded-3xl border p-6 shadow-2xl shadow-zinc-300/20 md:flex-nowrap lg:m-0 lg:flex lg:w-fit lg:gap-6 lg:space-y-0 lg:border-transparent lg:bg-transparent lg:p-0 lg:shadow-none dark:shadow-none dark:lg:bg-transparent">
-                            <div className="lg:hidden">
-                                <ul className="space-y-6 text-base">
-                                    {menuItems.map((item, index) => (
-                                        <li key={index}>
-                                            <Link
-                                                href={item.href}
-                                                className="text-muted-foreground hover:text-accent-foreground block duration-150">
-                                                <span>{item.name}</span>
-                                            </Link>
-                                        </li>
-                                    ))}
-                                </ul>
-                            </div>
-                            <div className="flex w-full flex-col space-y-3 sm:flex-row sm:gap-3 sm:space-y-0 md:w-fit">
-                                <ThemeToggle />
+                        {/* Actions - Right */}
+                        <div className="flex-1 flex items-center justify-end gap-4">
+                            {/* Theme Toggle */}
+                            <ThemeToggle />
+
+                            {/* Contact Button - Desktop */}
+                            <div className="hidden lg:block">
                                 <Button
                                     asChild
-                                    size="sm">
-                                    <Link href="#contact">
-                                        <span>Contact</span>
-                                    </Link>
+                                    variant="default"
+                                    size="sm"
+                                    className="text-[length:var(--font-size-caption)]">
+                                    <Link href="#contact">Contact</Link>
                                 </Button>
                             </div>
+
+                            {/* Mobile Menu Button */}
+                            <button
+                                onClick={() => setMenuState(!menuState)}
+                                aria-label={menuState ? 'Close Menu' : 'Open Menu'}
+                                className="lg:hidden relative size-9 border border-gray-200 dark:border-gray-800 rounded-lg flex items-center justify-center">
+                                <Menu className={cn("size-5 duration-200 absolute", menuState && "rotate-180 scale-0 opacity-0")} />
+                                <X className={cn("size-5 duration-200 absolute", !menuState && "-rotate-180 scale-0 opacity-0")} />
+                            </button>
+                        </div>
+                    </div>
+
+                    {/* Mobile Menu */}
+                    <div className={cn(
+                        "fixed inset-x-0 top-16 bg-background border-t border-gray-200 dark:border-gray-800 lg:hidden transition-all duration-200 ease-in-out",
+                        menuState ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-2 pointer-events-none"
+                    )}>
+                        <div className="p-6">
+                            <ul className="grid gap-6">
+                                {menuItems.map((item, index) => (
+                                    <li key={index} className="text-center">
+                                        <Link
+                                            href={item.href}
+                                            onClick={() => setMenuState(false)}
+                                            className={cn(
+                                                "text-[length:var(--font-size-caption)] uppercase tracking-[0.05em] text-gray-600 hover:text-gray-900 transition-colors dark:text-gray-400 dark:hover:text-gray-100",
+                                                activeSection === item.href.substring(1) && "text-gray-900 underline underline-offset-8 decoration-gray-300 dark:text-gray-100 dark:decoration-gray-700"
+                                            )}>
+                                            {item.name}
+                                        </Link>
+                                    </li>
+                                ))}
+                                <li className="text-center mt-2">
+                                    <Button
+                                        asChild
+                                        variant="default"
+                                        size="sm"
+                                        className="text-[length:var(--font-size-caption)]"
+                                        onClick={() => setMenuState(false)}>
+                                        <Link href="#contact">Contact</Link>
+                                    </Button>
+                                </li>
+                            </ul>
                         </div>
                     </div>
                 </div>
