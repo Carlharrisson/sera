@@ -355,7 +355,7 @@ export default function Contact() {
                                             )}
                                         </Button>
                                         <p className="text-[length:var(--font-size-caption)] leading-[var(--line-height-body)] text-muted-foreground">
-                                            Want to chat first? <a href="mailto:carl@sera.so" className="text-primary hover:underline">Drop us a quick email</a>
+                                            Want to chat first? <a href="mailto:hello@seraworks.com" className="text-primary hover:underline">Drop us a quick email</a>
                                         </p>
                                     </div>
                                 </div>
