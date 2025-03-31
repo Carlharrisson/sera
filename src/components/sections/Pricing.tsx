@@ -46,7 +46,7 @@ const pricingTiers: PricingTier[] = [
 
         ],
         buttonText: "Apply Now",
-        buttonLink: "https://buy.stripe.com/test_cN22bS7ey8sQ1uo6or"
+        buttonLink: "https://buy.stripe.com/aEUbIT0CscsNcbmbII"
     }
 ];
 
