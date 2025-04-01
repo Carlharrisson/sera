@@ -7,6 +7,7 @@ import { HeroHeader } from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import { LenisProvider } from "@/components/shared/lenis-provider";
 import { Toaster } from "@/components/ui/overlay/sonner";
+import { ContentSquare, GoogleAnalytics } from "@/components/analytics";
 
 const neueHaasRoman = localFont({
   src: '../../public/NeueHaasDisplayRoman.ttf',
@@ -71,6 +72,8 @@ export default function RootLayout({
             {children}
             <Footer />
             <Toaster />
+            <ContentSquare />
+            <GoogleAnalytics />
             <Analytics />
           </LenisProvider>
         </ThemeProvider>
