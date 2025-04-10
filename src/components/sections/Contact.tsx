@@ -103,10 +103,10 @@ export default function Contact() {
                 <div ref={contentRef} className="space-y-12">
                     <div className="text-center space-y-4">
                         <h2 className="text-[length:var(--font-size-h2)] leading-[var(--line-height-heading)] tracking-[-0.01em] text-balance bg-clip-text text-transparent bg-gradient-to-b from-foreground to-foreground/80">
-                            Tell Us What You Want to Automate
+                            Let&apos;s Make Work Easier
                         </h2>
                         <p className="text-[length:var(--font-size-body)] leading-[var(--line-height-body)] text-muted-foreground max-w-2xl mx-auto">
-                            No complex proposals needed. Just describe your workflow, and we&apos;ll show you how to automate it within 24 hours.
+                            Tell us about your workflow challenges, and within 24 hours, we&apos;ll show you exactly how to make your team more efficient.
                         </p>
                     </div>
 

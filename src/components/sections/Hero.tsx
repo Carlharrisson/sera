@@ -26,7 +26,7 @@ const logos: Logo[] = [
 ]
 
 // Duplicate logos for seamless loop
-const duplicatedLogos = [...logos, ...logos]
+const duplicatedLogos = [...logos, ...logos, ...logos, ...logos] // 4x duplication for smoother loop
 
 export default function HeroSection() {
     const images = [
@@ -49,7 +49,7 @@ export default function HeroSection() {
                         </h1>
 
                         <p className="text-[length:var(--font-size-body)] leading-[var(--line-height-body)] mx-auto max-w-2xl mb-12">
-                            We help fast-growing companies automate their tedious tasks with AI. Most teams save 20+ hours every week. Yours could too.
+                            Transform your workflow with AI-powered automation. Our solutions help teams reclaim valuable time and focus on what matters most.
                         </p>
 
                         <div className="mt-12 flex flex-col items-center justify-center gap-4 md:flex-row">
@@ -101,15 +101,18 @@ export default function HeroSection() {
                             <motion.div
                                 className="flex py-3"
                                 animate={{
-                                    x: [0, -50 * logos.length],
+                                    x: [0, -50 * logos.length * 2], // Animate through 2 sets of logos
                                 }}
                                 transition={{
                                     x: {
                                         repeat: Infinity,
                                         repeatType: "loop",
-                                        duration: 20,
+                                        duration: 30, // Slower animation for smoother effect
                                         ease: "linear",
                                     },
+                                }}
+                                style={{
+                                    width: `${logos.length * 100}%`, // Ensure container is wide enough
                                 }}
                             >
                                 {duplicatedLogos.map((logo, index) => (

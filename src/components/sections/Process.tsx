@@ -11,13 +11,12 @@ export default function Process() {
                 <div className="grid grid-cols-1 gap-6 md:gap-8 mb-12 md:mb-16">
                     <div className="text-center mb-4">
                         <h2 className="text-[length:var(--font-size-h2)] leading-[var(--line-height-heading)] tracking-[-0.01em] text-balance">
-                            From Chaos to Clarity.
+                            Simple Steps, Real Results
                         </h2>
                     </div>
                     <div>
                         <p className="text-[length:var(--font-size-body)] leading-[var(--line-height-body)] text-muted-foreground text-center max-w-2xl mx-auto">
-                            A streamlined process that delivers results in weeks, not months.
-                            Start with a single system, then scale as you see the impact.
+                            Get from idea to implementation in weeks, not months. Start with what you need today, then grow at your own pace.
                         </p>
                     </div>
                 </div>
@@ -32,9 +31,9 @@ export default function Process() {
                                         <Lightbulb className="size-6 md:size-8 text-primary/80" />
                                     </div>
                                 </div>
-                                <h3 className="text-[length:var(--font-size-h3)] leading-[var(--line-height-heading)] font-medium mb-4">AI Execution Strategy</h3>
+                                <h3 className="text-[length:var(--font-size-h3)] leading-[var(--line-height-heading)] font-medium mb-4">Strategy & Planning</h3>
                                 <p className="text-[length:var(--font-size-body)] leading-[var(--line-height-body)] text-muted-foreground">
-                                    We map out your workflow and identify every opportunity to remove friction with AI.
+                                    We analyze your workflow to find the best opportunities for saving time and reducing manual work.
                                 </p>
                             </div>
                         </CardContent>
@@ -49,9 +48,9 @@ export default function Process() {
                                         <Blocks className="size-6 md:size-8 text-primary/80" />
                                     </div>
                                 </div>
-                                <h3 className="text-[length:var(--font-size-h3)] leading-[var(--line-height-heading)] font-medium mb-4">AI-Driven UX & Automation</h3>
+                                <h3 className="text-[length:var(--font-size-h3)] leading-[var(--line-height-heading)] font-medium mb-4">Smart Design & Build</h3>
                                 <p className="text-[length:var(--font-size-body)] leading-[var(--line-height-body)] text-muted-foreground">
-                                    Build and test your new automated workflow in real-time. No waiting around.
+                                    Watch your solution take shape with real-time testing and refinements as we build.
                                 </p>
                             </div>
                         </CardContent>
@@ -66,9 +65,9 @@ export default function Process() {
                                         <Rocket className="size-6 md:size-8 text-primary/80" />
                                     </div>
                                 </div>
-                                <h3 className="text-[length:var(--font-size-h3)] leading-[var(--line-height-heading)] font-medium mb-4">Full AI Execution Deployment</h3>
+                                <h3 className="text-[length:var(--font-size-h3)] leading-[var(--line-height-heading)] font-medium mb-4">Launch & Optimize</h3>
                                 <p className="text-[length:var(--font-size-body)] leading-[var(--line-height-body)] text-muted-foreground">
-                                    Your system goes live with continuous learning and scaling built right in.
+                                    Your new system goes live with everything in place to grow and improve over time.
                                 </p>
                             </div>
                         </CardContent>

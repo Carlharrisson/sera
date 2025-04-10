@@ -5,7 +5,7 @@ import Link from 'next/link'
 import { Button } from '@/components/ui/form/button'
 import { Card, CardContent, CardHeader } from '@/components/ui/data-display/card'
 import { ArrowRight } from 'lucide-react'
-import { Badge } from '@/components/ui/data-display/badge'
+
 interface PricingTier {
     title: string;
     subtitle: string;
@@ -55,11 +55,11 @@ export default function Pricing() {
         <section id="pricing" className="py-24 md:py-32 border-b border-border">
             <div className="mx-auto max-w-7xl px-6">
                 <div className="text-center mb-16">
-                    <h2 className="text-[length:var(--font-size-h2)] leading-[var(--line-height-heading)] tracking-[-0.01em] text-balance mb-6">
-                        Pricing Built for Momentum.
+                    <h2 className="text-[length:var(--font-size-h2)] leading-[var(--line-height-heading)] tracking-[-0.01em] text-balance">
+                        Flexible Solutions for Every Team
                     </h2>
                     <p className="text-[length:var(--font-size-body)] leading-[var(--line-height-body)] text-muted-foreground max-w-2xl mx-auto">
-                        Clear, value-driven pricing that scales with your needs.
+                        Choose the perfect plan to accelerate your team&apos;s productivity with AI automation. Start small and scale as you grow.
                     </p>
                 </div>
 
@@ -70,13 +70,7 @@ export default function Pricing() {
                                 <Card className={` border border-border/40 bg-background/50 backdrop-blur supports-[backdrop-filter]:bg-background/50 ${tier.title === 'Membership' ? 'shadow-lg border-primary/20' : ''}`}>
                                     <CardHeader className="p-6 pb-0">
                                         <div className="space-y-4">
-                                            {tier.title === 'Membership' && (
-                                                <Badge variant="outline"  >
-                                                    <p className="text-[length:var(--font-size-caption)] leading-[var(--line-height-body)] text-green-600 font-medium">
-                                                        3 spots remaining for Q1
-                                                    </p>
-                                                </Badge>
-                                            )}
+
                                             <div>
                                                 <h3 className="text-[length:var(--font-size-h3)] leading-[var(--line-height-heading)] font-medium mb-2">{tier.title}</h3>
                                                 <p className="text-[length:var(--font-size-caption)] leading-[var(--line-height-body)] text-muted-foreground">{tier.subtitle}</p>
