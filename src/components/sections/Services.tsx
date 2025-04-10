@@ -42,9 +42,9 @@ export default function Services() {
                                 <div className="size-12 rounded-lg bg-primary/5 flex items-center justify-center mb-4 group-hover:bg-primary/10 transition-colors">
                                     <Layers className="size-6 text-primary/80" />
                                 </div>
-                                <h3 className="text-[length:var(--font-size-h3)] leading-[var(--line-height-heading)] font-medium mb-2">Adaptive UX</h3>
+                                <h3 className="text-[length:var(--font-size-h3)] leading-[var(--line-height-heading)] font-medium mb-2">Intelligent Interfaces</h3>
                                 <p className="text-[length:var(--font-size-caption)] leading-[var(--line-height-body)] text-muted-foreground">
-                                    Smart interfaces that learn from your team&apos;s habits to make work flow naturally.
+                                    Interfaces that adapt to your users and evolve with your workflows.
                                 </p>
                             </div>
                         </CardContent>

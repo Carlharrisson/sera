@@ -97,19 +97,23 @@ export default function Contact() {
     }
 
     return (
-        <section ref={sectionRef} className="relative py-24 md:py-32 border-b border-border bg-gradient-to-b from-background to-background/80" id="contact">
+        <section ref={sectionRef} className="relative py-16 md:py-24 border-b border-border bg-gradient-to-b from-background to-background/80" id="contact">
             <div className="absolute inset-0 bg-grid-white/[0.02] bg-[size:16px] pointer-events-none" />
-            <div className="relative mx-auto max-w-2xl px-6">
-                <div ref={contentRef} className="space-y-12">
-                    <div className="text-center space-y-4">
+            <div className="relative mx-auto max-w-7xl px-4 sm:px-6">
+                <div ref={contentRef} className="grid grid-cols-1 gap-6 md:gap-8 mb-12 md:mb-16">
+                    <div className="text-center mb-4">
                         <h2 className="text-[length:var(--font-size-h2)] leading-[var(--line-height-heading)] tracking-[-0.01em] text-balance bg-clip-text text-transparent bg-gradient-to-b from-foreground to-foreground/80">
                             Let&apos;s Make Work Easier
                         </h2>
-                        <p className="text-[length:var(--font-size-body)] leading-[var(--line-height-body)] text-muted-foreground max-w-2xl mx-auto">
+                    </div>
+                    <div>
+                        <p className="text-[length:var(--font-size-body)] leading-[var(--line-height-body)] text-muted-foreground text-center max-w-2xl mx-auto">
                             Tell us about your workflow challenges, and within 24 hours, we&apos;ll show you exactly how to make your team more efficient.
                         </p>
                     </div>
+                </div>
 
+                <div className="max-w-2xl mx-auto">
                     <div className="rounded-2xl border p-6 md:p-8 shadow-sm">
                         <Form {...form}>
                             <form
