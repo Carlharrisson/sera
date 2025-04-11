@@ -81,11 +81,16 @@ export default function Pricing() {
                                     </div>
                                 </CardHeader>
                                 <CardContent className="p-6 space-y-6">
-                                    <div className="flex items-baseline gap-2 pb-2 border-b">
-                                        <span className="text-[length:var(--font-size-h3)] leading-[var(--line-height-heading)] font-medium">{tier.price}</span>
-                                        {tier.period && (
-                                            <span className="text-[length:var(--font-size-caption)] leading-[var(--line-height-body)] text-muted-foreground">{tier.period}</span>
-                                        )}
+                                    <div className="flex flex-col pb-2 border-b">
+                                        <span className="text-[length:var(--font-size-caption)] leading-[var(--line-height-body)] text-muted-foreground mb-1">
+                                            {tier.title === "Project-Based" ? "Starting from" : "Monthly subscription"}
+                                        </span>
+                                        <div className="flex items-baseline gap-2">
+                                            <span className="text-[length:var(--font-size-h3)] leading-[var(--line-height-heading)] font-medium">{tier.price}</span>
+                                            {tier.period && (
+                                                <span className="text-[length:var(--font-size-caption)] leading-[var(--line-height-body)] text-muted-foreground">{tier.period}</span>
+                                            )}
+                                        </div>
                                     </div>
 
                                     <ul className="space-y-4 mb-8">
