@@ -33,7 +33,7 @@ export default function Process() {
                                 </div>
                                 <h3 className="text-[length:var(--font-size-h3)] leading-[var(--line-height-heading)] font-medium mb-4">Find the Bottleneck</h3>
                                 <p className="text-[length:var(--font-size-body)] leading-[var(--line-height-body)] text-muted-foreground">
-                                    We trace the pain point, where work breaks, slows, or repeats – to scope a clear outcome.
+                                    We trace the pain point, where work breaks, slows, or repeats, to scope a clear outcome.
                                 </p>
                             </div>
                         </CardContent>
