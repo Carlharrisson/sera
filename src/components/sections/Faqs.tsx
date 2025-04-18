@@ -12,212 +12,133 @@ interface FAQItem {
 
 const faqItems: FAQItem[] = [
     {
-        question: "What exactly do I get with each project or membership?",
+        question: "What does a typical project build include?",
         answer: (
             <div className="space-y-4">
                 <p>
-                    Every project includes specific, measurable deliverables:
+                    Project builds focus on fixing one specific, painful workflow or bottleneck. This typically includes:
                 </p>
                 <ul className="list-disc pl-6 space-y-2">
-                    <li>2-3 custom AI workflow automations</li>
-                    <li>Complete UI/UX design system</li>
-                    <li>Integration with your existing tools</li>
-                    <li>Analytics dashboard for tracking ROI</li>
-                    <li>30-day optimization period</li>
+                    <li>Identifying the core problem & desired outcome (async).</li>
+                    <li>Building the automation system (e.g., Slack bot, Airtable automation, simple dashboard).</li>
+                    <li>Integrating with 1-2 key tools you already use (e.g., Slack, CRM, Sheets).</li>
+                    <li>Testing and handover with brief instructions.</li>
+                    <li>Two rounds of revisions for tweaks.</li>
+                    <li>30 days of basic support for fixes.</li>
                 </ul>
                 <p>
-                    Membership clients get additional benefits like weekly optimization, priority support, and continuous development of new automations.
+                    The goal is a working system, shipped fast, that solves the immediate pain and saves significant time (often 20+ hours/week).
                 </p>
             </div>
         ),
     },
     {
-        question: "How do you ensure the AI automation will actually work for my business?",
+        question: "How does the 'Ongoing Support' membership work?",
         answer: (
             <div className="space-y-4">
                 <p>
-                    We follow a proven process to guarantee results:
+                    It&apos;s like having an execution-focused team member on retainer, without the hiring overhead. You get:
                 </p>
                 <ul className="list-disc pl-6 space-y-2">
-                    <li>Week 1: Deep analysis of your processes and ROI calculation</li>
-                    <li>Week 2: Development and testing with your team</li>
-                    <li>Week 3+: Launch, training, and optimization</li>
+                    <li>A dedicated Slack channel for requests.</li>
+                    <li>Capacity for up to four defined automation/tooling tasks per month.</li>
+                    <li>We aim for a 48-hour response time to acknowledge and start work.</li>
+                    <li>Two revisions included per task if needed.</li>
+                    <li>Focus on building, tweaking, or maintaining your operational systems.</li>
+                    <li>Simple monthly billing, cancel anytime.</li>
                 </ul>
                 <p>
-                    Plus, we offer a money-back guarantee if you&apos;re not satisfied with the results. Our clients typically see ROI within 2-3 months through time savings and increased efficiency.
+                    Ideal for teams needing consistent automation help without managing another hire.
                 </p>
             </div>
         ),
     },
     {
-        question: "What happens if I'm not happy with the results?",
+        question: "How fast do you actually build things?",
         answer: (
             <div className="space-y-4">
                 <p>
-                    Your satisfaction is our priority. We provide multiple guarantees:
+                    Speed is core to what we do. We aim to ship initial versions of project builds within days or 1-2 weeks, depending on complexity. Ongoing support tasks are typically addressed within 48 hours.
                 </p>
-                <ul className="list-disc pl-6 space-y-2">
-                    <li>2-week delivery guarantee or your money back</li>
-                    <li>30-day optimization period included with every project</li>
-                    <li>Unlimited revisions during development</li>
-                    <li>Monthly membership can be cancelled anytime</li>
-                </ul>
                 <p>
-                    If at any point you&apos;re not satisfied, we&apos;ll work with you to make it right or refund your investment.
+                    We achieve this by scoping tightly, avoiding unnecessary meetings/strategy, using reliable tools (Make, Airtable, Slack, Retool, etc.), and focusing purely on execution.
                 </p>
             </div>
         ),
     },
     {
-        question: "Who is Sera best suited for?",
+        question: "Who is Sera for, and who is it NOT for?",
         answer: (
             <div className="space-y-4">
                 <p>
-                    We work best with:
+                    Sera works best for:
                 </p>
                 <ul className="list-disc pl-6 space-y-2">
-                    <li><strong>Tech Startups:</strong> Needing to automate operations and scale efficiently</li>
-                    <li><strong>E-commerce Brands:</strong> Looking to automate customer service and operations</li>
-                    <li><strong>SaaS Companies:</strong> Wanting to enhance product UX with AI</li>
-                    <li><strong>Agencies:</strong> Seeking to automate client workflows</li>
+                    <li><strong>SaaS Founders/Teams (Seed-Series B):</strong> Overwhelmed by manual ops, need systems fast.</li>
+                    <li><strong>Heads of Ops/RevOps:</strong> Dealing with messy workflows, tool overload, slow handoffs.</li>
+                    <li><strong>Ops-Heavy Team Leads:</strong> Swamped with manual tasks, no internal tools team.</li>
+                    <li><strong>Exec Buyers (COO/VP Ops):</strong> Need to scale ops without bloating headcount immediately.
+                    </li>
                 </ul>
+                <p>Key signals include heavy reliance on Slack/Airtable/Sheets, frustration with manual work, desire for quick results, and an internal owner for the system.</p>
                 <p>
-                    Ideal clients typically have established processes they want to automate and are ready to invest in scaling their operations.
+                    Sera is <strong>NOT</strong> a fit for those wanting strategic advice/decks, lacking a clear problem to solve, needing complex enterprise overhauls, or lacking an internal champion to use what we build.
                 </p>
             </div>
         ),
     },
     {
-        question: "How do you ensure consistent quality as you scale?",
+        question: "What does the async process look like? Do we need meetings?",
         answer: (
             <div className="space-y-4">
                 <p>
-                    We maintain high quality through systematic processes:
+                    We operate almost entirely async, primarily via Slack (or email/your preferred async tool). Meetings are rare and only if absolutely necessary to unblock something specific.
                 </p>
                 <ul className="list-disc pl-6 space-y-2">
-                    <li>Standardized implementation methodology</li>
-                    <li>Rigorous quality assurance protocols</li>
-                    <li>Automated testing and monitoring</li>
-                    <li>Continuous team training and development</li>
+                    <li><strong>Kickoff:</strong> We get context via a form or brief async chat.</li>
+                    <li><strong>Building:</strong> We provide updates and ask clarifying questions in Slack.</li>
+                    <li><strong>Feedback/Revisions:</strong> Handled async via Loom videos or comments.</li>
+                    <li><strong>Handover:</strong> Quick Loom video walkthrough and documentation.</li>
                 </ul>
                 <p>
-                    Our focus is on building scalable systems that maintain consistency while adapting to each client&apos;s unique needs.
+                    This minimizes disruption and allows us (and you) to focus on execution.
                 </p>
             </div>
         ),
     },
     {
-        question: "How much involvement do you need from our team?",
+        question: "Do you integrate with our existing tools?",
         answer: (
             <div className="space-y-4">
                 <p>
-                    Our implementation process is designed to be efficient and systematic:
+                    Yes, absolutely. Our approach is built around integration, not replacement. We commonly work with:
                 </p>
                 <ul className="list-disc pl-6 space-y-2">
-                    <li>Initial discovery and planning session</li>
-                    <li>Structured implementation checkpoints</li>
-                    <li>Comprehensive team training</li>
-                    <li>Regular progress reviews and updates</li>
+                    <li>Slack, Airtable, Notion, Google Sheets</li>
+                    <li>CRMs (HubSpot, Salesforce - via standard APIs)</li>
+                    <li>Automation Platforms (Make, Zapier, n8n)</li>
+                    <li>Databases (Supabase, Postgres)</li>
+                    <li>APIs for common SaaS tools</li>
                 </ul>
                 <p>
-                    We handle the technical implementation while keeping you informed and involved in key decisions.
+                    We aim to connect the tools you already use to automate the gaps between them.
                 </p>
             </div>
         ),
     },
     {
-        question: "How do you protect our sensitive data and information?",
+        question: "What kind of support is included after a project?",
         answer: (
             <div className="space-y-4">
                 <p>
-                    Security is our top priority. We maintain strict data protection standards:
+                    Project builds include 30 days of support after handover. This covers:
                 </p>
                 <ul className="list-disc pl-6 space-y-2">
-                    <li>Enterprise-grade encryption for all data</li>
-                    <li>Secure API integrations and authentication</li>
-                    <li>Regular security audits and updates</li>
-                    <li>Compliance with GDPR and industry standards</li>
-                    <li>Signed NDAs for all projects</li>
+                    <li>Fixing any bugs or issues with the delivered system.</li>
+                    <li>Answering clarifying questions about how it works.</li>
                 </ul>
                 <p>
-                    We only access the data necessary for automation and follow best practices for data handling and storage.
-                </p>
-            </div>
-        ),
-    },
-    {
-        question: "What technologies do you use and why?",
-        answer: (
-            <div className="space-y-4">
-                <p>
-                    We use industry-leading technologies chosen for reliability and performance:
-                </p>
-                <ul className="list-disc pl-6 space-y-2">
-                    <li><strong>AI/ML:</strong> OpenAI, Anthropic, AWS AI services</li>
-                    <li><strong>Automation:</strong> n8n, custom Python scripts</li>
-                    <li><strong>Frontend:</strong> React, Next.js, TypeScript</li>
-                    <li><strong>Backend:</strong> Python, Node.js, Supabase</li>
-                </ul>
-                <p>
-                    Our stack is enterprise-ready and scales with your needs, while remaining flexible enough to integrate with your existing tools.
-                </p>
-            </div>
-        ),
-    },
-    {
-        question: "How do you measure and report success?",
-        answer: (
-            <div className="space-y-4">
-                <p>
-                    We track specific metrics aligned with your business goals:
-                </p>
-                <ul className="list-disc pl-6 space-y-2">
-                    <li>Time saved per workflow automated</li>
-                    <li>Error reduction rates</li>
-                    <li>Cost savings and ROI</li>
-                    <li>User adoption rates</li>
-                    <li>System performance metrics</li>
-                </ul>
-                <p>
-                    You get access to a real-time dashboard tracking these metrics, plus weekly/monthly reports with insights and optimization recommendations.
-                </p>
-            </div>
-        ),
-    },
-    {
-        question: "Can you integrate with our existing tools and systems?",
-        answer: (
-            <div className="space-y-4">
-                <p>
-                    Yes, we specialize in seamless integrations with popular business tools:
-                </p>
-                <ul className="list-disc pl-6 space-y-2">
-                    <li>CRM systems (Salesforce, HubSpot)</li>
-                    <li>Project management (Asana, Jira, Trello)</li>
-                    <li>Communication tools (Slack, Teams)</li>
-                    <li>Custom internal systems via API</li>
-                </ul>
-                <p>
-                    During Week 1, we&apos;ll audit your tech stack and create an integration plan that ensures smooth data flow between systems.
-                </p>
-            </div>
-        ),
-    },
-    {
-        question: "What ongoing support do you provide?",
-        answer: (
-            <div className="space-y-4">
-                <p>
-                    Every project includes comprehensive support:
-                </p>
-                <ul className="list-disc pl-6 space-y-2">
-                    <li>30-day optimization period</li>
-                    <li>Documentation and training materials</li>
-                    <li>Email and chat support</li>
-                    <li>Bug fixes and maintenance</li>
-                </ul>
-                <p>
-                    Membership clients get additional benefits like 2-hour response times, proactive monitoring, and continuous optimization of their systems.
+                    This does <strong>not</strong> include new features, major changes, or building additional automations. For ongoing work, improvements, or new requests, the Ongoing Support membership is the best fit.
                 </p>
             </div>
         ),
@@ -265,10 +186,9 @@ export default function FAQs() {
             <div className="mx-auto max-w-5xl px-6">
                 <div ref={contentRef}>
                     <div className="text-center mb-16">
-                        <span className="text-primary-600 dark:text-primary-500 font-meltmino text-xs font-medium uppercase tracking-wider">Common Questions</span>
-                        <h2 className="text-balance text-3xl font-semibold md:text-4xl lg:text-5xl mt-3">Everything You Need to Know</h2>
+                        <h2 className="text-balance text-3xl font-semibold md:text-4xl lg:text-5xl mt-3">Frequently Asked Questions</h2>
                         <p className="text-muted-foreground mt-6 mx-auto max-w-3xl">
-                            From deliverables and timelines to guarantees and support, we&apos;ve answered the most common questions to help you make an informed decision. Still have questions? Contact us for a quick response.
+                            Quick answers about how Sera works, who it&apos;s for, pricing, and our process. If you don&apos;t see your question, just ask.
                         </p>
                     </div>
 

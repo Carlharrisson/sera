@@ -22,8 +22,8 @@ const formSchema = z.object({
     startTimeframe: z.enum(["ASAP", "1-2_weeks", "1_month_plus"], {
         required_error: "Please select your preferred start timeframe",
     }),
-    executionModel: z.enum(["one_time", "membership", "not_sure"], {
-        required_error: "Please select an execution model",
+    executionModel: z.enum(["project_build", "ongoing_support", "not_sure"], {
+        required_error: "Please select a preferred model",
     }),
     briefLink: z.string().url("Please enter a valid URL").optional().or(z.literal("")),
 })
@@ -103,12 +103,12 @@ export default function Contact() {
                 <div ref={contentRef} className="grid grid-cols-1 gap-6 md:gap-8 mb-12 md:mb-16">
                     <div className="text-center mb-4">
                         <h2 className="text-[length:var(--font-size-h2)] leading-[var(--line-height-heading)] tracking-[-0.01em] text-balance bg-clip-text text-transparent bg-gradient-to-b from-foreground to-foreground/80">
-                            Let&apos;s Make Work Easier
+                            Fix a Workflow or Get Ongoing Support
                         </h2>
                     </div>
                     <div>
                         <p className="text-[length:var(--font-size-body)] leading-[var(--line-height-body)] text-muted-foreground text-center max-w-2xl mx-auto">
-                            Tell us about your workflow challenges, and within 24 hours, we&apos;ll show you exactly how to make your team more efficient.
+                            Describe the bottleneck or manual work slowing you down. We&apos;ll follow up async to confirm scope or ask clarifying questions.
                         </p>
                     </div>
                 </div>
@@ -197,7 +197,7 @@ export default function Contact() {
                                                 <FormLabel className="text-[length:var(--font-size-caption)] leading-[var(--line-height-body)] font-medium" required>Your Role</FormLabel>
                                                 <FormControl>
                                                     <Input
-                                                        placeholder="e.g. CTO, Product Manager"
+                                                        placeholder="e.g. Founder, Head of Ops"
                                                         {...field}
                                                         className={`h-11 ${hasFieldError('role') ? 'border-destructive focus-visible:ring-destructive/20' : ''}`}
                                                         aria-invalid={hasFieldError('role')}
@@ -215,10 +215,10 @@ export default function Contact() {
                                     name="automationGoal"
                                     render={({ field }) => (
                                         <FormItem>
-                                            <FormLabel className="text-[length:var(--font-size-caption)] leading-[var(--line-height-body)] font-medium" required>What do you want to automate or build?</FormLabel>
+                                            <FormLabel className="text-[length:var(--font-size-caption)] leading-[var(--line-height-body)] font-medium" required>What workflow/bottleneck needs fixing?</FormLabel>
                                             <FormControl>
                                                 <Textarea
-                                                    placeholder="Describe your automation needs and goals in detail..."
+                                                    placeholder="Describe the specific manual task, slow process, or system gap..."
                                                     {...field}
                                                     className={`min-h-[160px] resize-none ${hasFieldError('automationGoal') ? 'border-destructive focus-visible:ring-destructive/20' : ''}`}
                                                     aria-invalid={hasFieldError('automationGoal')}
@@ -287,7 +287,7 @@ export default function Contact() {
                                     name="executionModel"
                                     render={({ field }) => (
                                         <FormItem className="space-y-3">
-                                            <FormLabel className="text-[length:var(--font-size-caption)] leading-[var(--line-height-body)] font-medium" required>Preferred Execution Model</FormLabel>
+                                            <FormLabel className="text-[length:var(--font-size-caption)] leading-[var(--line-height-body)] font-medium" required>Preferred Model</FormLabel>
                                             <div className={hasFieldError('executionModel') ? 'border border-destructive p-3 rounded-lg' : ''}>
                                                 <FormControl>
                                                     <RadioGroup
@@ -297,23 +297,23 @@ export default function Contact() {
                                                         aria-invalid={hasFieldError('executionModel')}
                                                         aria-describedby={hasFieldError('executionModel') ? `executionModel-error` : undefined}
                                                     >
-                                                        <label htmlFor="one_time" className="cursor-pointer">
+                                                        <label htmlFor="project_build" className="cursor-pointer">
                                                             <FormItem className="flex items-center space-x-3 space-y-0 rounded-lg border p-4 transition-colors hover:bg-muted/50 [&:has([data-state=checked])]:border-primary [&:has([data-state=checked])]:bg-primary/5">
                                                                 <FormControl>
-                                                                    <RadioGroupItem value="one_time" id="one_time" />
+                                                                    <RadioGroupItem value="project_build" id="project_build" />
                                                                 </FormControl>
                                                                 <FormLabel className="font-normal cursor-pointer select-none">
-                                                                    One-time Project
+                                                                    Project Build
                                                                 </FormLabel>
                                                             </FormItem>
                                                         </label>
-                                                        <label htmlFor="membership" className="cursor-pointer">
+                                                        <label htmlFor="ongoing_support" className="cursor-pointer">
                                                             <FormItem className="flex items-center space-x-3 space-y-0 rounded-lg border p-4 transition-colors hover:bg-muted/50 [&:has([data-state=checked])]:border-primary [&:has([data-state=checked])]:bg-primary/5">
                                                                 <FormControl>
-                                                                    <RadioGroupItem value="membership" id="membership" />
+                                                                    <RadioGroupItem value="ongoing_support" id="ongoing_support" />
                                                                 </FormControl>
                                                                 <FormLabel className="font-normal cursor-pointer select-none">
-                                                                    Membership
+                                                                    Ongoing Support
                                                                 </FormLabel>
                                                             </FormItem>
                                                         </label>
@@ -355,11 +355,11 @@ export default function Contact() {
                                                     <span>Sending...</span>
                                                 </div>
                                             ) : (
-                                                'Show Me How to Automate This'
+                                                'Submit Request'
                                             )}
                                         </Button>
                                         <p className="text-[length:var(--font-size-caption)] leading-[var(--line-height-body)] text-muted-foreground">
-                                            Want to chat first? <a href="mailto:hello@seraworks.com" className="text-primary hover:underline">Drop us a quick email</a>
+                                            Or email us directly: <a href="mailto:hello@seraworks.com" className="text-primary hover:underline">hello@seraworks.com</a>
                                         </p>
                                     </div>
                                 </div>

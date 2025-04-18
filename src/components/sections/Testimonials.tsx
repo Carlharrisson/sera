@@ -10,22 +10,19 @@ import {
 // Define hypothetical testimonials
 const testimonials = [
     {
-        name: "Sarah Chen",
-        role: "CTO, TechFlow",
-        quote: "The AI automation system transformed our sales process completely. Our team now closes 40% more deals while spending less time on repetitive tasks. The intelligent lead scoring is a game-changer.",
-        company: "AI-Driven Sales Platform",
+        name: "Alex Schmidt",
+        role: "Founder, SaaS Startup",
+        quote: "We were drowning in manual CRM updates and Slack notifications. Sera built a bot that handles it all instantly. Launch took days and saved us probably 20 hours a week right away. No more chasing sales for updates.",
     },
     {
-        name: "Michael Rodriguez",
-        role: "Head of Operations, SwiftScale",
-        quote: "Having AI handle our customer support queries 24/7 has been revolutionary. Response times dropped from hours to seconds, and our team can focus on complex cases that truly need human expertise.",
-        company: "E-commerce Solutions",
+        name: "Jordan Lee",
+        role: "Head of Ops, Growth Stage Co.",
+        quote: "Our order process was a mess of Sheets and emails. Sera built a simple dashboard in a week that the whole team actually uses. It just works. Didn't need a huge system, just this.",
     },
     {
-        name: "Emily Watson",
-        role: "Product Director, DataFlow",
-        quote: "The workflow automation suite eliminated our manual data processing bottlenecks. What used to take our team days now happens automatically in minutes. The ROI has been incredible.",
-        company: "Enterprise Software",
+        name: "Casey Evans",
+        role: "Ops Lead, Tech Company",
+        quote: "Needed a way to automate lead enrichment without another complex tool. Sera plugged right into our Slack and Zapier setup. It runs constantly, zero issues, and we didn't have to manage a big project.",
     }
 ]
 
@@ -35,10 +32,10 @@ export default function Testimonials() {
             <div className="mx-auto max-w-[120rem] px-6">
                 <div className="text-left">
                     <h2 className="text-4xl font-semibold lg:text-5xl max-w-2xl">
-                        What Success Looks Like
+                        Hear From Teams We&apos;ve Helped
                     </h2>
                     <p className="mt-6 max-w-2xl text-xl text-muted-foreground">
-                        See how AI automation transforms business operations and drives growth.
+                        Real feedback from founders and ops leaders who needed faster execution, not more overhead.
                     </p>
                 </div>
 
@@ -55,7 +52,6 @@ export default function Testimonials() {
                             <CardFooter className="flex flex-col items-start space-y-1">
                                 <p className="font-semibold">{testimonial.name}</p>
                                 <p className="text-sm text-muted-foreground">{testimonial.role}</p>
-                                <p className="text-sm text-primary">{testimonial.company}</p>
                             </CardFooter>
                         </Card>
                     ))}

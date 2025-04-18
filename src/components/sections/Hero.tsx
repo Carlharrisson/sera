@@ -41,15 +41,15 @@ export default function HeroSection() {
                 <div className="mx-auto max-w-7xl px-4">
                     <div className="text-center">
                         <Badge variant="default">
-                            BUILT FOR AMBITIOUS TEAMS
+                            SYSTEMS OVER HEADCOUNT
                         </Badge>
 
                         <h1 className="text-[length:var(--font-size-h1)] leading-[var(--line-height-heading)] tracking-[-0.02em] mx-auto max-w-4xl my-8">
-                            Your Team Shouldn&apos;t Be Doing Repetitive Work
+                            Automation That Works. Ops That Scale Without Hiring.
                         </h1>
 
                         <p className="text-[length:var(--font-size-body)] leading-[var(--line-height-body)] mx-auto max-w-2xl mb-12">
-                            Transform your workflow with AI-powered automation. Our solutions help teams reclaim valuable time and focus on what matters most.
+                            Sera builds custom automation systems that eliminate manual tasks, integrate with your tools, and ship in days, not quarters. We save teams 20+ hours weekly.
                         </p>
 
                         <div className="mt-12 flex flex-col items-center justify-center gap-4 md:flex-row">
@@ -72,7 +72,7 @@ export default function HeroSection() {
                                         }, 500);
                                     }
                                 }}>
-                                    <span className="text-nowrap font-medium">Get Started</span>
+                                    <span className="text-nowrap font-medium">Automate My Ops</span>
                                     <ArrowRight className="ml-2" />
                                 </Link>
                             </Button>
@@ -81,7 +81,7 @@ export default function HeroSection() {
                                 size="lg"
                                 variant="outline">
                                 <Link href="#pricing">
-                                    <span className="text-nowrap font-medium">Become a Member</span>
+                                    <span className="text-nowrap font-medium">View Plans</span>
                                 </Link>
                             </Button>
                         </div>
