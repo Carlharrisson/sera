@@ -1,156 +1,154 @@
-## What Sera Builds
+## Membership Guide
 
-**Sera is an AI automation partner for companies that move fast.**
+Sera's membership is a monthly execution model.
 
-We build custom systems that automate work, streamline operations, and help growing companies scale without hiring.
+It gives your team a fast, async way to get real systems built without hiring or managing another vendor.
 
-We serve SaaS teams and ops-heavy businesses by shipping AI-driven solutions that integrate directly with their stack. Zero slides. Just working systems.
-
----
-
-## How We Deliver
-
-### Find the Bottleneck
-
-We trace the pain. Where things break, slow down, or disappear, that is where we start.
-
-### Build the System
-
-One clear outcome. One clean solution. Scoped tight. Shipped fast.
-
-### Launch and Improve
-
-We go live early, iterate fast, and either hand off or stay on to keep it scaling.
+Think of it as having an internal systems team that builds the essential but unglamorous stuff.
 
 ---
 
-## What We Offer
+## How It Works
 
-### AI Automation
+There are two ways to work with us:
 
-**Problem**
+Ongoing Support
 
-Repetitive tasks drain time, slow teams down, and create room for errors.
+Project Builds
 
-**Outcome**
+Both are outcome-driven.
 
-No more busywork. We trigger sales, ops, and onboarding flows in real time without human input.
+No retainers.
 
-**Proof**
+No decks.
 
-A SaaS team handled leads manually. We automated CRM entry, Slack alerts, and follow-ups. Reply time dropped from 12 hours to 2 minutes within a week. Conversions doubled that month.
-
-**Tools**
-
-Make, Airtable, Zapier, Slack, Notion, n8n, custom scripts
+No delays.
 
 ---
 
-### Internal Tools
+## Ongoing Support
 
-**Problem**
+Ongoing support is for companies who need continuous execution without hiring full-time.
 
-Teams rely on broken spreadsheets, disconnected chats, and manual updates.
+You get a fixed number of requests per month, each scoped small and delivered fast.
 
-**Outcome**
+### What's included
 
-Fast, functional interfaces that wrap around messy workflows instead of replacing them.
-
-**Proof**
-
-A startup juggled orders through Sheets, Slack, and email. We replaced it with a single dashboard. Live in a week. Full adoption.
-
-**Tools**
-
-Retool, Supabase, Airtable, Next.js
-
----
-
-### AI Assistants
-
-**Problem**
-
-Founders and teams waste hours answering repetitive questions or chasing basic info.
-
-**Outcome**
-
-They handle FAQs, screen leads, and trigger workflows so your team stays focused on work that matters.
-
-**Proof**
-
-A founder faced constant product and pricing DMs. Our assistant automatically answered 80 percent of inbound questions, synced leads to Slack, and filtered buyers from noise.
-
-**Tools**
-
-GPT API, Slack, Notion, Make, n8n, Supabase, Vercel
-
----
-
-## How We Price
-
-### Project Builds
-
-5000 EUR and up
-
-For companies with one clear process to fix or automate.
-
-**Includes**
-
-- Planning, design, build
-- Two revision rounds
-- 30 days of support
-- One active task at a time
-
-**Outcome**
-
-Launch a system in weeks that saves over 20 hours per week and often offsets one full time employee.
-
----
-
-### Ongoing Support
-
-4800 EUR per month
-
-For teams that need consistent execution without a full-time hire.
-
-**Includes**
-
-- Four requests per month
-- 48 hour response time
-- Two revisions per task
+- Four active requests per month
+- Two revision rounds per request
 - Slack access
-- Cancel anytime
+- 48-hour response time
+- Month-to-month, no lock-in
 
-**Outcome**
+### How to send a request
 
-Always-on execution without team bloat. Ships more than most new hires.
+1. Drop it in Slack or a Notion form
+2. Include a short video or bullet list of the problem
+3. Make sure someone on your team can review it when ready
 
----
-
-## Who This Is For
-
-- SaaS teams buried in recurring ops work
-- Ops leads juggling too many tools with zero clean workflows
-- Founders who want working systems, not pitch decks
-- Executives who need automation now, not six months from now
+We reply within 48 hours with a plan and timeline.
 
 ---
 
-## Who This Is Not For
+## What Counts as a Request
 
-- Anyone without a clear workflow to fix
-- Teams expecting strategy with no ownership
-- Teams who disappear after kickoff and expect results
-- Companies that hand off and vanish, then blame the outcome
+A request is one clear outcome.
+
+If it solves a single workflow or problem, it counts as a request.
+
+**Examples of valid requests**
+
+- Build a Slack assistant that qualifies inbound leads
+- Automate a CRM handoff after a form submission
+- Create a dashboard to track support issues
+- Add smart logic to an internal Airtable workflow
+- Set up internal alerts when key fields change
 
 ---
 
-## Where Sera Is Going
+## What Does Not Count
 
-**Sera builds fast, by hand, to stay close to the problem.**
+These require separate project scoping:
 
-Each system we ship sharpens a playbook. Every use case compounds into a platform.
+- Rebuild our onboarding experience from scratch
+- Connect six tools and redesign our whole internal flow
+- Make our internal tools look better
+- Figure out what we should automate first
 
-A zero meeting interface where clients launch systems, track delivery, and scale without adding people.
+We will help break these into requests or quote them as fixed projects.
 
-**We are building the execution layer modern businesses are missing.**
+---
+
+## Project Builds
+
+Project builds are for bigger or more custom outcomes.
+
+They are ideal when:
+
+- A request is too complex or high-impact
+- We need more than one system to get the job done
+- You want a clear quote and timeline before work begins
+
+### How we price
+
+We do not charge by time.
+
+We charge based on value delivered.
+
+Pricing depends on:
+
+- How painful the current process is
+- How custom or reusable the build is
+- How fast we can ship it
+- What the outcome enables in savings, speed, or visibility
+
+Typical range is between 5000 and 15000 EUR.
+
+Timeline is one to three weeks.
+
+Includes planning, execution, testing, and handoff.
+
+---
+
+## Managed Hosting and AI Systems
+
+We host and maintain your automation infrastructure so your team does not have to.
+
+Our team handles everything. No servers, keys, or tokens for you to manage.
+
+You get:
+
+- Hosting of live workflows on our infrastructure
+- Complete API key management and security
+- GPT-powered automations included
+- Ongoing monitoring, error handling, and async support
+- No dashboards, no handoffs. Just working systems
+
+The service includes two active workflows, with the option to add more as needed.
+
+Think of it as your execution layer, fully managed and supported by us.
+
+## Do and Do Not
+
+### Do
+
+- Come with a real workflow problem
+- Assign one person on your team to approve or give feedback
+- Be specific about what success looks like
+- Stay async, we move fast
+
+### Do Not
+
+- Submit vague ideas with no owner
+- Try to bundle multiple problems into one request
+- Expect long meetings, discovery, or roadmaps
+- Ask for strategy. We build what works.
+
+---
+
+## What to Expect
+
+- Clear scoping and fast starts
+- No bloated backlogs or overpromises
+- Systems that go live and get adopted
+- A partner that moves like part of your team

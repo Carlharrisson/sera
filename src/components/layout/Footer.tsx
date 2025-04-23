@@ -6,7 +6,6 @@ import { useState } from 'react'
 import { Button } from '@/components/ui/form/button'
 import { Input } from '@/components/ui/form/input'
 import { toast } from "sonner"
-import { Toaster } from "@/components/ui/overlay/sonner"
 
 const navigationLinks = [
     { title: 'Services', url: '#services' },
@@ -179,7 +178,6 @@ export default function FooterSection() {
                     </div>
                 </div>
             </div>
-            <Toaster position="bottom-center" />
         </footer>
     )
 }

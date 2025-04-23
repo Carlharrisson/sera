@@ -4,7 +4,6 @@ import { Button } from '@/components/ui/form/button'
 import { Input } from '@/components/ui/form/input'
 import { Textarea } from '@/components/ui/form/textarea'
 import { useEffect, useRef, useState } from 'react'
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/form/select"
 import { Toaster } from "@/components/ui/overlay/sonner"
 import { toast } from "sonner"
 import { zodResolver } from "@hookform/resolvers/zod"
@@ -14,18 +13,16 @@ import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "
 import { RadioGroup, RadioGroupItem } from "@/components/ui/form/radio-group"
 
 const formSchema = z.object({
-    fullName: z.string().min(2, "Full name must be at least 2 characters"),
-    email: z.string().email("Please enter a valid email address"),
-    company: z.string().min(2, "Company name must be at least 2 characters"),
+    name: z.string().min(2, "Name must be at least 2 characters"),
+    workEmail: z.string().email("Please enter a valid work email address"),
     role: z.string().min(2, "Please specify your role"),
-    automationGoal: z.string().min(10, "Please provide more details about your automation goals"),
-    startTimeframe: z.enum(["ASAP", "1-2_weeks", "1_month_plus"], {
-        required_error: "Please select your preferred start timeframe",
-    }),
-    executionModel: z.enum(["project_build", "ongoing_support", "not_sure"], {
-        required_error: "Please select a preferred model",
-    }),
-    briefLink: z.string().url("Please enter a valid URL").optional().or(z.literal("")),
+    company: z.string().optional(),
+    currentProcess: z.string().min(10, "Please provide more details about the process that's slowing you down"),
+    currentTools: z.string().min(2, "Please specify the tools you're using"),
+    hoursLost: z.enum(["under_5", "5_to_10", "10_to_20", "over_20"]).optional(),
+    impact: z.string().optional(),
+    timeframe: z.enum(["ASAP", "few_weeks", "exploring"]).optional(),
+    systemOwner: z.string().min(2, "Please specify who will own the system"),
 })
 
 export default function Contact() {
@@ -33,21 +30,25 @@ export default function Contact() {
     const contentRef = useRef<HTMLDivElement>(null)
     const [isSubmitting, setIsSubmitting] = useState(false)
     const [formError, setFormError] = useState<string | null>(null)
+    const [resetKey, setResetKey] = useState(0)
 
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
         defaultValues: {
-            fullName: "",
-            email: "",
-            company: "",
+            name: "",
+            workEmail: "",
             role: "",
-            automationGoal: "",
-            startTimeframe: undefined,
-            executionModel: undefined,
-            briefLink: "",
+            company: "",
+            currentProcess: "",
+            currentTools: "",
+            hoursLost: undefined,
+            impact: "",
+            timeframe: undefined,
+            systemOwner: "",
         },
         mode: "onTouched",
     })
+    const defaultFormValues = form.control._defaultValues; // Store default values
 
     // Clear form error when form changes
     useEffect(() => {
@@ -58,35 +59,50 @@ export default function Contact() {
     }, [form, formError])
 
     async function onSubmit(values: z.infer<typeof formSchema>) {
+        console.log("Form submission started with values:", values)
         setIsSubmitting(true)
         setFormError(null)
 
         try {
-            const response = await fetch('https://formspree.io/f/manywlrl', {
+            const response = await fetch('/api/contact', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
-                    'Accept': 'application/json'
                 },
                 body: JSON.stringify(values),
             })
 
+            console.log("API response received:", response)
+
             if (response.ok) {
-                form.reset()
-                toast.success("Thanks! We'll review your request and get back to you shortly.", {
-                    id: 'contact-success'
-                })
+                console.log("Form submission successful (response.ok)")
+                // Reset the entire form using the stored default values
+                form.reset(defaultFormValues)
+                setFormError(null)
+                // Force remount of RadioGroup components
+                setResetKey(prev => prev + 1)
+                // Remove all existing toasts and show a single success message
+                toast.dismiss()
+                setTimeout(() => {
+                    toast.success("Build request submitted. We'll review and respond within 24 hours.", {
+                        id: 'contact-form-success',
+                        duration: 5000,
+                        className: "bg-background text-foreground border-border",
+                        // Prevent duplicate toasts
+                        dismissible: true,
+                    })
+                }, 100)
             } else {
-                const errorData = await response.json().catch(() => null)
+                const errorData = await response.json().catch(() => ({ message: "Failed to parse error response" }))
+                console.error("Form submission failed (response not ok):", response.status, errorData)
                 throw new Error(errorData?.message || 'Failed to submit')
             }
         } catch (error) {
+            console.error("Error during form submission process:", error)
             const errorMessage = error instanceof Error ? error.message : 'Something went wrong. Please try again.'
             setFormError(errorMessage)
-            toast.error(errorMessage, {
-                id: 'contact-error'
-            })
         } finally {
+            console.log("Form submission finished (finally block)")
             setIsSubmitting(false)
         }
     }
@@ -103,12 +119,12 @@ export default function Contact() {
                 <div ref={contentRef} className="grid grid-cols-1 gap-6 md:gap-8 mb-12 md:mb-16">
                     <div className="text-center mb-4">
                         <h2 className="text-[length:var(--font-size-h2)] leading-[var(--line-height-heading)] tracking-[-0.01em] text-balance bg-clip-text text-transparent bg-gradient-to-b from-foreground to-foreground/80">
-                            Fix a Workflow or Get Ongoing Support
+                            Get Your System Built in Days
                         </h2>
                     </div>
                     <div>
                         <p className="text-[length:var(--font-size-body)] leading-[var(--line-height-body)] text-muted-foreground text-center max-w-2xl mx-auto">
-                            Describe the bottleneck or manual work slowing you down. We&apos;ll follow up async to confirm scope or ask clarifying questions.
+                            Describe the bottleneck holding you back. We build the system to fix it.
                         </p>
                     </div>
                 </div>
@@ -130,40 +146,38 @@ export default function Contact() {
                                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                                     <FormField
                                         control={form.control}
-                                        name="fullName"
+                                        name="name"
                                         render={({ field }) => (
                                             <FormItem>
-                                                <FormLabel className="text-[length:var(--font-size-caption)] leading-[var(--line-height-body)] font-medium" required>Full Name</FormLabel>
+                                                <FormLabel className="text-[length:var(--font-size-caption)] leading-[var(--line-height-body)] font-medium" required>Your name</FormLabel>
                                                 <FormControl>
                                                     <Input
-                                                        placeholder="Your full name"
                                                         {...field}
-                                                        className={`h-11 ${hasFieldError('fullName') ? 'border-destructive focus-visible:ring-destructive/20' : ''}`}
-                                                        aria-invalid={hasFieldError('fullName')}
-                                                        aria-describedby={hasFieldError('fullName') ? `fullName-error` : undefined}
+                                                        className={`h-11 ${hasFieldError('name') ? 'border-destructive focus-visible:ring-destructive/20' : ''}`}
+                                                        aria-invalid={hasFieldError('name')}
+                                                        aria-describedby={hasFieldError('name') ? `name-error` : undefined}
                                                     />
                                                 </FormControl>
-                                                <FormMessage className="text-xs" id="fullName-error" />
+                                                <FormMessage className="text-xs" id="name-error" />
                                             </FormItem>
                                         )}
                                     />
                                     <FormField
                                         control={form.control}
-                                        name="email"
+                                        name="workEmail"
                                         render={({ field }) => (
                                             <FormItem>
-                                                <FormLabel className="text-[length:var(--font-size-caption)] leading-[var(--line-height-body)] font-medium" required>Email</FormLabel>
+                                                <FormLabel className="text-[length:var(--font-size-caption)] leading-[var(--line-height-body)] font-medium" required>Work email</FormLabel>
                                                 <FormControl>
                                                     <Input
-                                                        placeholder="your@email.com"
                                                         type="email"
                                                         {...field}
-                                                        className={`h-11 ${hasFieldError('email') ? 'border-destructive focus-visible:ring-destructive/20' : ''}`}
-                                                        aria-invalid={hasFieldError('email')}
-                                                        aria-describedby={hasFieldError('email') ? `email-error` : undefined}
+                                                        className={`h-11 ${hasFieldError('workEmail') ? 'border-destructive focus-visible:ring-destructive/20' : ''}`}
+                                                        aria-invalid={hasFieldError('workEmail')}
+                                                        aria-describedby={hasFieldError('workEmail') ? `workEmail-error` : undefined}
                                                     />
                                                 </FormControl>
-                                                <FormMessage className="text-xs" id="email-error" />
+                                                <FormMessage className="text-xs" id="workEmail-error" />
                                             </FormItem>
                                         )}
                                     />
@@ -172,32 +186,13 @@ export default function Contact() {
                                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                                     <FormField
                                         control={form.control}
-                                        name="company"
-                                        render={({ field }) => (
-                                            <FormItem>
-                                                <FormLabel className="text-[length:var(--font-size-caption)] leading-[var(--line-height-body)] font-medium" required>Company Name</FormLabel>
-                                                <FormControl>
-                                                    <Input
-                                                        placeholder="Your company"
-                                                        {...field}
-                                                        className={`h-11 ${hasFieldError('company') ? 'border-destructive focus-visible:ring-destructive/20' : ''}`}
-                                                        aria-invalid={hasFieldError('company')}
-                                                        aria-describedby={hasFieldError('company') ? `company-error` : undefined}
-                                                    />
-                                                </FormControl>
-                                                <FormMessage className="text-xs" id="company-error" />
-                                            </FormItem>
-                                        )}
-                                    />
-                                    <FormField
-                                        control={form.control}
                                         name="role"
                                         render={({ field }) => (
                                             <FormItem>
-                                                <FormLabel className="text-[length:var(--font-size-caption)] leading-[var(--line-height-body)] font-medium" required>Your Role</FormLabel>
+                                                <FormLabel className="text-[length:var(--font-size-caption)] leading-[var(--line-height-body)] font-medium" required>Your role</FormLabel>
                                                 <FormControl>
                                                     <Input
-                                                        placeholder="e.g. Founder, Head of Ops"
+                                                        placeholder="Founder, COO, Ops Lead…"
                                                         {...field}
                                                         className={`h-11 ${hasFieldError('role') ? 'border-destructive focus-visible:ring-destructive/20' : ''}`}
                                                         aria-invalid={hasFieldError('role')}
@@ -208,151 +203,217 @@ export default function Contact() {
                                             </FormItem>
                                         )}
                                     />
+                                    <FormField
+                                        control={form.control}
+                                        name="company"
+                                        render={({ field }) => (
+                                            <FormItem>
+                                                <FormLabel className="text-[length:var(--font-size-caption)] leading-[var(--line-height-body)] font-medium">Company name (optional)</FormLabel>
+                                                <FormControl>
+                                                    <Input
+                                                        {...field}
+                                                        className={`h-11 ${hasFieldError('company') ? 'border-destructive focus-visible:ring-destructive/20' : ''}`}
+                                                        aria-invalid={hasFieldError('company')}
+                                                        aria-describedby={hasFieldError('company') ? `company-error` : undefined}
+                                                    />
+                                                </FormControl>
+                                                <FormMessage className="text-xs" id="company-error" />
+                                            </FormItem>
+                                        )}
+                                    />
                                 </div>
 
                                 <FormField
                                     control={form.control}
-                                    name="automationGoal"
+                                    name="currentProcess"
                                     render={({ field }) => (
                                         <FormItem>
-                                            <FormLabel className="text-[length:var(--font-size-caption)] leading-[var(--line-height-body)] font-medium" required>What workflow/bottleneck needs fixing?</FormLabel>
+                                            <FormLabel className="text-[length:var(--font-size-caption)] leading-[var(--line-height-body)] font-medium" required>What process is slowing you down right now?</FormLabel>
                                             <FormControl>
                                                 <Textarea
-                                                    placeholder="Describe the specific manual task, slow process, or system gap..."
+                                                    placeholder="Describe the manual workflow, handoff, or update mess."
                                                     {...field}
-                                                    className={`min-h-[160px] resize-none ${hasFieldError('automationGoal') ? 'border-destructive focus-visible:ring-destructive/20' : ''}`}
-                                                    aria-invalid={hasFieldError('automationGoal')}
-                                                    aria-describedby={hasFieldError('automationGoal') ? `automationGoal-error` : undefined}
+                                                    rows={3}
+                                                    className={`resize-none ${hasFieldError('currentProcess') ? 'border-destructive focus-visible:ring-destructive/20' : ''}`}
+                                                    aria-invalid={hasFieldError('currentProcess')}
+                                                    aria-describedby={hasFieldError('currentProcess') ? `currentProcess-error` : undefined}
                                                 />
                                             </FormControl>
-                                            <FormMessage className="text-xs" id="automationGoal-error" />
+                                            <FormMessage className="text-xs" id="currentProcess-error" />
                                         </FormItem>
                                     )}
                                 />
 
-                                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                                    <FormField
-                                        control={form.control}
-                                        name="startTimeframe"
-                                        render={({ field }) => (
-                                            <FormItem>
-                                                <FormLabel className="text-[length:var(--font-size-caption)] leading-[var(--line-height-body)] font-medium" required>Preferred Start Timeframe</FormLabel>
-                                                <Select
-                                                    onValueChange={field.onChange}
-                                                    defaultValue={field.value}
-                                                >
-                                                    <FormControl>
-                                                        <SelectTrigger
-                                                            className={`h-11 ${hasFieldError('startTimeframe') ? 'border-destructive focus-visible:ring-destructive/20' : ''}`}
-                                                            aria-invalid={hasFieldError('startTimeframe')}
-                                                            aria-describedby={hasFieldError('startTimeframe') ? `startTimeframe-error` : undefined}
-                                                        >
-                                                            <SelectValue placeholder="When would you like to start?" />
-                                                        </SelectTrigger>
-                                                    </FormControl>
-                                                    <SelectContent>
-                                                        <SelectItem value="ASAP">As Soon As Possible</SelectItem>
-                                                        <SelectItem value="1-2_weeks">In 1-2 Weeks</SelectItem>
-                                                        <SelectItem value="1_month_plus">1 Month or Later</SelectItem>
-                                                    </SelectContent>
-                                                </Select>
-                                                <FormMessage className="text-xs" id="startTimeframe-error" />
-                                            </FormItem>
-                                        )}
-                                    />
-
-                                    <FormField
-                                        control={form.control}
-                                        name="briefLink"
-                                        render={({ field }) => (
-                                            <FormItem>
-                                                <FormLabel className="text-[length:var(--font-size-caption)] leading-[var(--line-height-body)] font-medium">Brief or Notes Link (Optional)</FormLabel>
-                                                <FormControl>
-                                                    <Input
-                                                        placeholder="Google Drive or Notion link"
-                                                        {...field}
-                                                        className={`h-11 ${hasFieldError('briefLink') ? 'border-destructive focus-visible:ring-destructive/20' : ''}`}
-                                                        aria-invalid={hasFieldError('briefLink')}
-                                                        aria-describedby={hasFieldError('briefLink') ? `briefLink-error` : undefined}
-                                                    />
-                                                </FormControl>
-                                                <FormMessage className="text-xs" id="briefLink-error" />
-                                            </FormItem>
-                                        )}
-                                    />
-                                </div>
+                                <FormField
+                                    control={form.control}
+                                    name="currentTools"
+                                    render={({ field }) => (
+                                        <FormItem>
+                                            <FormLabel className="text-[length:var(--font-size-caption)] leading-[var(--line-height-body)] font-medium" required>What tools are you using for this today?</FormLabel>
+                                            <FormControl>
+                                                <Input
+                                                    placeholder="Slack, Airtable, Sheets, Notion…"
+                                                    {...field}
+                                                    className={`h-11 ${hasFieldError('currentTools') ? 'border-destructive focus-visible:ring-destructive/20' : ''}`}
+                                                    aria-invalid={hasFieldError('currentTools')}
+                                                    aria-describedby={hasFieldError('currentTools') ? `currentTools-error` : undefined}
+                                                />
+                                            </FormControl>
+                                            <FormMessage className="text-xs" id="currentTools-error" />
+                                        </FormItem>
+                                    )}
+                                />
 
                                 <FormField
                                     control={form.control}
-                                    name="executionModel"
+                                    name="hoursLost"
                                     render={({ field }) => (
                                         <FormItem className="space-y-3">
-                                            <FormLabel className="text-[length:var(--font-size-caption)] leading-[var(--line-height-body)] font-medium" required>Preferred Model</FormLabel>
-                                            <div className={hasFieldError('executionModel') ? 'border border-destructive p-3 rounded-lg' : ''}>
+                                            <FormLabel className="text-[length:var(--font-size-caption)] leading-[var(--line-height-body)] font-medium">Hours lost per week to this process</FormLabel>
+                                            <div className={hasFieldError('hoursLost') ? 'border border-destructive p-3 rounded-lg' : ''}>
                                                 <FormControl>
                                                     <RadioGroup
+                                                        key={`hoursLost-${resetKey}`}
                                                         onValueChange={field.onChange}
-                                                        defaultValue={field.value}
-                                                        className="grid grid-cols-1 md:grid-cols-3 gap-4"
-                                                        aria-invalid={hasFieldError('executionModel')}
-                                                        aria-describedby={hasFieldError('executionModel') ? `executionModel-error` : undefined}
+                                                        value={field.value}
+                                                        className="grid grid-cols-1 md:grid-cols-4 gap-4"
+                                                        aria-invalid={hasFieldError('hoursLost')}
+                                                        aria-describedby={hasFieldError('hoursLost') ? `hoursLost-error` : undefined}
                                                     >
-                                                        <div className="relative">
-                                                            <label htmlFor="project_build" className="block cursor-pointer">
-                                                                <div className="flex items-center space-x-3 space-y-0 rounded-lg border p-4 transition-colors hover:bg-muted/50 [&:has([data-state=checked])]:border-primary [&:has([data-state=checked])]:bg-primary/5">
-                                                                    <FormControl>
-                                                                        <RadioGroupItem value="project_build" id="project_build" />
-                                                                    </FormControl>
-                                                                    <FormLabel className="font-normal cursor-pointer select-none">
-                                                                        Project Build
-                                                                    </FormLabel>
-                                                                </div>
-                                                            </label>
-                                                        </div>
-                                                        <div className="relative">
-                                                            <label htmlFor="ongoing_support" className="block cursor-pointer">
-                                                                <div className="flex items-center space-x-3 space-y-0 rounded-lg border p-4 transition-colors hover:bg-muted/50 [&:has([data-state=checked])]:border-primary [&:has([data-state=checked])]:bg-primary/5">
-                                                                    <FormControl>
-                                                                        <RadioGroupItem value="ongoing_support" id="ongoing_support" />
-                                                                    </FormControl>
-                                                                    <FormLabel className="font-normal cursor-pointer select-none">
-                                                                        Ongoing Support
-                                                                    </FormLabel>
-                                                                </div>
-                                                            </label>
-                                                        </div>
-                                                        <div className="relative">
-                                                            <label htmlFor="not_sure" className="block cursor-pointer">
-                                                                <div className="flex items-center space-x-3 space-y-0 rounded-lg border p-4 transition-colors hover:bg-muted/50 [&:has([data-state=checked])]:border-primary [&:has([data-state=checked])]:bg-primary/5">
-                                                                    <FormControl>
-                                                                        <RadioGroupItem value="not_sure" id="not_sure" />
-                                                                    </FormControl>
-                                                                    <FormLabel className="font-normal cursor-pointer select-none">
-                                                                        Not Sure Yet
-                                                                    </FormLabel>
-                                                                </div>
-                                                            </label>
-                                                        </div>
+                                                        {[
+                                                            { value: "under_5", label: "Under 5" },
+                                                            { value: "5_to_10", label: "5-10 hours" },
+                                                            { value: "10_to_20", label: "10-20 hours" },
+                                                            { value: "over_20", label: "20+ hours" },
+                                                        ].map((option) => (
+                                                            <FormItem key={option.value}>
+                                                                <FormControl>
+                                                                    <label
+                                                                        htmlFor={option.value}
+                                                                        className="flex items-center space-x-3 space-y-0 rounded-lg border p-4 transition-colors hover:bg-muted/50 [&:has(:checked)]:border-primary [&:has(:checked)]:bg-primary/5 cursor-pointer"
+                                                                    >
+                                                                        <RadioGroupItem
+                                                                            value={option.value}
+                                                                            id={option.value}
+                                                                            className="translate-y-[2px]"
+                                                                        />
+                                                                        <span className="font-normal select-none text-sm">
+                                                                            {option.label}
+                                                                        </span>
+                                                                    </label>
+                                                                </FormControl>
+                                                            </FormItem>
+                                                        ))}
                                                     </RadioGroup>
                                                 </FormControl>
                                             </div>
-                                            <FormMessage className="text-xs" id="executionModel-error" />
+                                            <FormMessage className="text-xs" id="hoursLost-error" />
+                                        </FormItem>
+                                    )}
+                                />
+
+                                <FormField
+                                    control={form.control}
+                                    name="impact"
+                                    render={({ field }) => (
+                                        <FormItem>
+                                            <FormLabel className="text-[length:var(--font-size-caption)] leading-[var(--line-height-body)] font-medium">What&apos;s happening because of this?</FormLabel>
+                                            <FormControl>
+                                                <Textarea
+                                                    placeholder="Missed follow-ups, wasted hours, dropped handoffs…"
+                                                    {...field}
+                                                    rows={2}
+                                                    className={`resize-none ${hasFieldError('impact') ? 'border-destructive focus-visible:ring-destructive/20' : ''}`}
+                                                    aria-invalid={hasFieldError('impact')}
+                                                    aria-describedby={hasFieldError('impact') ? `impact-error` : undefined}
+                                                />
+                                            </FormControl>
+                                            <FormMessage className="text-xs" id="impact-error" />
+                                        </FormItem>
+                                    )}
+                                />
+
+                                <FormField
+                                    control={form.control}
+                                    name="timeframe"
+                                    render={({ field }) => (
+                                        <FormItem className="space-y-3">
+                                            <FormLabel className="text-[length:var(--font-size-caption)] leading-[var(--line-height-body)] font-medium" required>How soon do you want this fixed?</FormLabel>
+                                            <div className={hasFieldError('timeframe') ? 'border border-destructive p-3 rounded-lg' : ''}>
+                                                <FormControl>
+                                                    <RadioGroup
+                                                        key={`timeframe-${resetKey}`}
+                                                        onValueChange={field.onChange}
+                                                        value={field.value}
+                                                        className="grid grid-cols-1 md:grid-cols-3 gap-4"
+                                                        aria-invalid={hasFieldError('timeframe')}
+                                                        aria-describedby={hasFieldError('timeframe') ? `timeframe-error` : undefined}
+                                                    >
+                                                        {[
+                                                            { value: "ASAP", label: "ASAP" },
+                                                            { value: "few_weeks", label: "Within a few weeks" },
+                                                            { value: "exploring", label: "Just exploring" },
+                                                        ].map((option) => (
+                                                            <FormItem key={option.value}>
+                                                                <FormControl>
+                                                                    <label
+                                                                        htmlFor={option.value}
+                                                                        className="flex items-center space-x-3 space-y-0 rounded-lg border p-4 transition-colors hover:bg-muted/50 [&:has(:checked)]:border-primary [&:has(:checked)]:bg-primary/5 cursor-pointer"
+                                                                    >
+                                                                        <RadioGroupItem
+                                                                            value={option.value}
+                                                                            id={option.value}
+                                                                            className="translate-y-[2px]"
+                                                                        />
+                                                                        <span className="font-normal select-none text-sm">
+                                                                            {option.label}
+                                                                        </span>
+                                                                    </label>
+                                                                </FormControl>
+                                                            </FormItem>
+                                                        ))}
+                                                    </RadioGroup>
+                                                </FormControl>
+                                            </div>
+                                            <FormMessage className="text-xs" id="timeframe-error" />
+                                        </FormItem>
+                                    )}
+                                />
+
+                                <FormField
+                                    control={form.control}
+                                    name="systemOwner"
+                                    render={({ field }) => (
+                                        <FormItem>
+                                            <FormLabel className="text-[length:var(--font-size-caption)] leading-[var(--line-height-body)] font-medium" required>Who will own the system once it&apos;s live?</FormLabel>
+                                            <FormControl>
+                                                <Input
+                                                    placeholder="We only build what someone will actually use."
+                                                    {...field}
+                                                    className={`h-11 ${hasFieldError('systemOwner') ? 'border-destructive focus-visible:ring-destructive/20' : ''}`}
+                                                    aria-invalid={hasFieldError('systemOwner')}
+                                                    aria-describedby={hasFieldError('systemOwner') ? `systemOwner-error` : undefined}
+                                                />
+                                            </FormControl>
+                                            <FormMessage className="text-xs" id="systemOwner-error" />
                                         </FormItem>
                                     )}
                                 />
 
                                 <div className="flex flex-col items-center gap-6 pt-4">
-                                    {form.formState.submitCount > 0 && !form.formState.isValid && (
+                                    {/* Show server-side error from Formspree */}
+                                    {formError && (
                                         <div className="w-full rounded-lg bg-destructive/10 p-4 border border-destructive text-destructive text-[length:var(--font-size-caption)] leading-[var(--line-height-body)] font-medium" role="alert">
-                                            <p>Please fix the errors above before submitting.</p>
+                                            <p>{formError}</p>
                                         </div>
                                     )}
+                                    {/* Client-side validation errors are shown below each field by <FormMessage /> */}
 
                                     <div className="flex flex-col items-center gap-4">
                                         <Button
                                             type="submit"
                                             size="lg"
-                                            className="w-full md:w-auto min-w-[240px] text-[length:var(--font-size-body)] leading-[var(--line-height-body)]"
+                                            className="w-full md:w-auto min-w-[240px] text-[length:var(--font-size-body)] leading-[var(--line-height-body)] cursor-pointer"
                                             disabled={isSubmitting}
                                         >
                                             {isSubmitting ? (
@@ -361,7 +422,7 @@ export default function Contact() {
                                                     <span>Sending...</span>
                                                 </div>
                                             ) : (
-                                                'Submit Request'
+                                                'Submit Build Request'
                                             )}
                                         </Button>
                                         <p className="text-[length:var(--font-size-caption)] leading-[var(--line-height-body)] text-muted-foreground">
@@ -374,7 +435,7 @@ export default function Contact() {
                     </div>
                 </div>
             </div>
-            <Toaster position="bottom-center" />
+            {/* <Toaster position="bottom-right" /> // Removed: Toaster should be global */}
         </section>
     )
 }
