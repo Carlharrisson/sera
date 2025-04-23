@@ -77,8 +77,8 @@ export default function Process() {
                 <div className="max-w-3xl mx-auto mt-8 md:mt-12">
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-2">
                         <div className="text-center md:border-r border-border">
-                            <p className="text-[length:var(--font-size-body)] leading-[var(--line-height-body)] font-medium">Built in Days</p>
-                            <p className="text-[length:var(--font-size-caption)] leading-[var(--line-height-body)] text-muted-foreground">Not weeks or months</p>
+                            <p className="text-[length:var(--font-size-body)] leading-[var(--line-height-body)] font-medium">Built in Weeks</p>
+                            <p className="text-[length:var(--font-size-caption)] leading-[var(--line-height-body)] text-muted-foreground">Not months or quarters</p>
                         </div>
                         <div className="text-center md:border-r border-border">
                             <p className="text-[length:var(--font-size-body)] leading-[var(--line-height-body)] font-medium">No Meetings</p>
