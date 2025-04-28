@@ -45,11 +45,11 @@ export default function HeroSection() {
                         </Badge>
 
                         <h1 className="text-[length:var(--font-size-h1)] leading-[var(--line-height-heading)] tracking-[-0.02em] mx-auto max-w-4xl my-8">
-                            Automation That Works. Ops That Scale Without Hiring.
+                            Stop Hiring to Fix Broken Ops. Build Systems Instead.
                         </h1>
 
                         <p className="text-[length:var(--font-size-body)] leading-[var(--line-height-body)] mx-auto max-w-2xl mb-12">
-                            Sera builds custom automation systems that eliminate manual tasks, integrate with your tools, and ship in days, not quarters. We save teams 20+ hours weekly.
+                            Sera builds custom automation systems that replace manual work, streamline operations, and help teams scale without hiring. Shipped in days. Used every day.
                         </p>
 
                         <div className="mt-12 flex flex-col items-center justify-center gap-4 md:flex-row">
@@ -57,22 +57,8 @@ export default function HeroSection() {
                                 asChild
                                 variant="default"
                                 size="lg">
-                                <Link href="#contact" onClick={() => {
-                                    const contactSection = document.getElementById('contact');
-                                    if (contactSection) {
-                                        contactSection.scrollIntoView({ behavior: 'smooth' });
-                                        setTimeout(() => {
-                                            const buttons = contactSection.querySelectorAll('button');
-                                            const callButton = Array.from(buttons).find(
-                                                button => button.textContent?.toLowerCase().includes('schedule call')
-                                            ) as HTMLButtonElement;
-                                            if (callButton) {
-                                                callButton.click();
-                                            }
-                                        }, 500);
-                                    }
-                                }}>
-                                    <span className="text-nowrap font-medium">Automate My Ops</span>
+                                <Link href="#contact">
+                                    <span className="text-nowrap font-medium">Fix My Broken Process</span>
                                     <ArrowRight className="ml-2" />
                                 </Link>
                             </Button>
@@ -81,7 +67,7 @@ export default function HeroSection() {
                                 size="lg"
                                 variant="outline">
                                 <Link href="#pricing">
-                                    <span className="text-nowrap font-medium">View Plans</span>
+                                    <span className="text-nowrap font-medium">See How It Works</span>
                                 </Link>
                             </Button>
                         </div>
@@ -89,7 +75,7 @@ export default function HeroSection() {
 
                     <div className="col-span-12 relative mx-auto max-w-4xl rounded-xl p-1 mt-16">
                         <div className="text-center mb-4">
-                            <p className="text-[length:var(--font-size-caption)] leading-[var(--line-height-body)] text-center">TECHNOLOGIES WE LEVERAGE</p>
+                            <p className="text-[length:var(--font-size-caption)] leading-[var(--line-height-body)] text-center">BUILT ON YOUR STACK, MANAGED BY US</p>
                         </div>
                         <div className="overflow-hidden relative rounded-lg">
                             {/* Fade gradient on the left */}
@@ -152,7 +138,7 @@ export default function HeroSection() {
                                                 <Image
                                                     className="object-cover w-full"
                                                     src={src}
-                                                    alt={`AI Application Example ${index + 1}`}
+                                                    alt={`Sera Automation System Example ${index + 1}`}
                                                     fill
                                                     sizes="(max-width: 640px) 90vw, (max-width: 768px) 85vw, (max-width: 1024px) 75vw, 65vw"
                                                     priority={index === 1}

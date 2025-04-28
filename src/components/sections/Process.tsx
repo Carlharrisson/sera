@@ -11,12 +11,12 @@ export default function Process() {
                 <div className="grid grid-cols-1 gap-6 md:gap-8 mb-12 md:mb-16">
                     <div className="text-center mb-4">
                         <h2 className="text-[length:var(--font-size-h2)] leading-[var(--line-height-heading)] tracking-[-0.01em] text-balance">
-                            How We Ship: Fast, Focused Execution
+                            From Problem to Working System in Days
                         </h2>
                     </div>
                     <div>
                         <p className="text-[length:var(--font-size-body)] leading-[var(--line-height-body)] text-muted-foreground text-center max-w-2xl mx-auto">
-                            No meetings. No roadmaps. We find the pain, build the fix, and launch systems that work on day one.
+                            No strategy decks. No endless discovery calls. Just a clear, async process focused entirely on building what you need.
                         </p>
                     </div>
                 </div>
@@ -31,9 +31,9 @@ export default function Process() {
                                         <Lightbulb className="size-6 md:size-8 text-primary/80" />
                                     </div>
                                 </div>
-                                <h3 className="text-[length:var(--font-size-h3)] leading-[var(--line-height-heading)] font-medium mb-4">Find the Bottleneck</h3>
+                                <h3 className="text-[length:var(--font-size-h3)] leading-[var(--line-height-heading)] font-medium mb-4">Define the Problem</h3>
                                 <p className="text-[length:var(--font-size-body)] leading-[var(--line-height-body)] text-muted-foreground">
-                                    We trace the pain point, where work breaks, slows, or repeats, to scope a clear outcome.
+                                    Send us the messy workflow via Slack or form. We ask clarifying questions, scope the fix, and confirm the outcome.
                                 </p>
                             </div>
                         </CardContent>
@@ -48,9 +48,9 @@ export default function Process() {
                                         <Blocks className="size-6 md:size-8 text-primary/80" />
                                     </div>
                                 </div>
-                                <h3 className="text-[length:var(--font-size-h3)] leading-[var(--line-height-heading)] font-medium mb-4">Build the System</h3>
+                                <h3 className="text-[length:var(--font-size-h3)] leading-[var(--line-height-heading)] font-medium mb-4">Build & Test</h3>
                                 <p className="text-[length:var(--font-size-body)] leading-[var(--line-height-body)] text-muted-foreground">
-                                    One clean solution built rapidly using your existing stack. Scoped tight, shipped fast.
+                                    We build the system using your stack, test it, and share a demo or Loom for async review. Two revision rounds included.
                                 </p>
                             </div>
                         </CardContent>
@@ -65,9 +65,9 @@ export default function Process() {
                                         <Rocket className="size-6 md:size-8 text-primary/80" />
                                     </div>
                                 </div>
-                                <h3 className="text-[length:var(--font-size-h3)] leading-[var(--line-height-heading)] font-medium mb-4">Launch & Improve</h3>
+                                <h3 className="text-[length:var(--font-size-h3)] leading-[var(--line-height-heading)] font-medium mb-4">Launch & Handover</h3>
                                 <p className="text-[length:var(--font-size-body)] leading-[var(--line-height-body)] text-muted-foreground">
-                                    Go live early, iterate fast based on real use, then hand off or keep improving.
+                                    System goes live. We provide documentation and ensure your team can use and own it. Managed hosting available.
                                 </p>
                             </div>
                         </CardContent>
@@ -77,16 +77,16 @@ export default function Process() {
                 <div className="max-w-3xl mx-auto mt-8 md:mt-12">
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-2">
                         <div className="text-center md:border-r border-border">
-                            <p className="text-[length:var(--font-size-body)] leading-[var(--line-height-body)] font-medium">Built in Weeks</p>
+                            <p className="text-[length:var(--font-size-body)] leading-[var(--line-height-body)] font-medium">Ships in Days</p>
                             <p className="text-[length:var(--font-size-caption)] leading-[var(--line-height-body)] text-muted-foreground">Not months or quarters</p>
                         </div>
                         <div className="text-center md:border-r border-border">
-                            <p className="text-[length:var(--font-size-body)] leading-[var(--line-height-body)] font-medium">No Meetings</p>
-                            <p className="text-[length:var(--font-size-caption)] leading-[var(--line-height-body)] text-muted-foreground">Fully async process</p>
+                            <p className="text-[length:var(--font-size-body)] leading-[var(--line-height-body)] font-medium">Fully Async</p>
+                            <p className="text-[length:var(--font-size-caption)] leading-[var(--line-height-body)] text-muted-foreground">Built via Slack & Loom</p>
                         </div>
                         <div className="text-center">
-                            <p className="text-[length:var(--font-size-body)] leading-[var(--line-height-body)] font-medium">Slack Based</p>
-                            <p className="text-[length:var(--font-size-caption)] leading-[var(--line-height-body)] text-muted-foreground">Simple project management</p>
+                            <p className="text-[length:var(--font-size-body)] leading-[var(--line-height-body)] font-medium">You Own the Result</p>
+                            <p className="text-[length:var(--font-size-caption)] leading-[var(--line-height-body)] text-muted-foreground">Clear handover & docs</p>
                         </div>
                     </div>
                 </div>

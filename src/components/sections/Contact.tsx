@@ -119,12 +119,12 @@ export default function Contact() {
                 <div ref={contentRef} className="grid grid-cols-1 gap-6 md:gap-8 mb-12 md:mb-16">
                     <div className="text-center mb-4">
                         <h2 className="text-[length:var(--font-size-h2)] leading-[var(--line-height-heading)] tracking-[-0.01em] text-balance bg-clip-text text-transparent bg-gradient-to-b from-foreground to-foreground/80">
-                            Get Your System Built in Days
+                            Submit a Build Request
                         </h2>
                     </div>
                     <div>
                         <p className="text-[length:var(--font-size-body)] leading-[var(--line-height-body)] text-muted-foreground text-center max-w-2xl mx-auto">
-                            Describe the bottleneck holding you back. We build the system to fix it.
+                            Describe the manual process slowing you down. We&apos;ll scope the fix and build the system. Expect a response within 24 hours.
                         </p>
                     </div>
                 </div>
@@ -231,7 +231,7 @@ export default function Contact() {
                                             <FormLabel className="text-[length:var(--font-size-caption)] leading-[var(--line-height-body)] font-medium" required>What process is slowing you down right now?</FormLabel>
                                             <FormControl>
                                                 <Textarea
-                                                    placeholder="Describe the manual workflow, handoff, or update mess."
+                                                    placeholder="Example: Manually updating Salesforce after calls, chasing approvals in Slack, copy-pasting between Sheets and Airtable..."
                                                     {...field}
                                                     rows={3}
                                                     className={`resize-none ${hasFieldError('currentProcess') ? 'border-destructive focus-visible:ring-destructive/20' : ''}`}
@@ -252,7 +252,7 @@ export default function Contact() {
                                             <FormLabel className="text-[length:var(--font-size-caption)] leading-[var(--line-height-body)] font-medium" required>What tools are you using for this today?</FormLabel>
                                             <FormControl>
                                                 <Input
-                                                    placeholder="Slack, Airtable, Sheets, Notion…"
+                                                    placeholder="Slack, Airtable, Salesforce, HubSpot, Sheets..."
                                                     {...field}
                                                     className={`h-11 ${hasFieldError('currentTools') ? 'border-destructive focus-visible:ring-destructive/20' : ''}`}
                                                     aria-invalid={hasFieldError('currentTools')}
@@ -290,7 +290,7 @@ export default function Contact() {
                                                                 <FormControl>
                                                                     <label
                                                                         htmlFor={option.value}
-                                                                        className="flex items-center space-x-3 space-y-0 rounded-lg border p-4 transition-colors hover:bg-muted/50 [&:has(:checked)]:border-primary [&:has(:checked)]:bg-primary/5 cursor-pointer"
+                                                                        className="flex items-center space-x-3 space-y-0 rounded-lg border p-4 transition-colors hover:bg-muted/50 [&:has(:checked)]:border-primary [&:has(:checked)]:bg-primary/5 cursor-pointer text-[length:var(--font-size-caption)] leading-[var(--line-height-body)]"
                                                                     >
                                                                         <RadioGroupItem
                                                                             value={option.value}
@@ -317,10 +317,10 @@ export default function Contact() {
                                     name="impact"
                                     render={({ field }) => (
                                         <FormItem>
-                                            <FormLabel className="text-[length:var(--font-size-caption)] leading-[var(--line-height-body)] font-medium">What&apos;s happening because of this?</FormLabel>
+                                            <FormLabel className="text-[length:var(--font-size-caption)] leading-[var(--line-height-body)] font-medium">What breaks because this isn&apos;t automated?</FormLabel>
                                             <FormControl>
                                                 <Textarea
-                                                    placeholder="Missed follow-ups, wasted hours, dropped handoffs…"
+                                                    placeholder="Examples: Leads dropped, deals stalled, engineers doing ops work, team wasting hours..."
                                                     {...field}
                                                     rows={2}
                                                     className={`resize-none ${hasFieldError('impact') ? 'border-destructive focus-visible:ring-destructive/20' : ''}`}
@@ -358,7 +358,7 @@ export default function Contact() {
                                                                 <FormControl>
                                                                     <label
                                                                         htmlFor={option.value}
-                                                                        className="flex items-center space-x-3 space-y-0 rounded-lg border p-4 transition-colors hover:bg-muted/50 [&:has(:checked)]:border-primary [&:has(:checked)]:bg-primary/5 cursor-pointer"
+                                                                        className="flex items-center space-x-3 space-y-0 rounded-lg border p-4 transition-colors hover:bg-muted/50 [&:has(:checked)]:border-primary [&:has(:checked)]:bg-primary/5 cursor-pointer text-[length:var(--font-size-caption)] leading-[var(--line-height-body)]"
                                                                     >
                                                                         <RadioGroupItem
                                                                             value={option.value}
@@ -385,10 +385,10 @@ export default function Contact() {
                                     name="systemOwner"
                                     render={({ field }) => (
                                         <FormItem>
-                                            <FormLabel className="text-[length:var(--font-size-caption)] leading-[var(--line-height-body)] font-medium" required>Who will own the system once it&apos;s live?</FormLabel>
+                                            <FormLabel className="text-[length:var(--font-size-caption)] leading-[var(--line-height-body)] font-medium" required>Who on your team will own this system?</FormLabel>
                                             <FormControl>
                                                 <Input
-                                                    placeholder="We only build what someone will actually use."
+                                                    placeholder="We need one point of contact for feedback & adoption."
                                                     {...field}
                                                     className={`h-11 ${hasFieldError('systemOwner') ? 'border-destructive focus-visible:ring-destructive/20' : ''}`}
                                                     aria-invalid={hasFieldError('systemOwner')}

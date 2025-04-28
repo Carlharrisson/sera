@@ -11,12 +11,12 @@ export default function Services() {
                 <div className="grid grid-cols-1 gap-6 md:gap-8 mb-12 md:mb-16">
                     <div className="text-center mb-4">
                         <h2 className="text-[length:var(--font-size-h2)] leading-[var(--line-height-heading)] tracking-[-0.01em] text-balance">
-                            What We Build: Fast, Functional Automation
+                            Built to Fix Your Operational Bottlenecks
                         </h2>
                     </div>
                     <div>
                         <p className="text-[length:var(--font-size-body)] leading-[var(--line-height-body)] text-muted-foreground text-center max-w-2xl mx-auto">
-                            We build custom systems that remove bottlenecks, integrate with your stack, and automate work that slows your team down. Shipped in days.
+                            We build specific systems to solve painful workflows: Slack bots, custom integrations, internal dashboards. Always fast, always functional.
                         </p>
                     </div>
                 </div>
@@ -28,9 +28,9 @@ export default function Services() {
                                 <div className="size-12 rounded-lg bg-primary/5 flex items-center justify-center mb-4 group-hover:bg-primary/10 transition-colors">
                                     <Workflow className="size-6 text-primary/80" />
                                 </div>
-                                <h3 className="text-[length:var(--font-size-h3)] leading-[var(--line-height-heading)] font-medium mb-2">AI Automation</h3>
+                                <h3 className="text-[length:var(--font-size-h3)] leading-[var(--line-height-heading)] font-medium mb-2">Automated Workflows</h3>
                                 <p className="text-[length:var(--font-size-caption)] leading-[var(--line-height-body)] text-muted-foreground">
-                                    Replace repetitive tasks like CRM updates, lead routing, and onboarding flows. Saves 20+ hrs/week.
+                                    Replace manual CRM updates, broken handoffs, and copy-paste tasks. Built in days. Saves 20+ hours/week.
                                 </p>
                             </div>
                         </CardContent>
@@ -42,9 +42,9 @@ export default function Services() {
                                 <div className="size-12 rounded-lg bg-primary/5 flex items-center justify-center mb-4 group-hover:bg-primary/10 transition-colors">
                                     <LayoutDashboard className="size-6 text-primary/80" />
                                 </div>
-                                <h3 className="text-[length:var(--font-size-h3)] leading-[var(--line-height-heading)] font-medium mb-2">Internal Tools</h3>
+                                <h3 className="text-[length:var(--font-size-h3)] leading-[var(--line-height-heading)] font-medium mb-2">Custom Internal Tools</h3>
                                 <p className="text-[length:var(--font-size-caption)] leading-[var(--line-height-body)] text-muted-foreground">
-                                    Custom dashboards and interfaces built fast to streamline messy workflows without replacing your core tools.
+                                    Get the dashboards, interfaces, and simple tools your team needs without complex builds. Fixes operational gaps fast.
                                 </p>
                             </div>
                         </CardContent>
@@ -56,9 +56,9 @@ export default function Services() {
                                 <div className="size-12 rounded-lg bg-primary/5 flex items-center justify-center mb-4 group-hover:bg-primary/10 transition-colors">
                                     <Bot className="size-6 text-primary/80" />
                                 </div>
-                                <h3 className="text-[length:var(--font-size-h3)] leading-[var(--line-height-heading)] font-medium mb-2">AI Assistants</h3>
+                                <h3 className="text-[length:var(--font-size-h3)] leading-[var(--line-height-heading)] font-medium mb-2">AI & Slack Assistants</h3>
                                 <p className="text-[length:var(--font-size-caption)] leading-[var(--line-height-body)] text-muted-foreground">
-                                    Handle FAQs, screen leads, and trigger workflows automatically so your team can focus on core work.
+                                    Answer repetitive questions, qualify leads, and trigger workflows directly in Slack. Reduces noise, increases speed.
                                 </p>
                             </div>
                         </CardContent>

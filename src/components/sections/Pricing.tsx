@@ -19,31 +19,31 @@ interface PricingTier {
 const pricingTiers: PricingTier[] = [
     {
         title: "Project Builds",
-        subtitle: "Fix one clear process or workflow",
+        subtitle: "For high-impact systems and complex workflows",
         price: "5,000 EUR",
         features: [
-            "Planning, design, build included",
-            "Launch in weeks, not months",
-            "Two revision rounds",
-            "30 days of support post-launch",
-            "Often offsets one full-time role"
+            "Fixes one core operational problem",
+            "Built & shipped in 1-3 weeks",
+            "Clear scope, fixed price",
+            "Includes build, testing & handover",
+            "Priced by outcome, not hours"
         ],
         buttonText: "Scope a Project",
         buttonLink: "#contact"
     },
     {
         title: "Ongoing Support",
-        subtitle: "Consistent execution without hiring",
+        subtitle: "Continuous execution, like an internal team",
         price: "4,800 EUR",
         period: "/month",
         features: [
-            "Four requests per month",
+            "Four system requests per month",
             "48-hour response time",
-            "Two revisions per task",
-            "Direct Slack access",
-            "Cancel anytime"
+            "Direct Slack channel access",
+            "Two revisions per request",
+            "Month-to-month, cancel anytime"
         ],
-        buttonText: "Become a Member",
+        buttonText: "Start Monthly Support",
         buttonLink: "https://buy.stripe.com/aEUbIT0CscsNcbmbII"
     }
 ];
@@ -55,12 +55,12 @@ export default function Pricing() {
                 <div className="grid grid-cols-1 gap-6 md:gap-8 mb-12 md:mb-16">
                     <div className="text-center mb-4">
                         <h2 className="text-[length:var(--font-size-h2)] leading-[var(--line-height-heading)] tracking-[-0.01em] text-balance">
-                            Pricing: Execution, Not Consultation
+                            Pricing Built for Execution
                         </h2>
                     </div>
                     <div>
                         <p className="text-[length:var(--font-size-body)] leading-[var(--line-height-body)] text-muted-foreground text-center max-w-2xl mx-auto">
-                            Clear pricing for building operational systems. Choose a one-time project or ongoing support to scale without adding headcount.
+                            Choose a fixed project for a specific outcome or monthly support for ongoing operational needs. No retainers, no hourly billing.
                         </p>
                     </div>
                 </div>
@@ -81,7 +81,7 @@ export default function Pricing() {
                                 <CardContent className="p-6 space-y-6">
                                     <div className="flex flex-col pb-2 border-b">
                                         <span className="text-[length:var(--font-size-caption)] leading-[var(--line-height-body)] text-muted-foreground mb-1">
-                                            {tier.title === "Project Builds" ? "Starting from" : "Monthly subscription"}
+                                            {tier.title === "Project Builds" ? "Starting from" : "Fixed monthly rate"}
                                         </span>
                                         <div className="flex items-baseline gap-2">
                                             <span className="text-[length:var(--font-size-h3)] leading-[var(--line-height-heading)] font-medium">{tier.price}</span>
