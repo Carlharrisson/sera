@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import localFont from 'next/font/local'
+import Script from 'next/script'
 import "./globals.css";
 import { Analytics } from '@vercel/analytics/react';
 import { ThemeProvider } from "@/components/shared/theme-provider";
@@ -75,6 +76,13 @@ export default function RootLayout({
             <ContentSquare />
             <GoogleAnalytics />
             <Analytics />
+            <Script
+              id="vtag-ai-js"
+              src="https://r2.leadsy.ai/tag.js"
+              data-pid="1xjlZ4reR9lAUZbdc"
+              data-version="062024"
+              strategy="afterInteractive"
+            />
           </LenisProvider>
         </ThemeProvider>
       </body>
