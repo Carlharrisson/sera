@@ -1,0 +1,70 @@
+---
+description: 
+globs: 
+alwaysApply: false
+---
+# 🧾 RFC: Hero Section
+
+**Feature Name**: `HeroSection`  
+**Component Path**: `components/sections/hero-section.tsx`  
+**Target Page**: `app/page.tsx`  
+**Owner**: Carl
+
+---
+
+## 🧩 Purpose
+
+The Hero Section is the first element users see. It must **immediately explain what Sera is, who it’s for, and why it matters** — in under 5 seconds.
+
+It should:
+- Grab attention with a sharp, pain-based headline
+- Render instantly on mobile and desktop
+
+🛠 Tech/Style Constraints
+Built with Next.js 15 (App Router)
+
+Must use Tailwind CSS for styling
+
+Use system fonts — no external font loads
+
+Responsive from 320px → 1440px
+
+Text should scale well on mobile
+
+CTA should use a Button component from components/ui/button.tsx
+
+🧼 Accessibility
+Ensure h1 is used for the headline
+
+Button must be keyboard-focusable and accessible
+
+Use semantic HTML only (no <div className="button">)
+
+🧪 Test Plan
+Load page in Chrome and Safari mobile simulator
+
+Ensure:
+
+Text is legible and unclipped on all viewports
+
+CTA is tappable and scrolls to #how-it-works
+
+Load time <1s on Lighthouse
+
+Component compiles with no Tailwind warnings
+
+📦 Dependencies
+Button component (components/ui/button.tsx)
+
+content/hero.ts
+
+✅ Completion Criteria
+Component is implemented and imported in app/page.tsx
+
+Copy pulls from content/hero.ts
+
+Scroll CTA works on all major browsers
+
+Visual QA passed on iOS + Android viewports
+
+You (Carl) are satisfied with the first-fold impression and clarity

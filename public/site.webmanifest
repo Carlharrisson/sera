@@ -1,0 +1,22 @@
+{
+  "name": "Sera Agency - Web Development & Automation",
+  "short_name": "Sera",
+  "description": "Transform your business with custom web development, mobile apps, and automation solutions.",
+  "icons": [
+    {
+      "src": "/android-chrome-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/android-chrome-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ],
+  "theme_color": "#dc2626",
+  "background_color": "#ffffff",
+  "display": "standalone",
+  "start_url": "/",
+  "scope": "/"
+}

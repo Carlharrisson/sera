@@ -1,0 +1,94 @@
+---
+description: 
+globs: 
+alwaysApply: false
+---
+# 🧾 Product Requirements Document (PRD)
+
+**Owner**: Carl (solo builder)  
+
+---
+
+## 🎯 Project Goal
+
+Create a clean, high-impact landing page that positions **Sera** as the no-fluff automation solution for small agency founders. This landing page is designed to:
+
+- Instantly communicate **what Sera is**, **who it’s for**, and **why it matters**
+- Show that Sera delivers **outcome-first automation**, not vague AI tooling
+- Convert qualified attention into **leads, audits, or intro conversations**
+- Make it easy to explain and share the offer across Twitter, email, and Slack
+
+---
+
+## 💡 Core Purpose
+
+This is not a visual playground or case study archive.
+
+This is a single-page asset that:
+- Frames Sera as a **solution to 3 core agency ops problems** (Slack delays, task gaps, missed follow-ups)
+- Highlights the **value, urgency, and speed** of fixing those
+- Builds trust with sharp messaging, visual clarity, and Loom-backed proof
+- Drives interest without friction (no form walls, no long scrolls)
+
+---
+
+## 🛠️ Tech Stack
+
+- **Framework**: Next.js 15 (App Router)  
+- **Language**: TypeScript  
+- **Styling**: Tailwind CSS  
+- **Bundler**: Turbopack  
+- **Animations**: Framer Motion (for enter animations only, optional)  
+- **Deployment**: Vercel (target)  
+- **Font**: System default unless otherwise defined (no remote Google Fonts)  
+
+---
+
+## 📐 Technical Specs & Constraints
+
+- ⚡ Must load in <1s on 4G mobile  
+- 📱 Mobile-first, with 120px vertical spacing between sections  
+- 🧩 Component-based: reuse UI primitives across layout  
+- 💬 Text content must be imported from a central `content.ts` file  
+- 🧪 Built for rapid iteration with Cursor: small commits, scoped features  
+- 💡 Animations must not block interactivity or delay content paint  
+- ❌ No client-side data fetching, CMS, or backend logic in initial version  
+- 🧼 Fully SSR/static by default
+
+---
+
+## 🧱 Architecture & Folder Structure
+
+**App Router Structure**
+├── app/
+│ ├── page.tsx
+│ ├── layout.tsx
+│ └── globals.css
+├── components/
+│ ├── ui/
+│ ├── sections/
+│ └── elements/
+├── lib/
+├── content/
+│ └── copy.ts
+├── public/
+├── tailwind.config.ts
+
+## 🚫 Out of Scope (Initial Release)
+
+- Blog  
+- CMS  
+- Case study filtering  
+- Authentication  
+- Multi-language support  
+
+---
+
+## ✅ Success Criteria
+
+- Clear hero message + instant explanation of Sera  
+- Each wedge (Slack replies, task gaps, follow-ups) explained in plain terms  
+- Mobile tested on iOS + Android  
+- You’re proud to DM this to any agency founder with no explanation
+
+
