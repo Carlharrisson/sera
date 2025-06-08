@@ -39,7 +39,7 @@ const HeroSection = () => {
                         variant="secondary"
                         onClick={() => {
                             trackButtonClick('hero-contact');
-                            window.location.href = `mailto:carl@seraworks.com`;
+                            window.location.href = `mailto:carl.harrisson@gmail.com`;
                         }}
                     >
                         {heroButtonContact}

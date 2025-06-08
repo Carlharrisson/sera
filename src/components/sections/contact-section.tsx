@@ -12,12 +12,18 @@ const ContactSection = () => {
 
                 <div className="flex gap-3 mb-6">
                     <Button
+                        onClick={() => {
+                            window.location.href = 'https://cal.com/carl-harrisson-9w1ec9/quick-chat';
+                        }}
                     >
                         {contactBookButton}
                     </Button>
 
                     <Button
                         variant="secondary"
+                        onClick={() => {
+                            window.location.href = `mailto:carl.harrisson@gmail.com`;
+                        }}
                     >
                         {contactUsButton}
                     </Button>

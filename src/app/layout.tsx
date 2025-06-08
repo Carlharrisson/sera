@@ -10,6 +10,7 @@ import { ContentSquare } from "@/components/contentsquare";
 
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://seraworks.com'),
   title: "Sera - Digital Agency for DTC Founders ",
   description: "Built for DTC founders who want websites that actually convert and systems that work. We partner with e-commerce businesses to create digital experiences that turn visitors into customers and browsers into loyal buyers.",
   keywords: "DTC digital agency, e-commerce development, conversion optimization, email automation, SMS marketing, UI/UX design, personalization systems, analytics, DTC founders, direct-to-consumer, website conversion",
