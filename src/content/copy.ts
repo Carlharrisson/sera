@@ -69,7 +69,7 @@ export const aboutDescription =
   "Sera was founded to help DTC brands bridge the gap between great products and great digital experiences. <span class='text-foreground'>Too many talented founders were being held back by websites and systems that didn't serve their vision</span>.\n\nWhat started as web development has evolved into <span class='text-foreground'>a partnership-focused approach where we work closely with founders to build digital experiences that truly represent their brands</span>. Every project teaches us something new, and every success story reinforces why we love this work.";
 
 export const aboutAuthor = {
-  name: "Carl Harrisston",
+  name: "Carl Harrisson",
   title: "Founder",
   image: "/Portrait.jpg",
 };
