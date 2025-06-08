@@ -70,7 +70,7 @@ export const aboutDescription =
 
 export const aboutAuthor = {
   name: "Carl Harrisson",
-  title: "Founder",
+  title: "Sera Founder",
   image: "/Portrait.jpg",
 };
 

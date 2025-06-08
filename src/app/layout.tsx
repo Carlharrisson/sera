@@ -5,6 +5,7 @@ import Navbar from "@/components/navbar";
 import Footer from "@/components/footer";
 import Analytics from "@/components/analytics";
 import { ContentSquare } from "@/components/contentsquare";
+import { Analytics as VercelAnalytics } from '@vercel/analytics/react';
 
 
 
@@ -32,7 +33,7 @@ export const metadata: Metadata = {
     type: 'website',
     locale: 'en_US',
     url: 'https://seraworks.com',
-    title: 'Sera - Digital Agency for DTC Founders |',
+    title: 'Sera - Digital Agency for DTC Founders',
     description: 'Built for DTC founders who want websites that actually convert and systems that work. We solve the core problems that keep founders up at night.',
     siteName: 'Sera',
     images: [
@@ -75,6 +76,7 @@ export default function RootLayout({
       <body>
         <Analytics />
         <ContentSquare />
+        <VercelAnalytics />
         <Navbar />
         {children}
         <Footer />
