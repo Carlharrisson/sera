@@ -10,12 +10,12 @@ import { ContentSquare } from "@/components/contentsquare";
 
 
 export const metadata: Metadata = {
-  title: "Sera Agency - Custom Web Development & Business Automation",
-  description: "Transform your business with custom web development, mobile apps, and automation solutions. Expert team delivering UX & branding, e-commerce, SEO & marketing services.",
-  keywords: "web development, mobile apps, business automation, UX design, branding, e-commerce, SEO, marketing, custom software",
-  authors: [{ name: "Sera Agency" }],
-  creator: "Sera Agency",
-  publisher: "Sera Agency",
+  title: "Sera - Digital Agency for DTC Founders ",
+  description: "Built for DTC founders who want websites that actually convert and systems that work. We partner with e-commerce businesses to create digital experiences that turn visitors into customers and browsers into loyal buyers.",
+  keywords: "DTC digital agency, e-commerce development, conversion optimization, email automation, SMS marketing, UI/UX design, personalization systems, analytics, DTC founders, direct-to-consumer, website conversion",
+  authors: [{ name: "Sera" }],
+  creator: "Sera",
+  publisher: "Sera",
   robots: {
     index: true,
     follow: true,
@@ -31,24 +31,24 @@ export const metadata: Metadata = {
     type: 'website',
     locale: 'en_US',
     url: 'https://seraworks.com',
-    title: 'Sera Agency - Custom Web Development & Business Automation',
-    description: 'Transform your business with custom web development, mobile apps, and automation solutions. Expert team delivering results.',
-    siteName: 'Sera Agency',
+    title: 'Sera - Digital Agency for DTC Founders |',
+    description: 'Built for DTC founders who want websites that actually convert and systems that work. We solve the core problems that keep founders up at night.',
+    siteName: 'Sera',
     images: [
       {
         url: '/og-image.jpg',
         width: 1200,
         height: 630,
-        alt: 'Sera Agency - Web Development & Automation',
+        alt: 'Sera - Digital Agency for DTC Founders',
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Sera Agency - Custom Web Development & Business Automation',
-    description: 'Transform your business with custom web development, mobile apps, and automation solutions.',
+    title: 'Sera - Digital Agency for DTC Founders',
+    description: 'Built for DTC founders who want websites that actually convert and systems that work. Partnership over transactions.',
     images: ['/og-image.jpg'],
-    creator: '@sera_agency',
+    creator: '@sera_works',
   },
   alternates: {
     canonical: 'https://seraworks.com',
