@@ -19,7 +19,7 @@ const Navbar = () => {
                 <div className="flex items-center justify-between h-16">
                     <div className="flex-shrink-0">
                         <Link href="/">
-                            <Image src="/logo.svg" alt="Logo" width={28} height={28} />
+                            <Image src="/Logo.svg" alt="Logo" width={28} height={28} />
                         </Link>
                     </div>
 
@@ -37,7 +37,9 @@ const Navbar = () => {
                     </div>
 
                     <div className="flex items-center">
-                        <Button className="ml-8 ">
+                        <Button className="ml-8 " onClick={() => {
+                            window.location.href = 'https://cal.com/carl-harrisson-9w1ec9/quick-chat';
+                        }}>
                             Book A Call
                         </Button>
                     </div>

@@ -71,7 +71,7 @@ export const aboutDescription =
 export const aboutAuthor = {
   name: "Carl Harrisston",
   title: "Founder",
-  image: "/portrait.jpg",
+  image: "/Portrait.jpg",
 };
 
 // Contact Section - Natural conclusion
