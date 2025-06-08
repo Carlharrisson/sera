@@ -1,3 +1,4 @@
+"use client"
 import { contactHeadline, contactBookButton, contactUsButton, contactSocialProof } from "@/content/copy";
 import { Button } from "@/components/ui/button";
 
