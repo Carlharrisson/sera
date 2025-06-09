@@ -39,7 +39,7 @@ export const metadata: Metadata = {
     siteName: 'Sera',
     images: [
       {
-        url: '/og-image.jpg',
+        url: '/og-image.png',
         width: 1200,
         height: 630,
         alt: 'Sera - Digital Agency for DTC Founders',
@@ -50,7 +50,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Sera - Digital Agency for DTC Founders',
     description: 'Built for DTC founders who want websites that actually convert and systems that work. Partnership over transactions.',
-    images: ['/og-image.jpg'],
+    images: ['/og-image.png'],
     creator: '@sera_works',
   },
   alternates: {
