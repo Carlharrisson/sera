@@ -25,27 +25,27 @@ export const whatWeDoDescription =
 
 export const whatWeDoItems = [
   {
-    title: "E-Commerce Development",
+    title: "E-Commerce Development & Sites",
     icon: ShoppingCartIcon,
   },
   {
-    title: "UI/UX & AI-Powered Brand",
+    title: "UI/UX Design & Brand Development",
     icon: SparklesIcon,
   },
   {
-    title: "Personalization Systems",
+    title: "Personalization & Customer Systems",
     icon: Cog6ToothIcon,
   },
   {
-    title: "Email & SMS Automation",
+    title: "Email & SMS Marketing Automation",
     icon: EnvelopeIcon,
   },
   {
-    title: "Internal Tool & Dashboard Design",
+    title: "Internal Tools & Dashboard Design",
     icon: ComputerDesktopIcon,
   },
   {
-    title: "Analytics & Data Insights",
+    title: "Analytics & Data-Driven Insights",
     icon: ChartBarIcon,
   },
 ];
