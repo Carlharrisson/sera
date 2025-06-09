@@ -19,7 +19,15 @@ const Navbar = () => {
                 <div className="flex items-center justify-between h-16">
                     <div className="flex-shrink-0">
                         <Link href="/">
-                            <Image src="/Logo.svg" alt="Logo" width={28} height={28} />
+                            <Image
+                                src="/Logo.svg"
+                                alt="Logo"
+                                width={32}
+                                height={32}
+                                className="w-7 h-7 sm:w-8 sm:h-8"
+                                priority
+                                quality={100}
+                            />
                         </Link>
                     </div>
 

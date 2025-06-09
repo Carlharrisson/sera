@@ -9,13 +9,26 @@ import { useState, useEffect } from "react";
 import { useSectionTracking } from "@/hooks/use-section-tracking";
 
 const HeroSection = () => {
-    const [animationDuration, setAnimationDuration] = useState(80);
+    const [animationDuration, setAnimationDuration] = useState(10);
     const sectionRef = useSectionTracking('hero-section');
 
     useEffect(() => {
         // Set animation duration based on screen size after component mounts
         const updateDuration = () => {
-            setAnimationDuration(window.innerWidth < 768 ? 40 : 80);
+            const width = window.innerWidth;
+            if (width < 640) {
+                // Small mobile devices - faster for mobile
+                setAnimationDuration(10);
+            } else if (width < 768) {
+                // Large mobile devices
+                setAnimationDuration(30);
+            } else if (width < 1024) {
+                // Tablet devices
+                setAnimationDuration(40);
+            } else {
+                // Desktop devices
+                setAnimationDuration(80);
+            }
         };
 
         updateDuration();
@@ -69,6 +82,7 @@ const HeroSection = () => {
             {/* project carousel*/}
             <div className="mt-12 sm:mt-16 overflow-hidden">
                 <motion.div
+                    key={`carousel-${animationDuration}`}
                     className="flex gap-2 sm:gap-3 md:gap-4 will-change-transform"
                     animate={{
                         x: ["0%", "-50%"],
