@@ -2,7 +2,6 @@
 import React from "react";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
-
 import Image from "next/image";
 
 const Navbar = () => {
@@ -15,7 +14,7 @@ const Navbar = () => {
 
     return (
         <nav className="fixed top-0 left-0 right-0 z-30 bg-card/6 backdrop-blur-2xl border-b border-border">
-            <div className="max-w-xl mx-auto ">
+            <div className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="flex items-center justify-between h-16">
                     <div className="flex-shrink-0">
                         <Link href="/">
@@ -23,6 +22,7 @@ const Navbar = () => {
                         </Link>
                     </div>
 
+                    {/* Desktop navigation */}
                     <div className="hidden md:flex items-center space-x-4">
                         {navItems.map((item) => (
                             <Link
@@ -36,41 +36,26 @@ const Navbar = () => {
                         ))}
                     </div>
 
-                    <div className="flex items-center">
-                        <Button className="ml-8 " onClick={() => {
+                    {/* Desktop CTA button */}
+                    <div className="hidden md:flex items-center">
+                        <Button className="ml-8" onClick={() => {
                             window.location.href = 'https://cal.com/carl-harrisson-9w1ec9/quick-chat';
                         }}>
                             Book A Call
                         </Button>
                     </div>
 
-                    {/* Mobile menu button */}
+                    {/* Mobile CTA button - replaces hamburger menu */}
                     <div className="md:hidden">
-                        <Button variant="ghost" size="icon">
-                            <span className="sr-only">Open menu</span>
-                            <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-                            </svg>
+                        <Button
+                            size="sm"
+                            onClick={() => {
+                                window.location.href = 'https://cal.com/carl-harrisson-9w1ec9/quick-chat';
+                            }}
+                        >
+                            Book A Call
                         </Button>
                     </div>
-                </div>
-            </div>
-
-            {/* Mobile menu */}
-            <div className="md:hidden">
-                <div className="px-2 pt-2 pb-3 space-y-1">
-                    {navItems.map((item) => (
-                        <Link
-                            key={item.name}
-                            href={item.path}
-                            className={`block px-3 py-2 rounded-md text-base font-medium ${item.isActive
-                                ? 'bg-muted text-foreground'
-                                : 'text-muted-foreground hover:bg-muted hover:text-foreground'
-                                }`}
-                        >
-                            {item.name}
-                        </Link>
-                    ))}
                 </div>
             </div>
         </nav>

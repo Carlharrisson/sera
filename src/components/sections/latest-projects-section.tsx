@@ -17,7 +17,7 @@ const LatestProjectsSection = () => {
 
     return (
         <section id="projects" className="relative pt-16">
-            <div className="container mx-auto max-w-xl">
+            <div className="container mx-auto max-w-2xl px-4 sm:px-6 lg:px-8">
                 <h2 className="text-base mb-3">
                     {latestProjectsData.title}
                 </h2>

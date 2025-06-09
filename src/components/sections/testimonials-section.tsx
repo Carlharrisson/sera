@@ -17,7 +17,7 @@ const TestimonialsSection = () => {
 
     return (
         <section className="relative pt-16">
-            <div className="container mx-auto max-w-xl">
+            <div className="container mx-auto max-w-2xl px-4 sm:px-6 lg:px-8">
                 <div className="transition-all duration-500 ease-in-out min-h-[200px] flex flex-col">
                     <blockquote className="text-base italic mb-6 leading-relaxed flex-1 flex items-start">
                         &quot;{currentTestimonial.quote}&quot;

@@ -3,7 +3,7 @@ import { whyChooseUsHeadline, whyChooseUsDescription, whyChooseUsReasons } from 
 const WhyChooseUsSection = () => {
     return (
         <section className="relative pt-16">
-            <div className="container mx-auto max-w-xl">
+            <div className="container mx-auto max-w-2xl px-4 sm:px-6 lg:px-8">
                 <h2 className="text-base mb-3">
                     {whyChooseUsHeadline}
                 </h2>

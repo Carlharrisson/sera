@@ -18,13 +18,13 @@ const HeroSection = () => {
 
     return (
         <section className="relative pt-32">
-            <div className="container mx-auto max-w-xl">
+            <div className="container mx-auto max-w-2xl px-4 sm:px-6 lg:px-8">
                 <Badge className="mb-4"><div className=" w-2 h-2 bg-green-600 rounded-full mr-2 animate-pulse"></div><span>Q2 Bookings now open</span></Badge>
                 <h1
                     className="text-base mb-6 text-muted-foreground"
                     dangerouslySetInnerHTML={{ __html: heroHeadline }}
                 />
-                <div className="flex gap-4">
+                <div className="flex flex-row gap-3 sm:gap-4">
                     <Button
                         aria-label={heroButtonBook}
                         onClick={() => {
@@ -48,9 +48,9 @@ const HeroSection = () => {
             </div>
 
             {/* project carousel*/}
-            <div className=" mt-16 overflow-hidden ">
+            <div className="mt-12 sm:mt-16 overflow-hidden">
                 <motion.div
-                    className="flex gap-4"
+                    className="flex gap-2 sm:gap-3 md:gap-4 will-change-transform"
                     animate={{
                         x: ["0%", "-50%"],
                     }}
@@ -58,9 +58,12 @@ const HeroSection = () => {
                         x: {
                             repeat: Infinity,
                             repeatType: "loop",
-                            duration: 80,
+                            duration: window.innerWidth < 768 ? 40 : 80, // Faster on mobile
                             ease: "linear",
                         },
+                    }}
+                    style={{
+                        transform: "translateZ(0)", // Force hardware acceleration
                     }}
                 >
                     {/* Original images */}
@@ -69,11 +72,13 @@ const HeroSection = () => {
                             key={`original-${index}`}
                             src={src}
                             alt={`Sera Agency project showcase ${index + 1} - Custom web development and automation solution`}
-                            width={800}
-                            height={800}
-                            sizes="(max-width: 768px) 100vw, 50vw"
-                            className="h-[32rem] w-auto object-cover flex-shrink-0 rounded-lg border border-border "
+                            width={400} // Reduced from 800
+                            height={400} // Reduced from 800
+                            sizes="(max-width: 640px) 60vw, (max-width: 768px) 50vw, 40vw"
+                            className="h-48 sm:h-64 md:h-80 lg:h-[32rem] w-auto object-cover flex-shrink-0 rounded-lg border border-border transform-gpu"
                             priority={index < 2}
+                            quality={window.innerWidth < 768 ? 75 : 85} // Lower quality on mobile
+                            loading={index < 2 ? "eager" : "lazy"}
                         />
                     ))}
 
@@ -83,10 +88,12 @@ const HeroSection = () => {
                             key={`duplicate-${index}`}
                             src={src}
                             alt={`Sera Agency project showcase ${index + 1} duplicate for animation`}
-                            width={800}
-                            height={800}
-                            sizes="(max-width: 768px) 100vw, 50vw"
-                            className="h-[32rem] w-auto object-cover flex-shrink-0 rounded-lg border border-border "
+                            width={400} // Reduced from 800
+                            height={400} // Reduced from 800
+                            sizes="(max-width: 640px) 60vw, (max-width: 768px) 50vw, 40vw"
+                            className="h-48 sm:h-64 md:h-80 lg:h-[32rem] w-auto object-cover flex-shrink-0 rounded-lg border border-border transform-gpu"
+                            quality={window.innerWidth < 768 ? 75 : 85} // Lower quality on mobile
+                            loading="lazy"
                         />
                     ))}
                 </motion.div>
