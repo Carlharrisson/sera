@@ -25,8 +25,8 @@ const Navbar = () => {
                             <Image
                                 src="/Logo.svg"
                                 alt="Logo"
-                                width={32}
-                                height={32}
+                                width={164}
+                                height={164}
                                 className="w-7 h-7 sm:w-8 sm:h-8"
                                 priority
                                 quality={100}
