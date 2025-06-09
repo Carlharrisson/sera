@@ -1,7 +1,7 @@
 "use client"
 import { contactHeadline, contactBookButton, contactUsButton, contactSocialProof } from "@/content/copy";
 import { Button } from "@/components/ui/button";
-import { trackButtonClick } from "@/components/analytics";
+import { trackButtonClick, trackExternalLink } from "@/components/analytics";
 
 const ContactSection = () => {
     return (
@@ -16,6 +16,7 @@ const ContactSection = () => {
                     <Button
                         onClick={() => {
                             trackButtonClick('contact-book-call');
+                            trackExternalLink('cal.com', 'contact');
                             window.open('https://cal.com/carl-harrisson-9w1ec9/quick-chat', '_blank');
                         }}
                     >
@@ -26,6 +27,7 @@ const ContactSection = () => {
                         variant="secondary"
                         onClick={() => {
                             trackButtonClick('contact-email');
+                            trackExternalLink('email', 'contact');
                             window.open('mailto:carl.harrisson@gmail.com', '_blank');
                         }}
                     >

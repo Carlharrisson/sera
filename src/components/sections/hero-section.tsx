@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import { Badge } from "../ui/badge";
 import { motion } from "framer-motion";
-import { trackButtonClick } from "@/components/analytics";
+import { trackButtonClick, trackExternalLink } from "@/components/analytics";
 import { useState, useEffect } from "react";
 import { useSectionTracking } from "@/hooks/use-section-tracking";
 
@@ -46,6 +46,7 @@ const HeroSection = () => {
                         aria-label={heroButtonBook}
                         onClick={() => {
                             trackButtonClick('hero-book-call');
+                            trackExternalLink('cal.com', 'hero');
                             window.open('https://cal.com/carl-harrisson-9w1ec9/quick-chat', '_blank');
                         }}
                     >
@@ -56,6 +57,7 @@ const HeroSection = () => {
                         variant="secondary"
                         onClick={() => {
                             trackButtonClick('hero-contact');
+                            trackExternalLink('email', 'hero');
                             window.open('mailto:carl.harrisson@gmail.com', '_blank');
                         }}
                     >

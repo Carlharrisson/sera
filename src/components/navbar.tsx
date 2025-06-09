@@ -3,7 +3,7 @@ import React from "react";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import Image from "next/image";
-import { trackButtonClick } from "@/components/analytics";
+import { trackButtonClick, trackExternalLink } from "@/components/analytics";
 
 const Navbar = () => {
     const navItems = [
@@ -41,6 +41,7 @@ const Navbar = () => {
                     <div className="hidden md:flex items-center">
                         <Button className="ml-8" onClick={() => {
                             trackButtonClick('navbar-book-call-desktop');
+                            trackExternalLink('cal.com', 'navbar-desktop');
                             window.open('https://cal.com/carl-harrisson-9w1ec9/quick-chat', '_blank');
                         }}>
                             Book A Call
@@ -53,6 +54,7 @@ const Navbar = () => {
                             size="sm"
                             onClick={() => {
                                 trackButtonClick('navbar-book-call-mobile');
+                                trackExternalLink('cal.com', 'navbar-mobile');
                                 window.open('https://cal.com/carl-harrisson-9w1ec9/quick-chat', '_blank');
                             }}
                         >
