@@ -5,8 +5,23 @@ import Image from "next/image";
 import { Badge } from "../ui/badge";
 import { motion } from "framer-motion";
 import { trackButtonClick } from "@/components/analytics";
+import { useState, useEffect } from "react";
 
 const HeroSection = () => {
+    const [animationDuration, setAnimationDuration] = useState(80);
+
+    useEffect(() => {
+        // Set animation duration based on screen size after component mounts
+        const updateDuration = () => {
+            setAnimationDuration(window.innerWidth < 768 ? 40 : 80);
+        };
+
+        updateDuration();
+        window.addEventListener('resize', updateDuration);
+
+        return () => window.removeEventListener('resize', updateDuration);
+    }, []);
+
     const images = [
         "/LandingPage.png",
         "/Branding.png",
@@ -58,7 +73,7 @@ const HeroSection = () => {
                         x: {
                             repeat: Infinity,
                             repeatType: "loop",
-                            duration: window.innerWidth < 768 ? 40 : 80, // Faster on mobile
+                            duration: animationDuration,
                             ease: "linear",
                         },
                     }}
@@ -72,12 +87,12 @@ const HeroSection = () => {
                             key={`original-${index}`}
                             src={src}
                             alt={`Sera Agency project showcase ${index + 1} - Custom web development and automation solution`}
-                            width={400} // Reduced from 800
-                            height={400} // Reduced from 800
+                            width={400}
+                            height={400}
                             sizes="(max-width: 640px) 60vw, (max-width: 768px) 50vw, 40vw"
                             className="h-48 sm:h-64 md:h-80 lg:h-[32rem] w-auto object-cover flex-shrink-0 rounded-lg border border-border transform-gpu"
                             priority={index < 2}
-                            quality={window.innerWidth < 768 ? 75 : 85} // Lower quality on mobile
+                            quality={75}
                             loading={index < 2 ? "eager" : "lazy"}
                         />
                     ))}
@@ -88,11 +103,11 @@ const HeroSection = () => {
                             key={`duplicate-${index}`}
                             src={src}
                             alt={`Sera Agency project showcase ${index + 1} duplicate for animation`}
-                            width={400} // Reduced from 800
-                            height={400} // Reduced from 800
+                            width={400}
+                            height={400}
                             sizes="(max-width: 640px) 60vw, (max-width: 768px) 50vw, 40vw"
                             className="h-48 sm:h-64 md:h-80 lg:h-[32rem] w-auto object-cover flex-shrink-0 rounded-lg border border-border transform-gpu"
-                            quality={window.innerWidth < 768 ? 75 : 85} // Lower quality on mobile
+                            quality={75}
                             loading="lazy"
                         />
                     ))}
