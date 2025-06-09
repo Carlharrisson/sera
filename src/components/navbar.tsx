@@ -14,8 +14,11 @@ const Navbar = () => {
     ];
 
     return (
-        <nav className="fixed top-0 left-0 right-0 z-30 bg-card/6 backdrop-blur-2xl border-b border-border">
-            <div className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8">
+        <nav className="fixed top-0 left-0 right-0 z-30 backdrop-blur-2xl border-b border-border">
+            {/* Progressive blur background */}
+            <div className="absolute inset-0 bg-gradient-to-b from-background from-0% via-background via-10% to-background/10"></div>
+
+            <div className="relative max-w-2xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="flex items-center justify-between h-16">
                     <div className="flex-shrink-0">
                         <Link href="/">
