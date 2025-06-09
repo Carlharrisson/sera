@@ -1,6 +1,7 @@
 "use client"
 import { contactHeadline, contactBookButton, contactUsButton, contactSocialProof } from "@/content/copy";
 import { Button } from "@/components/ui/button";
+import { trackButtonClick } from "@/components/analytics";
 
 const ContactSection = () => {
     return (
@@ -14,7 +15,8 @@ const ContactSection = () => {
                 <div className="flex gap-3 mb-6">
                     <Button
                         onClick={() => {
-                            window.location.href = 'https://cal.com/carl-harrisson-9w1ec9/quick-chat';
+                            trackButtonClick('contact-book-call');
+                            window.open('https://cal.com/carl-harrisson-9w1ec9/quick-chat', '_blank');
                         }}
                     >
                         {contactBookButton}
@@ -23,7 +25,8 @@ const ContactSection = () => {
                     <Button
                         variant="secondary"
                         onClick={() => {
-                            window.location.href = `mailto:carl.harrisson@gmail.com`;
+                            trackButtonClick('contact-email');
+                            window.open('mailto:carl.harrisson@gmail.com', '_blank');
                         }}
                     >
                         {contactUsButton}

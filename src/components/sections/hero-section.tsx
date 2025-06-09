@@ -6,9 +6,11 @@ import { Badge } from "../ui/badge";
 import { motion } from "framer-motion";
 import { trackButtonClick } from "@/components/analytics";
 import { useState, useEffect } from "react";
+import { useSectionTracking } from "@/hooks/use-section-tracking";
 
 const HeroSection = () => {
     const [animationDuration, setAnimationDuration] = useState(80);
+    const sectionRef = useSectionTracking('hero-section');
 
     useEffect(() => {
         // Set animation duration based on screen size after component mounts
@@ -32,7 +34,7 @@ const HeroSection = () => {
     ];
 
     return (
-        <section className="relative pt-32">
+        <section ref={sectionRef} className="relative pt-32">
             <div className="container mx-auto max-w-2xl px-4 sm:px-6 lg:px-8">
                 <Badge className="mb-4"><div className=" w-2 h-2 bg-green-600 rounded-full mr-2 animate-pulse"></div><span>Q2 Bookings now open</span></Badge>
                 <h1
@@ -44,7 +46,7 @@ const HeroSection = () => {
                         aria-label={heroButtonBook}
                         onClick={() => {
                             trackButtonClick('hero-book-call');
-                            window.location.href = 'https://cal.com/carl-harrisson-9w1ec9/quick-chat';
+                            window.open('https://cal.com/carl-harrisson-9w1ec9/quick-chat', '_blank');
                         }}
                     >
                         {heroButtonBook}
@@ -54,7 +56,7 @@ const HeroSection = () => {
                         variant="secondary"
                         onClick={() => {
                             trackButtonClick('hero-contact');
-                            window.location.href = `mailto:carl.harrisson@gmail.com`;
+                            window.open('mailto:carl.harrisson@gmail.com', '_blank');
                         }}
                     >
                         {heroButtonContact}

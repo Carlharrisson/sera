@@ -3,6 +3,7 @@ import React from "react";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import Image from "next/image";
+import { trackButtonClick } from "@/components/analytics";
 
 const Navbar = () => {
     const navItems = [
@@ -39,7 +40,8 @@ const Navbar = () => {
                     {/* Desktop CTA button */}
                     <div className="hidden md:flex items-center">
                         <Button className="ml-8" onClick={() => {
-                            window.location.href = 'https://cal.com/carl-harrisson-9w1ec9/quick-chat';
+                            trackButtonClick('navbar-book-call-desktop');
+                            window.open('https://cal.com/carl-harrisson-9w1ec9/quick-chat', '_blank');
                         }}>
                             Book A Call
                         </Button>
@@ -50,7 +52,8 @@ const Navbar = () => {
                         <Button
                             size="sm"
                             onClick={() => {
-                                window.location.href = 'https://cal.com/carl-harrisson-9w1ec9/quick-chat';
+                                trackButtonClick('navbar-book-call-mobile');
+                                window.open('https://cal.com/carl-harrisson-9w1ec9/quick-chat', '_blank');
                             }}
                         >
                             Book A Call

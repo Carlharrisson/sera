@@ -4,6 +4,7 @@ import React, { ReactNode } from "react";
 import Navbar from "@/components/navbar";
 import Footer from "@/components/footer";
 import Analytics from "@/components/analytics";
+import ScrollTracker from "@/components/scroll-tracker";
 import { ContentSquare } from "@/components/contentsquare";
 import { Analytics as VercelAnalytics } from '@vercel/analytics/react';
 
@@ -75,6 +76,7 @@ export default function RootLayout({
       </head>
       <body>
         <Analytics />
+        <ScrollTracker />
         <ContentSquare />
         <VercelAnalytics />
         <Navbar />
