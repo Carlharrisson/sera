@@ -27,6 +27,7 @@ const Navbar = () => {
                                 className="w-7 h-7 sm:w-8 sm:h-8"
                                 priority
                                 quality={100}
+                                sizes="(max-width: 640px) 28px, 32px"
                             />
                         </Link>
                     </div>
