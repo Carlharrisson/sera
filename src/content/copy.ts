@@ -12,17 +12,17 @@ import {
   Cog6ToothIcon,
 } from "@heroicons/react/24/outline";
 
-// Hero Section - Story-driven opener
+// Hero Section
 export const heroHeader =
-  "We build <span class='text-foreground'>websites that actually sell your products</span> and systems that handle the boring stuff so you can focus on what matters.";
+  "We build <span class='text-foreground'>digital flagships for ambitious DTC brands</span>—sites that convert and systems that scale.";
 export const heroSubText =
-  "We partner with e-commerce businesses to create digital experiences that turn visitors into customers and browsers into loyal buyers.";
+  "From storefronts to internal tools, we help brands move faster with less overhead and more control.";
 export const heroButtonBook = "Book a Call";
 
-// What We Do Section - Natural flow from hero
+// What We Do Section
 export const whatWeDoHeadline = "What We Do";
 export const whatWeDoDescription =
-  "We help DTC brands solve the core problems that keep founders up at night: <span class='text-foreground'>websites that don't convert, emails that get ignored, and systems that need constant attention</span>. Our focus is simple—build what works.";
+  "We work with DTC brands held back by scattered tools, underperforming sites, and ops that drain focus. We fix what breaks growth and build what supports scale.";
 
 export const whatWeDoItems = [
   {
@@ -51,23 +51,23 @@ export const whatWeDoItems = [
   },
 ];
 
-// Why Choose Us Section - Building trust
-export const whyChooseUsHeadline = "Why Choose Sera";
+// Why Choose Us Section
+export const whyChooseUsHeadline = "Why Sera";
 export const whyChooseUsDescription =
-  "We believe in partnership over transactions. When we work with a DTC brand, <span class='text-foreground'>we're investing in your success, not just delivering a project</span>. Every decision is made with your growth in mind.";
+  "We partner with brands ready to move beyond generic templates and slow execution. Our focus is on clarity, speed, and systems that don’t break when you grow.";
 
 export const whyChooseUsReasons = [
-  { title: "DTC-Focused Expertise", icon: UserGroupIcon },
-  { title: "Proven Results", icon: TrophyIcon },
-  { title: "Personal Partnership", icon: ClockIcon },
+  { title: "E-Commerce Native", icon: UserGroupIcon },
+  { title: "Execution-First", icon: TrophyIcon },
+  { title: "Tight Feedback Loops", icon: ClockIcon },
   { title: "Transparent Process", icon: CurrencyDollarIcon },
-  { title: "Reliable Delivery", icon: RocketLaunchIcon },
+  { title: "Proven Reliability", icon: RocketLaunchIcon },
 ];
 
-// About Section - Personal story
+// About Section
 export const aboutHeadline = "About";
 export const aboutDescription =
-  "Sera was founded to help DTC brands bridge the gap between great products and great digital experiences. <span class='text-foreground'>Too many talented founders were being held back by websites and systems that didn't serve their vision</span>.\n\nWhat started as web development has evolved into <span class='text-foreground'>a partnership-focused approach where we work closely with founders to build digital experiences that truly represent their brands</span>. Every project teaches us something new, and every success story reinforces why we love this work.";
+  "Sera exists to help DTC brands close the gap between product and performance. <span class='text-foreground'>Most design agencies build visuals. We build leverage.</span>\n\nWhat started as a dev shop is now a focused partner for e-commerce brands who want systems that compound over time. We work closely with founders and teams to create digital infrastructure that drives real outcomes—not just nice-to-haves.";
 
 export const aboutAuthor = {
   name: "Carl Harrisson",
@@ -75,21 +75,21 @@ export const aboutAuthor = {
   image: "/Portrait.jpg",
 };
 
-// Contact Section - Natural conclusion
+// Contact Section
 export const contactHeadline =
-  "Ready to build something meaningful? <span class='text-foreground'>We'd love to hear your story and explore how we can turn your vision into a thriving digital presence</span>.";
-export const contactBookButton = "Book A Call";
+  "If you're scaling and things feel stuck, <span class='text-foreground'>let’s talk about what’s next</span>.";
+export const contactBookButton = "Book a Call";
 export const contactUsButton = "Send Message";
 export const contactSocialProof = "4 founders reached out this week";
 
 // FAQ Section
-export const faqHeadline = "Common Questions";
+export const faqHeadline = "Questions We Actually Get";
 
-// Hero Metrics - Conversion-focused rotating badges
+// Hero Metrics
 export const heroMetrics = [
   "Taking on 3 new clients in Q2",
   "2-week project kickoffs",
   "Custom solutions, not templates",
   "Direct founder access",
-  "Revenue-focused design",
+  "Revenue-focused execution",
 ];

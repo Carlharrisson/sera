@@ -13,10 +13,10 @@ import { Analytics as VercelAnalytics } from '@vercel/analytics/react';
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://seraworks.com'),
-  title: "Sera - Digital Agency for DTC Founders ",
-  description: "Built for DTC founders who want websites that actually convert and systems that work. We partner with e-commerce businesses to create digital experiences that turn visitors into customers and browsers into loyal buyers.",
-  keywords: "DTC digital agency, e-commerce development, conversion optimization, email automation, SMS marketing, UI/UX design, personalization systems, analytics, DTC founders, direct-to-consumer, website conversion",
-  authors: [{ name: "Sera" }],
+  title: "Sera - Digital Flagships for Ambitious DTC Brands | E-Commerce Development & Systems",
+  description: "We build digital flagships for ambitious DTC brands—sites that convert and systems that scale. From storefronts to internal tools, we help brands move faster with less overhead and more control. Execution-first partnership for founders ready to scale.",
+  keywords: "digital flagships, DTC e-commerce development, conversion optimization, ambitious DTC brands, e-commerce systems that scale, internal tools development, personalization systems, email SMS automation, UI UX design brand development, analytics data insights, execution-first agency, revenue-focused development, DTC founders scaling, e-commerce native development, transparent process agency",
+  authors: [{ name: "Sera", url: "https://seraworks.com" }],
   creator: "Sera",
   publisher: "Sera",
   robots: {
@@ -34,29 +34,37 @@ export const metadata: Metadata = {
     type: 'website',
     locale: 'en_US',
     url: 'https://seraworks.com',
-    title: 'Sera - Digital Agency for DTC Founders',
-    description: 'Built for DTC founders who want websites that actually convert and systems that work. We solve the core problems that keep founders up at night.',
+    title: 'Sera - Digital Flagships for Ambitious DTC Brands',
+    description: 'We build digital flagships for ambitious DTC brands—sites that convert and systems that scale. Most design agencies build visuals. We build leverage. Execution-first partnership for founders ready to scale.',
     siteName: 'Sera',
     images: [
       {
         url: '/og-image.png',
         width: 1200,
         height: 630,
-        alt: 'Sera - Digital Agency for DTC Founders',
+        alt: 'Sera - Digital Flagships for Ambitious DTC Brands | E-Commerce Development & Systems',
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Sera - Digital Agency for DTC Founders',
-    description: 'Built for DTC founders who want websites that actually convert and systems that work. Partnership over transactions.',
+    title: 'Sera - Digital Flagships for Ambitious DTC Brands',
+    description: 'We build digital flagships for ambitious DTC brands—sites that convert and systems that scale. Execution-first partnership. Revenue-focused execution.',
     images: ['/og-image.png'],
     creator: '@sera_works',
+    site: '@sera_works',
   },
   alternates: {
     canonical: 'https://seraworks.com',
   },
-  category: 'technology',
+  category: 'business',
+  classification: 'E-commerce Development Agency',
+  other: {
+    'business:contact_data:locality': 'Global',
+    'business:contact_data:region': 'Worldwide',
+    'article:author': 'Carl Harrisson',
+    'article:publisher': 'Sera',
+  },
 };
 
 export default function RootLayout({
@@ -73,6 +81,48 @@ export default function RootLayout({
         <link rel="icon" href="/favicon-32x32.png" sizes="32x32" type="image/png" />
         <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
         <link rel="manifest" href="/site.webmanifest" />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "Organization",
+              name: "Sera",
+              description: "We build digital flagships for ambitious DTC brands—sites that convert and systems that scale.",
+              url: "https://seraworks.com",
+              logo: "https://seraworks.com/logo.png",
+              image: "https://seraworks.com/og-image.png",
+              founder: {
+                "@type": "Person",
+                name: "Carl Harrisson",
+                jobTitle: "Sera Founder"
+              },
+              sameAs: [
+                "https://twitter.com/sera_works"
+              ],
+              contactPoint: {
+                "@type": "ContactPoint",
+                contactType: "Business Inquiries",
+                url: "https://seraworks.com"
+              },
+              areaServed: "Worldwide",
+              serviceType: [
+                "E-Commerce Development",
+                "UI/UX Design",
+                "Brand Development",
+                "Personalization Systems",
+                "Email Marketing Automation",
+                "SMS Marketing Automation",
+                "Internal Tools Development",
+                "Analytics & Data Insights"
+              ],
+              target: {
+                "@type": "Audience",
+                name: "DTC Brands and E-commerce Founders"
+              }
+            })
+          }}
+        />
       </head>
       <body>
         <Analytics />
