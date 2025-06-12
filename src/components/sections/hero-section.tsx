@@ -53,7 +53,7 @@ const HeroSection = () => {
         "/LandingPage.png",
         "/Branding.png",
         "/Hike.png",
-        "/Branding2.png",
+        "/Brand3.png",
         "/ProductDesign.png"
 
     ];

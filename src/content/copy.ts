@@ -14,7 +14,7 @@ import {
 
 // Hero Section - Story-driven opener
 export const heroHeader =
-  "Sera is a digital agency built for DTC founders who want <span class='text-foreground'>websites that actually convert and systems that work while you focus on growing your brand</span>.";
+  "We build <span class='text-foreground'>websites that actually sell your products</span> and systems that handle the boring stuff so you can focus on what matters.";
 export const heroSubText =
   "We partner with e-commerce businesses to create digital experiences that turn visitors into customers and browsers into loyal buyers.";
 export const heroButtonBook = "Book a Call";
