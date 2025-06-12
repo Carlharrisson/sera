@@ -14,7 +14,7 @@ import {
 
 // Hero Section
 export const heroHeader =
-  "We build <span class='text-foreground'>digital flagships for ambitious DTC brands</span>—sites that convert and systems that scale.";
+  "We build <span class='text-foreground'>digital flagships for ambitious DTC brands</span>—sites that convert, systems that scale, and tools that give you back control.";
 export const heroSubText =
   "From storefronts to internal tools, we help brands move faster with less overhead and more control.";
 export const heroButtonBook = "Book a Call";
