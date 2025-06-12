@@ -54,7 +54,7 @@ export const whatWeDoItems = [
 // Why Choose Us Section
 export const whyChooseUsHeadline = "Why Sera";
 export const whyChooseUsDescription =
-  "We partner with brands ready to move beyond generic templates and slow execution. Our focus is on clarity, speed, and systems that don’t break when you grow.";
+  "We partner with brands ready to move beyond generic templates and slow execution. Our focus is on clarity, speed, and systems that don't break when you grow.";
 
 export const whyChooseUsReasons = [
   { title: "E-Commerce Native", icon: UserGroupIcon },
@@ -67,7 +67,7 @@ export const whyChooseUsReasons = [
 // About Section
 export const aboutHeadline = "About";
 export const aboutDescription =
-  "Sera exists to help DTC brands close the gap between product and performance. <span class='text-foreground'>Most design agencies build visuals. We build leverage.</span>\n\nWhat started as a dev shop is now a focused partner for e-commerce brands who want systems that compound over time. We work closely with founders and teams to create digital infrastructure that drives real outcomes—not just nice-to-haves.";
+  "Sera exists to help DTC brands close the gap between product and performance. <span class='text-foreground'>Most design agencies build visuals. We build leverage.</span>\n\nFounded because too many ambitious DTC brands were getting stuck with agencies that didn't understand e-commerce or partners who moved too slowly when speed matters most. We work closely with founders and teams to create digital infrastructure that drives real outcomes—not just nice-to-haves.";
 
 export const aboutAuthor = {
   name: "Carl Harrisson",
@@ -77,7 +77,7 @@ export const aboutAuthor = {
 
 // Contact Section
 export const contactHeadline =
-  "If you're scaling and things feel stuck, <span class='text-foreground'>let’s talk about what’s next</span>.";
+  "If you're scaling and things feel stuck, <span class='text-foreground'>let's talk about what's next</span>.";
 export const contactBookButton = "Book a Call";
 export const contactUsButton = "Send Message";
 export const contactSocialProof = "4 founders reached out this week";
