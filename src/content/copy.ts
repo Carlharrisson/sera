@@ -13,10 +13,11 @@ import {
 } from "@heroicons/react/24/outline";
 
 // Hero Section - Story-driven opener
-export const heroHeadline =
-  "Sera is a digital agency built for DTC founders who want <span class='text-foreground'>websites that actually convert and systems that work while you focus on growing your brand</span>. We partner with e-commerce businesses to create digital experiences that turn visitors into customers and browsers into loyal buyers.";
+export const heroHeader =
+  "Sera is a digital agency built for DTC founders who want <span class='text-foreground'>websites that actually convert and systems that work while you focus on growing your brand</span>.";
+export const heroSubText =
+  "We partner with e-commerce businesses to create digital experiences that turn visitors into customers and browsers into loyal buyers.";
 export const heroButtonBook = "Book a Call";
-export const heroButtonContact = "Contact Us";
 
 // What We Do Section - Natural flow from hero
 export const whatWeDoHeadline = "What We Do";
@@ -79,7 +80,16 @@ export const contactHeadline =
   "Ready to build something meaningful? <span class='text-foreground'>We'd love to hear your story and explore how we can turn your vision into a thriving digital presence</span>.";
 export const contactBookButton = "Book A Call";
 export const contactUsButton = "Send Message";
-export const contactSocialProof = "18 founders reached out this week";
+export const contactSocialProof = "4 founders reached out this week";
 
 // FAQ Section
 export const faqHeadline = "Common Questions";
+
+// Hero Metrics - Conversion-focused rotating badges
+export const heroMetrics = [
+  "Taking on 3 new clients in Q2",
+  "2-week project kickoffs",
+  "Custom solutions, not templates",
+  "Direct founder access",
+  "Revenue-focused design",
+];

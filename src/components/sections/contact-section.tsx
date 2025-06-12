@@ -2,6 +2,7 @@
 import { contactHeadline, contactBookButton, contactUsButton, contactSocialProof } from "@/content/copy";
 import { Button } from "@/components/ui/button";
 import { trackButtonClick, trackExternalLink } from "@/components/analytics";
+import Image from "next/image";
 
 const ContactSection = () => {
     return (
@@ -30,8 +31,16 @@ const ContactSection = () => {
                             trackExternalLink('email', 'contact');
                             window.open('mailto:carl.harrisson@gmail.com', '_blank');
                         }}
+                        className="flex items-center gap-2"
                     >
                         {contactUsButton}
+                        <Image
+                            src="/Telegram_logo.svg.webp"
+                            alt="Telegram"
+                            width={16}
+                            height={16}
+                            className="flex-shrink-0"
+                        />
                     </Button>
                 </div>
 

@@ -1,16 +1,19 @@
 "use client"
-import { heroButtonBook, heroHeadline, heroButtonContact } from "@/content/copy";
+import { heroButtonBook, heroHeader, heroSubText, heroMetrics } from "@/content/copy";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import { Badge } from "../ui/badge";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { trackButtonClick, trackExternalLink } from "@/components/analytics";
 import { useState, useEffect } from "react";
 import { useSectionTracking } from "@/hooks/use-section-tracking";
 
 const HeroSection = () => {
     const [animationDuration, setAnimationDuration] = useState(10);
+    const [currentMetricIndex, setCurrentMetricIndex] = useState(0);
     const sectionRef = useSectionTracking('hero-section');
+
+    const metrics = heroMetrics;
 
     useEffect(() => {
         // Set animation duration based on screen size after component mounts
@@ -37,10 +40,19 @@ const HeroSection = () => {
         return () => window.removeEventListener('resize', updateDuration);
     }, []);
 
+    // Cycle through metrics
+    useEffect(() => {
+        const interval = setInterval(() => {
+            setCurrentMetricIndex((prev) => (prev + 1) % metrics.length);
+        }, 3000); // Change every 3 seconds
+
+        return () => clearInterval(interval);
+    }, [metrics.length]);
+
     const images = [
         "/LandingPage.png",
         "/Branding.png",
-        "/ProductPage.png",
+        "/Hike.png",
         "/Branding2.png",
         "/ProductDesign.png"
 
@@ -49,10 +61,29 @@ const HeroSection = () => {
     return (
         <section ref={sectionRef} className="relative pt-32">
             <div className="container mx-auto max-w-2xl px-4 sm:px-6 lg:px-8">
-                <Badge className="mb-4"><div className=" w-2 h-2 bg-green-600 rounded-full mr-2 animate-pulse"></div><span>Q2 Bookings now open</span></Badge>
+                <Badge className="mb-4 relative overflow-hidden">
+                    <div className="flex items-center">
+                        <div className="w-2 h-2 bg-green-600 rounded-full mr-2 animate-pulse"></div>
+                        <AnimatePresence mode="wait">
+                            <motion.span
+                                key={currentMetricIndex}
+                                initial={{ opacity: 0, y: 20 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                exit={{ opacity: 0, y: -20 }}
+                                transition={{ duration: 0.5 }}
+                            >
+                                {metrics[currentMetricIndex]}
+                            </motion.span>
+                        </AnimatePresence>
+                    </div>
+                </Badge>
                 <h1
-                    className="text-base mb-6 text-muted-foreground"
-                    dangerouslySetInnerHTML={{ __html: heroHeadline }}
+                    className="text-base mb-4 text-foreground"
+                    dangerouslySetInnerHTML={{ __html: heroHeader }}
+                />
+                <p
+                    className="text-sm mb-6 text-muted-foreground"
+                    dangerouslySetInnerHTML={{ __html: heroSubText }}
                 />
                 <div className="flex flex-row gap-3 sm:gap-4">
                     <Button
@@ -64,17 +95,6 @@ const HeroSection = () => {
                         }}
                     >
                         {heroButtonBook}
-                    </Button>
-                    <Button
-                        aria-label={heroButtonContact}
-                        variant="secondary"
-                        onClick={() => {
-                            trackButtonClick('hero-contact');
-                            trackExternalLink('email', 'hero');
-                            window.open('mailto:carl.harrisson@gmail.com', '_blank');
-                        }}
-                    >
-                        {heroButtonContact}
                     </Button>
                 </div>
             </div>
